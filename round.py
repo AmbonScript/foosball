@@ -13,7 +13,7 @@ class Round:
         return self.__number
 
     def play_round(self) -> None:
-        self.__provideByes()
+        Player.provide_byes()
         self.__set_up_matches()
         self.__match_slot.place_players()
     

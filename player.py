@@ -37,6 +37,10 @@ class Player:
     @staticmethod
     def get_player_with_rank(rank: int, position: Position) -> Player:
         return next((player for player in Player.get_players() if player.get_rank(position) == rank), None)
+    
+    @staticmethod
+    def provide_byes() -> None:
+        print("In Player.provide_byes()")
 
     def __init__(self, number: int):
         self.__number: int = number
