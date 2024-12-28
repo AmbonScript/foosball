@@ -33,7 +33,7 @@ for i in range(len(players)*2):
 assert match_slot.place_players()
 for i in range(len(players)*2):
     assert isinstance(match_slot._MatchSlot__player, Player)
-    print(f"Match slot {match_slot._MatchSlot__slot_number} is speler geplaatst met {match_slot._MatchSlot__position} rank {match_slot._MatchSlot__player.get_rank(match_slot._MatchSlot__position)}")
+    # print(f"Match slot {match_slot._MatchSlot__slot_number} is speler geplaatst met {match_slot._MatchSlot__position} rank {match_slot._MatchSlot__player.get_rank(match_slot._MatchSlot__position)}")
     match_slot = match_slot._MatchSlot__next_match_slot
 
 # __set_match

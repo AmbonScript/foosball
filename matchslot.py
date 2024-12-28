@@ -43,7 +43,7 @@ class MatchSlot:
     def __do_placements(self, rank: int = None) -> bool:
         if self.__player is not None: return self.__next_match_slot.__do_placements()
         if rank is None: rank = 1
-        print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
+        # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
         if rank > len(Player.get_players()): return False
         player: Player = Player.get_player_with_rank(rank, self.__position)
         if self.__can_place(player): self.__player = player
@@ -90,7 +90,7 @@ class MatchSlot:
             is_done: bool =  True
         else:
             is_done: bool =  False
-        print(f"    done_placing is: {is_done}")
+        # print(f"    done_placing is: {is_done}")
         return is_done
     
     def __determine_end_slot(self) -> int:
@@ -113,6 +113,7 @@ class MatchSlot:
     
     def __set_next_match_slot(self, slot_number: int) -> None:
         number_of_players: int = len(Player.get_players())
+        print(f"{(len(Player.get_players()) % 2)}")
         if slot_number < number_of_players * 2:
             self.__next_match_slot = MatchSlot()
             self.__next_match_slot.set_up_match_slots(self.__round, slot_number + 1)
