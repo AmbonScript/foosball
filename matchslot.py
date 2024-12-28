@@ -43,7 +43,7 @@ class MatchSlot:
     def __do_placements(self, rank: int = None) -> bool:
         if self.__player is not None: return self.__next_match_slot.__do_placements()
         if rank is None: rank = 1
-        # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
+        print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
         if rank > len(Player.get_players()): return False
         player: Player = Player.get_player_with_rank(rank, self.__position)
         if self.__can_place(player): self.__player = player
