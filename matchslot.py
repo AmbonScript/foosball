@@ -53,7 +53,7 @@ class MatchSlot:
             if self.__next_match_slot.__do_placements(): return True
             else: self.__player = None; self.__do_placements(rank + 1)
         
-    def __can_place(self, player:Player, beginning_slot: MatchSlot = None):
+    def __can_place(self, player:Player, beginning_slot: MatchSlot = None) -> bool:
         if beginning_slot == None:
             beginning_slot = self
         next_player_same: bool = self.__player_next_slot_same(player)
@@ -68,23 +68,23 @@ class MatchSlot:
             else:
                 return self.__next_match_slot.__can_place(player, beginning_slot)
 
-    def __player_next_slot_same(self, player: Player):
+    def __player_next_slot_same(self, player: Player) -> bool:
         if self.__next_match_slot.__player is None:
             return False
         else:
             return self.__next_match_slot.__player == player
     
-    def __position_next_slot_same(self, beginning_slot: MatchSlot):
+    def __position_next_slot_same(self, beginning_slot: MatchSlot) -> bool:
         position = beginning_slot.__position
         # print(f"    In __position_next_match_slot_same_as_first and position is: {position}")
         return self.__next_match_slot.__position == position
 
-    def __match_next_slot_same(self, beginning_slot: MatchSlot):
+    def __match_next_slot_same(self, beginning_slot: MatchSlot) -> bool:
         match = beginning_slot.__match
         # print(f"    In __match_next_match_slot_same_as_first and match is: {match}")
         return self.__next_match_slot.__match == match
         
-    def __done_placing(self):
+    def __done_placing(self) -> bool:
         end_slot: int = self.__determine_end_slot()
         if self.__slot_number == end_slot:
             is_done: bool =  True
