@@ -13,10 +13,6 @@ class Player:
     def set_players(number_of_players: int) -> None:
         if (Player.__players == None):
             Player.__initialize_players(number_of_players)
-
-    @staticmethod
-    def get_players() -> List[Player]:
-        return Player.__players
     
     @staticmethod
     def __initialize_players(number_of_players: int) -> None:
@@ -35,6 +31,10 @@ class Player:
         for i in range(len(Player.__players)):
             Player.__players[i].set_rank(Position.ATTACKER, attackerRanks[i])
             Player.__players[i].set_rank(Position.DEFENDER, defenderRanks[i])
+    
+    @staticmethod
+    def get_players() -> List[Player]:
+        return Player.__players
     
     @staticmethod
     def get_player_with_rank(rank: int, position: Position) -> Player:
