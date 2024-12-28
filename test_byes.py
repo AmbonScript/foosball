@@ -28,3 +28,8 @@ Player._Player__provide_byes_for(Position.DEFENDER)
 assert Player._Player__current_defender_bye == 12
 Player._Player__provide_byes_for(Position.DEFENDER)
 assert Player._Player__current_defender_bye == 11
+
+match_slot: MatchSlot = MatchSlot()
+match_slot.set_up_match_slots(1)
+match_slot.closeLoop()
+match_slot.place_players()
