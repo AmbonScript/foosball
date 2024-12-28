@@ -1,3 +1,3 @@
 from competition import Competition
-competition: Competition = Competition(13)
+competition: Competition = Competition(29)
 competition.play_round()
