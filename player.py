@@ -41,6 +41,11 @@ class Player:
         return next((player for player in Player.get_players() if player.get_rank(position) == rank), None)
     
     @staticmethod
+    def get_bye_for(position: Position):
+        if position == Position.ATTACKER: return Player.__current_attacker_bye
+        else: return Player.__current_defender_bye
+    
+    @staticmethod
     def provide_byes() -> None:
         print("In Player.provide_byes()")
         Player.__provide_byes_for(Position.ATTACKER)
