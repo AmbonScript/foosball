@@ -13,13 +13,18 @@ class Round:
         return self.__number
 
     def play_round(self) -> None:
+        self.__provideByes()
         self.__set_up_matches()
     
     def __set_up_matches(self):
         self.__match_slot.set_up_match_slots(self.get_round_number())
         self.__match_slot.closeLoop()
 
-    def __provideByes(self, position: Position) -> List[Player]:
+    def __provideByes(self):
+        self.__provide_byes_for(Position.ATTACKER)
+        self.__provide_byes_for(Position.DEFENDER)
+    
+    def __provide_byes_for(self, position: Position) -> List[Player]:
         un_byed_players: List[Player] = self.__filter_previously_byed_players(Player.get_players(), position)
         to_bye_player: Player = self.__find_lowest_ranked_player(un_byed_players, position)
         to_bye_player.receive_bye(position)
