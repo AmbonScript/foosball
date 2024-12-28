@@ -6,6 +6,8 @@ import random
 
 class Player:
     __players: List[Player] = None
+    __current_attacker_bye: int = None
+    __current_defender_bye: int = None
 
     @staticmethod
     def set_players(number_of_players: int) -> None:
