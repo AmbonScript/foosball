@@ -41,6 +41,12 @@ class Player:
     @staticmethod
     def provide_byes() -> None:
         print("In Player.provide_byes()")
+        Player.__provide_byes_for(Position.ATTACKER)
+        Player.__provide_byes_for(Position.DEFENDER)
+    
+    @staticmethod
+    def __provide_byes_for(position: Position) -> None:
+        print(f"Providing byes for {position}")
 
     def __init__(self, number: int):
         self.__number: int = number
