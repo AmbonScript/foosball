@@ -13,10 +13,7 @@ class Round:
         return self.__number
 
     def play_round(self) -> None:
-        active_attackers: List[Player] = self.__provideByes(Position.ATTACKER)
-        active_defenders: List[Player] = self.__provideByes(Position.DEFENDER)
         self.__set_up_matches()
-        players_placed: bool = self.__match_slot.place_players()
     
     def __set_up_matches(self):
         self.__match_slot.set_up_match_slots(self.get_round_number())
