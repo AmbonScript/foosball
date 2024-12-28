@@ -112,6 +112,7 @@ class MatchSlot:
             self.__position = Position.DEFENDER
     
     def __set_next_match_slot(self, slot_number: int) -> None:
-        if slot_number < (len(Player.get_players()) * 2):
+        number_of_players: int = len(Player.get_players())
+        if slot_number < number_of_players * 2:
             self.__next_match_slot = MatchSlot()
             self.__next_match_slot.set_up_match_slots(self.__round, slot_number + 1)
