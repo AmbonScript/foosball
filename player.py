@@ -49,6 +49,14 @@ class Player:
     @staticmethod
     def __provide_byes_for(position: Position) -> None:
         print(f"Providing byes for {position}")
+        # Filter out players who have already received a bye for the particular position
+        unbyed_players = [player for player in Player.__players if player.__attackerByeReceived == False]
+        # Find the one with the lowest rank (out ot the ones whe have not received a bye yet)
+        lowest_ranked_player = max(unbyed_players, key=lambda player: player.get_rank(Position.ATTACKER))
+        # set __attackerByeReceived to True
+        lowest_ranked_player.__attackerByeReceived = True
+        # Assign its rank to the appropriate static variable
+        Player.__current_attacker_bye = lowest_ranked_player.get_rank(Position.ATTACKER)
 
     def __init__(self, number: int):
         self.__number: int = number
