@@ -33,13 +33,23 @@ class Player:
             Player.__players[i].set_rank(Position.DEFENDER, defenderRanks[i])
     
     @staticmethod
+    def get_player_with_rank(rank: int, position: Position) -> Player:
+        return next((player for player in Player.get_players() if player.get_rank(position) == rank), None)
+    
+    @staticmethod
     def get_players() -> List[Player]:
         return Player.__players
     
     @staticmethod
-    def get_player_with_rank(rank: int, position: Position) -> Player:
-        return next((player for player in Player.get_players() if player.get_rank(position) == rank), None)
-    
+    def get_number_of_players_in_round():
+        if Player.is_bye_necessary(): return len(Player.__players) - 1
+        else: return len(Player.__players)
+
+    @staticmethod
+    def is_bye_necessary():
+        if len(Player.__players) % 2 == 1: return True
+        else: return False
+
     @staticmethod
     def get_bye_for(position: Position):
         if position == Position.ATTACKER: return Player.__current_attacker_bye
