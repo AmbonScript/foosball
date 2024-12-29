@@ -71,6 +71,11 @@ class Player:
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
             lowest_ranked_player.__defender_bye_received = True
             Player.__current_defender_bye = lowest_ranked_player.get_rank(position)
+    
+    @staticmethod
+    def rank_players():
+        for player in Player.__players:
+            player.__determine_resistance_points()
         
     def __init__(self, number: int):
         self.__number: int = number
@@ -123,3 +128,6 @@ class Player:
         print(f"In Player#process_results(). Processing results for Player {self.__number}")
         print(f"attacker_opponent is: {attacker_opponent}")
         print(f"attacker_opponent is: {defender_opponent}")
+    
+    def __determine_resistance_points(self) -> None:
+        print(f"In Player#__determine_resistance_points() for Player {self.__number}")
