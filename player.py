@@ -34,7 +34,7 @@ class Player:
     
     @staticmethod
     def get_player_with_rank(rank: int, position: Position) -> Player:
-        return next((player for player in Player.get_players() if player.get_rank(position) == rank), None)
+        return next((player for player in Player.__players if player.get_rank(position) == rank), None)
     
     @staticmethod
     def get_players() -> List[Player]:
