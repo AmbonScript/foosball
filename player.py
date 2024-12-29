@@ -60,11 +60,13 @@ class Player:
     
     @staticmethod
     def __provide_byes_for(position: Position) -> None:
-        if position == Position.ATTACKER: unbyed_players = [player for player in Player.__players if player.__attacker_bye_received == False]
-        else: unbyed_players = [player for player in Player.__players if player.__defender_bye_received == False]
+        if position == Position.ATTACKER: 
+            unbyed_players = [player for player in Player.__players if player.__attacker_bye_received == False]
+        else:
+            unbyed_players = [player for player in Player.__players if player.__defender_bye_received == False]
         lowest_ranked_player = max(unbyed_players, key=lambda player: player.get_rank(position))
-        if position == Position.ATTACKER: lowest_ranked_player.__attacker_bye_received = True; Player.__current_attacker_bye = lowest_ranked_player.get_rank(Position.ATTACKER)
-        else: lowest_ranked_player.__defender_bye_received = True; Player.__current_defender_bye = lowest_ranked_player.get_rank(Position.DEFENDER)      
+        lowest_ranked_player.__attacker_bye_received = True
+        Player.__current_attacker_bye = lowest_ranked_player.get_rank(position)
 
     @staticmethod
     def process_round_results(round: int) -> None:
