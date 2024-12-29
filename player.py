@@ -168,3 +168,11 @@ class Player:
 
     def __determine_resistance_points(self) -> None:
         print(f"In Player#__determine_resistance_points() for Player {self.__number}")
+        for player in self.__attacker_attacker_opponents:
+            self.__attacker_resistance_points += player.__attacker_wins
+        for player in self.__attacker_defender_opponents:
+            self.__attacker_resistance_points += player.__defender_wins
+        for player in self.__defender_attacker_opponents:
+            self.__defender_resistance_points += player.__attacker_wins
+        for player in self.__defender_defender_opponents:
+            self.__defender_resistance_points += player.__defender_wins
