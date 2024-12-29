@@ -9,7 +9,6 @@ class MatchSlot:
     __historical_match_slots: List[MatchSlot] = []
 
     def __init__(self):
-        self.__round: int = None
         self.__match: int = None
         self.__team: Team = None
         self.__position: Position = None
@@ -17,9 +16,8 @@ class MatchSlot:
         self.__player: Player = None
         self.__slot_number: int = None
     
-    def set_up_match_slots(self, round: int, slot_number: int = 1) -> None:
+    def set_up_match_slots(self, slot_number: int = 1) -> None:
         self.__slot_number = slot_number
-        self.__round = round
         self.__set_match(slot_number)
         self.__set_team(slot_number)
         self.__set_position(slot_number)
@@ -116,4 +114,4 @@ class MatchSlot:
     def __set_next_match_slot(self, slot_number: int) -> None:
         if slot_number < self.__determine_end_slot():
             self.__next_match_slot = MatchSlot()
-            self.__next_match_slot.set_up_match_slots(self.__round, slot_number + 1)
+            self.__next_match_slot.set_up_match_slots(slot_number + 1)
