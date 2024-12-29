@@ -34,6 +34,9 @@ class MatchSlot:
     def place_players(self) -> bool:
         first_batch_placed: bool = self.__do_placements()
         return first_batch_placed
+    
+    def store(self) -> None:
+        MatchSlot.__historical_match_slots.append(self)
 
     def __do_placements(self, rank: int = None) -> bool:
         if self.__player is not None: return self.__next_match_slot.__do_placements()
