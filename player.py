@@ -89,6 +89,10 @@ class Player:
         self.__defender_goal_difference: int = 0
         self.__attacker_bye_received: bool = False
         self.__defender_bye_received: bool = False
+        self.__attacker_attacker_opponents: List[Player] = []
+        self.__attacker_defender_opponents: List[Player] = []
+        self.__defender_attacker_opponents: List[Player] = []
+        self.__defender_defender_opponents: List[Player] = []
         
     def get_number(self) -> int:
         return self.__number
@@ -128,6 +132,7 @@ class Player:
         win: bool = self.__win(team, winning_team)
         self.__register_wins(win, position)
         self.__register_goal_difference(win, position, goal_difference)
+        self.__register_opponents(position, attacker_opponent, defender_opponent)
         print(f"In Player#process_results(). Processing results for Player {self.__number}")
         print(f"attacker_opponent is: {attacker_opponent}")
         print(f"attacker_opponent is: {defender_opponent}")
@@ -152,6 +157,14 @@ class Player:
             self.__attacker_goal_differene += goal_diffence
         else:
             self.__defender_goal_difference += goal_diffence
+    
+    def __register_opponents(self, position: Position, attacker_opponent: Player, defender_opponent: Player):
+        if position == Position.ATTACKER:
+            self.__attacker_attacker_opponents.append(attacker_opponent)
+            self.__attacker_defender_opponents.append(defender_opponent)
+        else:
+            self.__defender_attacker_opponents.append(attacker_opponent)
+            self.__defender_defender_opponents.append(defender_opponent)
 
     def __determine_resistance_points(self) -> None:
         print(f"In Player#__determine_resistance_points() for Player {self.__number}")
