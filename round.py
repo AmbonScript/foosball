@@ -15,8 +15,8 @@ class Round:
     def play_round(self) -> None:
         Player.provide_byes()
         self.__set_up_matches()
-        self.__match_slot.place_players()
     
     def __set_up_matches(self):
         self.__match_slot.set_up_match_slots(self.get_round_number())
         self.__match_slot.closeLoop()
+        self.__match_slot.place_players()
