@@ -78,10 +78,10 @@ class Player:
             player.__determine_resistance_points()
         ranked_attackers: List[Player] = sorted(Player.__players, key=lambda player: (-player.__attacker_wins, -player.__attacker_resistance_points, -player.__attacker_goal_difference, random.random()))
         ranked_defenders: List[Player] = sorted(Player.__players, key=lambda player: (-player.__defender_wins, -player.__defender_resistance_points, -player.__defender_goal_difference, random.random()))
-        ## RANKINGS OOK ECHT TOEKENNEN
-        ##
-        for player in ranked_attackers:
-            print(f"wins: {player.__attacker_wins}, resist: {player.__attacker_resistance_points}")
+        for i in range(len(ranked_attackers)):
+            ranked_attackers[i].__attacker_rank = (i + 1)
+        for i in range(len(ranked_defenders)):
+            ranked_defenders[i].__defender_rank = (i + 1)
 
     def __init__(self, number: int):
         self.__number: int = number
