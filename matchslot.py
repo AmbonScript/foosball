@@ -8,6 +8,10 @@ import math
 class MatchSlot:
     __historical_match_slots: List[MatchSlot] = []
 
+    @staticmethod
+    def get_historical_match_slots() -> List[MatchSlot]:
+        return MatchSlot.__historical_match_slots
+
     def __init__(self):
         self.__match: int = None
         self.__team: Team = None

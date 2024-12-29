@@ -1,7 +1,5 @@
 from player import Player
 from round import Round
-from typing import List
-from position import Position
 
 class Competition:
     def __init__(self, number_of_players: int):

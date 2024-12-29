@@ -1,9 +1,6 @@
 from player import Player
 from result import Result
-from position import Position
 from matchslot import MatchSlot
-from typing import List
-import copy
 
 class Round:
     def __init__(self, number: int):
