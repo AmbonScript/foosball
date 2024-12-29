@@ -125,17 +125,33 @@ class Player:
             return self.__defender_bye_received
     
     def process_results(self, position: Position, team: Team, winning_team: Team, goal_difference: int, attacker_opponent: Player, defender_opponent: Player) -> None:
-        self.__register_wins(position, team, winning_team)
+        win: bool = self.__win(team, winning_team)
+        self.__register_wins(win, position)
+        self.__register_goal_difference(win, position, goal_difference)
         print(f"In Player#process_results(). Processing results for Player {self.__number}")
         print(f"attacker_opponent is: {attacker_opponent}")
         print(f"attacker_opponent is: {defender_opponent}")
     
-    def __register_wins(self, position: Position, team: Team, winning_team: Team) -> None:
+    def __win(self, team: Team, winning_team: Team) -> bool:
         if team == winning_team:
+            return True
+        else:
+            return False
+
+    def __register_wins(self, win: bool, position: Position) -> None:
+        if win:
             if position == Position.ATTACKER:
                 self.__attacker_wins += 1
             else:
                 self.__defender_wins += 1
+    
+    def __register_goal_difference(self, win: bool, position: Position, goal_diffence: int):
+        if not win:
+            goal_diffence = - goal_diffence
+        if position == Position.ATTACKER:
+            self.__attacker_goal_differene += goal_diffence
+        else:
+            self.__defender_goal_difference += goal_diffence
 
     def __determine_resistance_points(self) -> None:
         print(f"In Player#__determine_resistance_points() for Player {self.__number}")
