@@ -117,3 +117,6 @@ class Player:
             return self.__attacker_bye_received
         else:
             return self.__defender_bye_received
+    
+    def process_results(self) -> None:
+        print("In Player#process_results()")
