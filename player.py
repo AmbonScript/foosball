@@ -68,21 +68,6 @@ class Player:
         lowest_ranked_player.__attacker_bye_received = True
         Player.__current_attacker_bye = lowest_ranked_player.get_rank(position)
 
-    @staticmethod
-    def process_round_results(round: int) -> None:
-        print(f"In Player.process_round_results() voor ronde {round}")
-        # Verkrijg het circkeltje van MatchSlot bijbehorend aan de ronde
-            # Uit de MatchSlot.get_slots_from_round()
-        # Loop over alle MatchSlots -> in methode van MatchSlot-klasse
-            # Per MatchSlot, geef aan de Speler uit het MatchSlot door:
-                # Op welke positie hij/zij speelde
-                # In welke team hij/zij speelde
-                # Welke spelers tegenstanders waren -> bewaar dit in een List[Player] instance variabele
-                # Welk team gewonnen heeft -> als gewonnen, ken een gewonnen wedstrijd toe 
-                # Wat het doelverschil was -> en pas het totaal aan
-        # In Player -> Bepaal het aantal resistance points
-        # In Player -> Bepaal de ranking opnieuw
-
     def __init__(self, number: int):
         self.__number: int = number
         self.__attacker_rank: int = None
@@ -96,7 +81,6 @@ class Player:
         self.__attacker_bye_received: bool = False
         self.__defender_bye_received: bool = False
         
-    
     def get_number(self) -> int:
         return self.__number
 
