@@ -99,7 +99,7 @@ class MatchSlot:
         return is_done
     
     def __determine_end_slot(self) -> int:
-        return (len(Player.get_players()) - (len(Player.get_players()) % 2)) * 2
+        return (Player.get_number_of_players_in_round() * 2)
 
     def __set_match(self, slot_number: int) -> None:
         self.__match = math.ceil(slot_number / 4)

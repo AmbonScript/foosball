@@ -57,7 +57,7 @@ class Player:
     
     @staticmethod
     def provide_byes() -> None:
-        print("In Player.provide_byes()")
+        # print("In Player.provide_byes()")
         if len(Player.__players) % 2 == 1:
             Player.__provide_byes_for(Position.ATTACKER)
             Player.__provide_byes_for(Position.DEFENDER)
