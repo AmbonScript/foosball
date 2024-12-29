@@ -76,6 +76,8 @@ class Player:
     def rank_players():
         for player in Player.__players:
             player.__determine_resistance_points()
+        ranked_attackers: List[Player] = sorted(Player.__players, key=lambda player: (player.__attacker_wins, player.__attacker_resistance_points, player.__attacker_goal_difference, random.random()))
+        ranked_defenders: List[Player] = sorted(Player.__players, key=lambda player: (player.__defender_wins, player.__defender_resistance_points, player.__defender_goal_difference, random.random()))
         
     def __init__(self, number: int):
         self.__number: int = number
@@ -85,7 +87,7 @@ class Player:
         self.__defender_wins: int = 0
         self.__attacker_resistance_points: int = 0
         self.__defender_resistance_points: int = 0
-        self.__attacker_goal_differene: int = 0
+        self.__attacker_goal_difference: int = 0
         self.__defender_goal_difference: int = 0
         self.__attacker_bye_received: bool = False
         self.__defender_bye_received: bool = False
@@ -154,7 +156,7 @@ class Player:
         if not win:
             goal_diffence = - goal_diffence
         if position == Position.ATTACKER:
-            self.__attacker_goal_differene += goal_diffence
+            self.__attacker_goal_difference += goal_diffence
         else:
             self.__defender_goal_difference += goal_diffence
     
