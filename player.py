@@ -61,13 +61,16 @@ class Player:
     @staticmethod
     def __provide_byes_for(position: Position) -> None:
         if position == Position.ATTACKER: 
-            unbyed_players = [player for player in Player.__players if player.__attacker_bye_received == False]
+            unbyed_players: List[Player] = [player for player in Player.__players if player.__attacker_bye_received == False]
+            lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
+            lowest_ranked_player.__attacker_bye_received = True
+            Player.__current_attacker_bye = lowest_ranked_player.get_rank(position)
         else:
-            unbyed_players = [player for player in Player.__players if player.__defender_bye_received == False]
-        lowest_ranked_player = max(unbyed_players, key=lambda player: player.get_rank(position))
-        lowest_ranked_player.__attacker_bye_received = True
-        Player.__current_attacker_bye = lowest_ranked_player.get_rank(position)
-
+            unbyed_players: List[Player] = [player for player in Player.__players if player.__defender_bye_received == False]
+            lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
+            lowest_ranked_player.__defender_bye_received = True
+            Player.__current_defender_bye = lowest_ranked_player.get_rank(position)
+        
     def __init__(self, number: int):
         self.__number: int = number
         self.__attacker_rank: int = None

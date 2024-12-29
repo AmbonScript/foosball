@@ -42,6 +42,9 @@ class MatchSlot:
     
     def store(self) -> None:
         MatchSlot.__historical_match_slots.append(self)
+    
+    def process_results(self) -> None:
+        print("In MatchSlot#process_results()")
 
     def __do_placements(self, rank: int = None) -> bool:
         if self.__player is not None: return self.__next_match_slot.__do_placements()

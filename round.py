@@ -28,6 +28,7 @@ class Round:
     
     def __process_results(self) -> None:
         print(f"In Round#process_results() voor ronde {self.__number}")
+        self.__match_slot.process_results()
         # Loop over alle MatchSlots -> in methode van MatchSlot-klasse
             # Per MatchSlot, geef aan de Speler uit het MatchSlot door:
                 # Op welke positie hij/zij speelde
