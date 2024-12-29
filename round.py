@@ -23,4 +23,4 @@ class Round:
     def __play_matches(self) -> None:
         Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
         self.__match_slot.store()
-
+        Player.process_round_results(self.get_round_number())

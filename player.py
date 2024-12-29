@@ -66,6 +66,10 @@ class Player:
         if position == Position.ATTACKER: lowest_ranked_player.__attackerByeReceived = True; Player.__current_attacker_bye = lowest_ranked_player.get_rank(Position.ATTACKER)
         else: lowest_ranked_player.__defenderByeReceived = True; Player.__current_defender_bye = lowest_ranked_player.get_rank(Position.DEFENDER)      
 
+    @staticmethod
+    def process_round_results(round: int) -> None:
+        print(f"In Player.process_round_results() voor ronde {round}")
+
     def __init__(self, number: int):
         self.__number: int = number
         self.__attackerRank: int = None
