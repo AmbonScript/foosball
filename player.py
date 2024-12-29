@@ -35,11 +35,7 @@ class Player:
     @staticmethod
     def get_player_with_rank(rank: int, position: Position) -> Player:
         return next((player for player in Player.__players if player.get_rank(position) == rank), None)
-    
-    @staticmethod
-    def get_players() -> List[Player]:
-        return Player.__players
-    
+        
     @staticmethod
     def get_number_of_players_in_round():
         if Player.is_bye_necessary(): return len(Player.__players) - 1
