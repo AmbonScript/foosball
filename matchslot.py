@@ -51,8 +51,21 @@ class MatchSlot:
         winning_team: Team = Result.get_result(round, self.__match).get_winning_team()
         goal_difference: int = Result.get_result(round, self.__match).get_goal_difference()
         self.__player.process_results(self.__position, self.__team, winning_team, goal_difference)
+        attacker_opponent: Player = self.__get_opponent(Position.ATTACKER, self)
         if self.__next_match_slot != first_match_slot:
             self.__next_match_slot.process_results(round, first_match_slot)
+
+    def __get_opponent(self, position: Position, start_slot: MatchSlot) -> Player:
+        # zelfde match
+        # ander team
+        # positie = positie
+        match_same: bool = self.__next_match_slot.__match == start_slot.__match
+        team_different: bool = self.__next_match_slot.__team != start_slot.__team
+        position_correct: bool = self.__next_match_slot.__position == position
+        if match_same and team_different and position_correct:
+            return self.__next_match_slot.__player
+        else:
+            return self.__next_match_slot.__get_opponent(position, start_slot)
 
     def __do_placements(self, rank: int = None) -> bool:
         if self.__player is not None: return self.__next_match_slot.__do_placements()
