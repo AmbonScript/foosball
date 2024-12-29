@@ -60,11 +60,11 @@ class Player:
     
     @staticmethod
     def __provide_byes_for(position: Position) -> None:
-        if position == Position.ATTACKER: unbyed_players = [player for player in Player.__players if player.__attackerByeReceived == False]
-        else: unbyed_players = [player for player in Player.__players if player.__defenderByeReceived == False]
+        if position == Position.ATTACKER: unbyed_players = [player for player in Player.__players if player.__attacker_bye_received == False]
+        else: unbyed_players = [player for player in Player.__players if player.__defender_bye_received == False]
         lowest_ranked_player = max(unbyed_players, key=lambda player: player.get_rank(position))
-        if position == Position.ATTACKER: lowest_ranked_player.__attackerByeReceived = True; Player.__current_attacker_bye = lowest_ranked_player.get_rank(Position.ATTACKER)
-        else: lowest_ranked_player.__defenderByeReceived = True; Player.__current_defender_bye = lowest_ranked_player.get_rank(Position.DEFENDER)      
+        if position == Position.ATTACKER: lowest_ranked_player.__attacker_bye_received = True; Player.__current_attacker_bye = lowest_ranked_player.get_rank(Position.ATTACKER)
+        else: lowest_ranked_player.__defender_bye_received = True; Player.__current_defender_bye = lowest_ranked_player.get_rank(Position.DEFENDER)      
 
     @staticmethod
     def process_round_results(round: int) -> None:
@@ -83,16 +83,16 @@ class Player:
 
     def __init__(self, number: int):
         self.__number: int = number
-        self.__attackerRank: int = None
-        self.__defenderRank: int = None
-        self.__attackerGamesWon: int = 0
-        self.__defenderGamesWon: int = 0
+        self.__attacker_rank: int = None
+        self.__defender_rank: int = None
+        self.__attacker_games_won: int = 0
+        self.__defender_games_won: int = 0
         self.__attacker_resistance_points: int = 0
         self.__defender_resistance_points: int = 0
         self.__attacker_goal_differene: int = 0
         self.__defender_goal_difference: int = 0
-        self.__attackerByeReceived: bool = False
-        self.__defenderByeReceived: bool = False
+        self.__attacker_bye_received: bool = False
+        self.__defender_bye_received: bool = False
         
     
     def get_number(self) -> int:
@@ -100,31 +100,31 @@ class Player:
 
     def set_rank(self, position: Position, rank: int) -> None:
         if position == Position.ATTACKER:
-            self.__attackerRank = rank
+            self.__attacker_rank = rank
         else:
-            self.__defenderRank = rank
+            self.__defender_rank = rank
     
     def get_rank(self, position: Position) -> int:
         if position == Position.ATTACKER:
-            return self.__attackerRank
+            return self.__attacker_rank
         else:
-            return self.__defenderRank
+            return self.__defender_rank
     
     def receive_bye(self, position: Position) -> bool:
         if position == Position.ATTACKER:
-            if self.__attackerByeReceived == False:
-                self.__attackerGamesWon = self.__attackerGamesWon + 1;
-                self.__attackerByeReceived = True
+            if self.__attacker_bye_received == False:
+                self.__attacker_games_won = self.__attacker_games_won + 1;
+                self.__attacker_bye_received = True
                 return True
         else:
-            if self.__defenderByeReceived == False:
-                self.__defenderGamesWon = self.__defenderGamesWon + 1;
-                self.__defenderByeReceived = True
+            if self.__defender_bye_received == False:
+                self.__defender_games_won = self.__defender_games_won + 1;
+                self.__defender_bye_received = True
                 return True
         return False
     
     def bye_received(self, position: Position) -> bool:
         if position == Position.ATTACKER:
-            return self.__attackerByeReceived
+            return self.__attacker_bye_received
         else:
-            return self.__defenderByeReceived
+            return self.__defender_bye_received
