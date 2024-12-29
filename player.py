@@ -81,8 +81,8 @@ class Player:
         self.__number: int = number
         self.__attacker_rank: int = None
         self.__defender_rank: int = None
-        self.__attacker_games_won: int = 0
-        self.__defender_games_won: int = 0
+        self.__attacker_wins: int = 0
+        self.__defender_wins: int = 0
         self.__attacker_resistance_points: int = 0
         self.__defender_resistance_points: int = 0
         self.__attacker_goal_differene: int = 0
@@ -108,12 +108,12 @@ class Player:
     def receive_bye(self, position: Position) -> bool:
         if position == Position.ATTACKER:
             if self.__attacker_bye_received == False:
-                self.__attacker_games_won = self.__attacker_games_won + 1;
+                self.__attacker_wins = self.__attacker_wins + 1;
                 self.__attacker_bye_received = True
                 return True
         else:
             if self.__defender_bye_received == False:
-                self.__defender_games_won = self.__defender_games_won + 1;
+                self.__defender_wins = self.__defender_wins + 1;
                 self.__defender_bye_received = True
                 return True
         return False
@@ -125,9 +125,17 @@ class Player:
             return self.__defender_bye_received
     
     def process_results(self, position: Position, team: Team, winning_team: Team, goal_difference: int, attacker_opponent: Player, defender_opponent: Player) -> None:
+        self.__register_wins(position, team, winning_team)
         print(f"In Player#process_results(). Processing results for Player {self.__number}")
         print(f"attacker_opponent is: {attacker_opponent}")
         print(f"attacker_opponent is: {defender_opponent}")
     
+    def __register_wins(self, position: Position, team: Team, winning_team: Team) -> None:
+        if team == winning_team:
+            if position == Position.ATTACKER:
+                self.__attacker_wins += 1
+            else:
+                self.__defender_wins += 1
+
     def __determine_resistance_points(self) -> None:
         print(f"In Player#__determine_resistance_points() for Player {self.__number}")
