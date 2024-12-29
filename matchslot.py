@@ -2,10 +2,8 @@ from __future__ import annotations
 from player import Player
 from team import Team
 from position import Position
-from result import Result
 from typing import List
 import math
-import random
 
 class MatchSlot:
     __historical_match_slots: List[MatchSlot] = []
@@ -17,7 +15,6 @@ class MatchSlot:
         self.__position: Position = None
         self.__next_match_slot: MatchSlot = None
         self.__player: Player = None
-        self.__result: Result = None
         self.__slot_number: int = None
     
     def set_up_match_slots(self, round: int, slot_number: int = 1) -> None:
@@ -35,9 +32,6 @@ class MatchSlot:
             self.__next_match_slot = first_match_slot
         else:
             self.__next_match_slot.closeLoop(first_match_slot)
-
-    def play_matches(self) -> None:
-        Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
         
     def place_players(self) -> bool:
         first_batch_placed: bool = self.__do_placements()

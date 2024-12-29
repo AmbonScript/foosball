@@ -8,6 +8,7 @@ class Result:
 
     @staticmethod
     def add_round_results(matches: int) -> None:
+        # print("In Result#add_round_results()")
         if Result.__result_history is None:
             Result.__result_history = []
         round: int = len(Result.__result_history)

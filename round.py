@@ -1,4 +1,5 @@
 from player import Player
+from result import Result
 from position import Position
 from matchslot import MatchSlot
 from typing import List
@@ -15,9 +16,12 @@ class Round:
     def play(self) -> None:
         Player.provide_byes()
         self.__set_up_matches()
-        self.__match_slot.play_matches()
+        self.__play_matches()
     
     def __set_up_matches(self):
         self.__match_slot.set_up_match_slots(self.get_round_number())
         self.__match_slot.closeLoop()
         self.__match_slot.place_players()
+    
+    def __play_matches(self) -> None:
+        Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
