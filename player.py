@@ -76,9 +76,13 @@ class Player:
     def rank_players():
         for player in Player.__players:
             player.__determine_resistance_points()
-        ranked_attackers: List[Player] = sorted(Player.__players, key=lambda player: (player.__attacker_wins, player.__attacker_resistance_points, player.__attacker_goal_difference, random.random()))
-        ranked_defenders: List[Player] = sorted(Player.__players, key=lambda player: (player.__defender_wins, player.__defender_resistance_points, player.__defender_goal_difference, random.random()))
-        
+        ranked_attackers: List[Player] = sorted(Player.__players, key=lambda player: (-player.__attacker_wins, -player.__attacker_resistance_points, -player.__attacker_goal_difference, random.random()))
+        ranked_defenders: List[Player] = sorted(Player.__players, key=lambda player: (-player.__defender_wins, -player.__defender_resistance_points, -player.__defender_goal_difference, random.random()))
+        ## RANKINGS OOK ECHT TOEKENNEN
+        ##
+        for player in ranked_attackers:
+            print(f"wins: {player.__attacker_wins}, resist: {player.__attacker_resistance_points}")
+
     def __init__(self, number: int):
         self.__number: int = number
         self.__attacker_rank: int = None
@@ -114,12 +118,12 @@ class Player:
     def receive_bye(self, position: Position) -> bool:
         if position == Position.ATTACKER:
             if self.__attacker_bye_received == False:
-                self.__attacker_wins = self.__attacker_wins + 1;
+                self.__attacker_wins += 1;
                 self.__attacker_bye_received = True
                 return True
         else:
             if self.__defender_bye_received == False:
-                self.__defender_wins = self.__defender_wins + 1;
+                self.__defender_wins += 1;
                 self.__defender_bye_received = True
                 return True
         return False
