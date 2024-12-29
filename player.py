@@ -119,5 +119,7 @@ class Player:
         else:
             return self.__defender_bye_received
     
-    def process_results(self, position: Position, team: Team, winning_team: Team, goal_difference: int, attacker_opponent: Player) -> None:
+    def process_results(self, position: Position, team: Team, winning_team: Team, goal_difference: int, attacker_opponent: Player, defender_opponent: Player) -> None:
         print(f"In Player#process_results(). Processing results for Player {self.__number}")
+        print(f"attacker_opponent is: {attacker_opponent}")
+        print(f"attacker_opponent is: {defender_opponent}")

@@ -51,7 +51,8 @@ class MatchSlot:
         winning_team: Team = Result.get_result(round, self.__match).get_winning_team()
         goal_difference: int = Result.get_result(round, self.__match).get_goal_difference()
         attacker_opponent: Player = self.__get_opponent(Position.ATTACKER, self)
-        self.__player.process_results(self.__position, self.__team, winning_team, goal_difference, attacker_opponent)
+        defender_opponent: Player = self.__get_opponent(Position.DEFENDER, self)
+        self.__player.process_results(self.__position, self.__team, winning_team, goal_difference, attacker_opponent, defender_opponent)
         if self.__next_match_slot != first_match_slot:
             self.__next_match_slot.process_results(round, first_match_slot)
 
