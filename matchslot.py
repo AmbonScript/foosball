@@ -7,10 +7,11 @@ import math
 
 class MatchSlot:
     __historical_match_slots: List[MatchSlot] = []
-
+    
     @staticmethod
-    def get_historical_match_slots() -> List[MatchSlot]:
-        return MatchSlot.__historical_match_slots
+    def get_slots_from_round(round: int) -> MatchSlot:
+        item = round - 1
+        return MatchSlot.__historical_match_slots[item]
 
     def __init__(self):
         self.__match: int = None
