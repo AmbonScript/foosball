@@ -2,6 +2,7 @@ from __future__ import annotations
 from player import Player
 from team import Team
 from position import Position
+from result import Result
 from typing import List
 import math
 
@@ -43,19 +44,21 @@ class MatchSlot:
     def store(self) -> None:
         MatchSlot.__historical_match_slots.append(self)
     
-    def process_results(self, first_match_slot: MatchSlot = None) -> None:
+    def process_results(self, round: int, first_match_slot: MatchSlot = None) -> None:
         if first_match_slot is None:
             first_match_slot = self
-        print("In MatchSlot#process_results()")
-        self.__player.process_results()
+        # print("In MatchSlot#process_results()")
+        winning_team: Team = Result.get_result(round, self.__match).get_winning_team()
+        goal_difference: int = Result.get_result(round, self.__match).get_goal_difference()
+        self.__player.process_results(self.__position, self.__team, winning_team, goal_difference)
         if self.__next_match_slot != first_match_slot:
-            self.__next_match_slot.process_results(first_match_slot)
+            self.__next_match_slot.process_results(round, first_match_slot)
 
     def __do_placements(self, rank: int = None) -> bool:
         if self.__player is not None: return self.__next_match_slot.__do_placements()
         if rank is None: rank = 1
         rank = self.__skip_rank(rank)
-        print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
+        # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
         if Player.get_player_with_rank(rank, self.__position) is None: return False
         player: Player = Player.get_player_with_rank(rank, self.__position)
         if self.__can_place(player): self.__player = player

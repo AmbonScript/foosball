@@ -1,5 +1,6 @@
 from __future__ import annotations
 from position import Position
+from team import Team
 from typing import List
 import random
 
@@ -118,5 +119,5 @@ class Player:
         else:
             return self.__defender_bye_received
     
-    def process_results(self) -> None:
+    def process_results(self, position: Position, team: Team, winning_team: Team, goal_difference: int) -> None:
         print(f"In Player#process_results(). Processing results for Player {self.__number}")

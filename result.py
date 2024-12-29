@@ -24,21 +24,21 @@ class Result:
         return Result.__result_history[round][match]
 
     def __init__(self):
-        self.__simulateWinningTeam()
-        self.__simulateGoalDifference()
+        self.__simulate_winning_team()
+        self.__simulate_goal_difference()
     
-    def getWinningTeam(self) -> Team:
+    def get_winning_team(self) -> Team:
         return self.__winningTeam
     
-    def getGoalDifference(self) -> int:         
-        return self.__goalDifference
+    def get_goal_difference(self) -> int:         
+        return self.__goal_difference
     
-    def __simulateWinningTeam(self) -> Team:
+    def __simulate_winning_team(self) -> Team:
         coinflip: int = random.randint(0,1)
         if coinflip == 0:
             self.__winningTeam = Team.A
         else:
             self.__winningTeam = Team.B
 
-    def __simulateGoalDifference(self) -> int:
-        self.__goalDifference = random.randint(1,8)
+    def __simulate_goal_difference(self) -> int:
+        self.__goal_difference = random.randint(1,8)
