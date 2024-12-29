@@ -35,6 +35,9 @@ class MatchSlot:
             self.__next_match_slot = first_match_slot
         else:
             self.__next_match_slot.closeLoop(first_match_slot)
+
+    def play_matches(self) -> None:
+        print("In MatchSlot#play_matches()")
         
     def place_players(self) -> bool:
         first_batch_placed: bool = self.__do_placements()
