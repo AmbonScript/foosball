@@ -119,4 +119,4 @@ class Player:
             return self.__defender_bye_received
     
     def process_results(self) -> None:
-        print("In Player#process_results()")
+        print(f"In Player#process_results(). Processing results for Player {self.__number}")
