@@ -12,7 +12,7 @@ class Round:
     def get_round_number(self) -> int:
         return self.__number
 
-    def play_round(self) -> None:
+    def play(self) -> None:
         Player.provide_byes()
         self.__set_up_matches()
         self.__match_slot.play_matches()

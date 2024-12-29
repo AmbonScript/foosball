@@ -10,7 +10,7 @@ class Competition:
     
     def play_round(self) -> None:
         self.__createNewRound()
-        self.__round.play_round()
+        self.__round.play()
 
     def __createNewRound(self) -> None:
         if self.__round is None:
