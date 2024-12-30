@@ -16,12 +16,13 @@ class Result:
         Result.__result_history.append(round_results)
         for match in range(matches):
             Result.__result_history[round].append(Result())
+        
     
     @staticmethod
     def get_result(round: int, match: int) -> Result:
         round -= round
-        match -= match
-        return Result.__result_history[round][match]
+        wedstrijd = (match - 1)
+        return Result.__result_history[round][wedstrijd]
 
     def __init__(self):
         self.__simulate_winning_team()
