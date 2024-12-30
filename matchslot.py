@@ -98,6 +98,7 @@ class MatchSlot:
         # print(f"__repeating_configuration aan het doen voor matchslot: {self.__slot_number}")
         other_occupied_slots_in_match: List[MatchSlot] = self.__find_slots_occupied_by_other_players_in_match()
         # print(len(other_occupied_slots_in_match))
+        if len(other_occupied_slots_in_match) == 0: return False
         return False
     
     def __find_slots_occupied_by_other_players_in_match(self, other_occupied_slots_in_match: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
