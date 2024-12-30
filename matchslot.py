@@ -78,20 +78,23 @@ class MatchSlot:
         self.__player = None
         return False
         
-    def __already_in_same_postion_or_match(self, player:Player, beginning_slot: MatchSlot = None) -> bool:
-        if beginning_slot == None:
-            beginning_slot = self
+    def __already_in_same_postion_or_match(self, player:Player, start_slot: MatchSlot = None) -> bool:
+        if start_slot == None:
+            start_slot = self
         next_player_same: bool = self.__player_next_slot_same(player)
-        next_position_same: bool = self.__position_next_slot_same(beginning_slot)
-        next_match_same: bool = self.__match_next_slot_same(beginning_slot)
-        next_match_slot_same: bool = self.__next_match_slot == beginning_slot
+        next_position_same: bool = self.__position_next_slot_same(start_slot)
+        next_match_same: bool = self.__match_next_slot_same(start_slot)
+        next_match_slot_same: bool = self.__next_match_slot == start_slot
         if next_player_same and (next_position_same or next_match_same):
             return True
         else:
             if next_match_slot_same:
                 return False
             else:
-                return self.__next_match_slot.__already_in_same_postion_or_match(player, beginning_slot)
+                return self.__next_match_slot.__already_in_same_postion_or_match(player, start_slot)
+
+    def __repeating_configuration(self, player: Player, start_slot: MatchSlot = None) -> bool:
+        return False
 
     def __player_next_slot_same(self, player: Player) -> bool:
         if self.__next_match_slot.__player is None:
@@ -99,13 +102,13 @@ class MatchSlot:
         else:
             return self.__next_match_slot.__player == player
     
-    def __position_next_slot_same(self, beginning_slot: MatchSlot) -> bool:
-        position = beginning_slot.__position
+    def __position_next_slot_same(self, start_slot: MatchSlot) -> bool:
+        position = start_slot.__position
         # print(f"    In __position_next_match_slot_same_as_first and position is: {position}")
         return self.__next_match_slot.__position == position
 
-    def __match_next_slot_same(self, beginning_slot: MatchSlot) -> bool:
-        match = beginning_slot.__match
+    def __match_next_slot_same(self, start_slot: MatchSlot) -> bool:
+        match = start_slot.__match
         # print(f"    In __match_next_match_slot_same_as_first and match is: {match}")
         return self.__next_match_slot.__match == match
         
