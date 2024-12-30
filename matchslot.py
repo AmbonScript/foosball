@@ -67,18 +67,13 @@ class MatchSlot:
 
     def __do_placements(self) -> bool:
         for rank in range((Player.get_number_of_players_in_round() + 1)):
-            print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
+            # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
             rank_is_nul: bool = rank == 0
-            print(f"rank_is_nul is: {rank_is_nul}")
             if rank_is_nul: continue
-            print("A")
             player_has_bye: bool = rank == Player.has_bye_for(self.__position)
-            print(f"player_has_bye is: {player_has_bye}")
             if player_has_bye: continue
-            print("B")
             player = Player.get_player_with_rank(rank, self.__position)
             cannot_place: bool = not self.__can_place(player)
-            print(f"cannot_place is: {cannot_place}")
             if cannot_place: continue
             self.__player = player
             if self.__done_placing(): return True
@@ -86,32 +81,6 @@ class MatchSlot:
                 if self.__next_match_slot.__do_placements(): return True
         self.__player = None
         return False
-
-            #[X] Skip als een speler een bye heeft -> i.e. gebruik continue keyword om weer bovenaan de loop te beginnen met rank 1 opgehoogd
-            #[X] Skip als een speler niet geplaatst kan worden -> i.e. zie regel hierboven
-            #[X] Niet geskipt? -> Plaats speler
-            #[X] Alle spelers/matchslots geplaatst? -> return True
-            # Nog niet alle spelers/matchslots geplaatst -> Doe recursie!
-                # [X] Recursie = vraag aan volgend matchslot om spelers te plaatsen & vang op of het lukt
-                # [X] Volgend matchslot retrunt True -> Return zelf ook True
-                # Volgend matchslot returnt False -> Optie 1: Doe niks. Je zit toch onderaan de loop. Optie 2: continue keyword
-        # Buiten de loop? -> maak self.__player None en Return False -> Want dat betekent dat geen enkele speler geplaatst kon worden
-
-    def __do_placements_old(self, rank: int = None) -> bool:
-        if rank is None: rank = 1
-        rank = self.__skip_rank(rank)
-        # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
-        player: Player = Player.get_player_with_rank(rank, self.__position)
-        if self.__can_place(player): self.__player = player
-        else: self.__player = None; return self.__do_placements_old(rank + 1)
-        if self.__done_placing(): return True
-        else:
-            if self.__next_match_slot.__do_placements_old(): return True
-            else: self.__player = None; self.__do_placements_old(rank + 1)
-    
-    def __skip_rank(self, rank: int) -> int:
-        if rank == Player.has_bye_for(self.__position): rank += 1
-        return rank
         
     def __can_place(self, player:Player, beginning_slot: MatchSlot = None) -> bool:
         if beginning_slot == None:
