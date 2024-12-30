@@ -68,14 +68,11 @@ class MatchSlot:
     def __do_placements(self) -> bool:
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
-            rank_is_nul: bool = rank == 0
-            if rank_is_nul: continue
-            player_has_bye: bool = rank == Player.has_bye_for(self.__position)
-            if player_has_bye: continue
-            player = Player.get_player_with_rank(rank, self.__position)
-            cannot_place: bool = not self.__can_place(player)
+            if rank == 0: continue
+            if rank == Player.has_bye_for(self.__position): continue
+            cannot_place: bool = not self.__can_place(Player.get_player_with_rank(rank, self.__position))
             if cannot_place: continue
-            self.__player = player
+            self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
                 if self.__next_match_slot.__do_placements(): return True
