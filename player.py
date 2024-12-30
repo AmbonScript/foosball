@@ -63,16 +63,19 @@ class Player:
     @staticmethod
     def __provide_byes_for(position: Position) -> None:
         if position == Position.ATTACKER: 
-            print(f"In Player.__provide_byes_for ATTACKERS")
+            # print(f"In Player.__provide_byes_for ATTACKERS")
             unbyed_players: List[Player] = [player for player in Player.__players if player.__attacker_bye_received == False]
-            print(f"Length of unbyed_attackers is: {len(unbyed_players)}")
+            # print(f"Length of unbyed_attackers is: {len(unbyed_players)}")
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
+            print(f"Lowest ranked attacker is: {lowest_ranked_player.__number}")
+            lowest_ranked_player.receive_bye(position)
         else:
-            print(f"In Player.__provide_byes_for DEFENDERS")
+            # print(f"In Player.__provide_byes_for DEFENDERS")
             unbyed_players: List[Player] = [player for player in Player.__players if player.__defender_bye_received == False]
-            print(f"Length of unbyed_defenders is: {len(unbyed_players)}")
+            # print(f"Length of unbyed_defenders is: {len(unbyed_players)}")
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
-        lowest_ranked_player.receive_bye(position)
+            print(f"Lowest ranked defender is: {lowest_ranked_player.__number}")
+            lowest_ranked_player.receive_bye(position)
     
     @staticmethod
     def rank_players():
@@ -121,12 +124,13 @@ class Player:
         if position == Position.ATTACKER:
             if self.__attacker_bye_received == False:
                 self.__attacker_wins += 1;
-                print(f"Bye received by player {self.__number}")
+                print(f"Bye received by attacker {self.__number}")
                 self.__attacker_bye_received = True
                 return True
         else:
             if self.__defender_bye_received == False:
                 self.__defender_wins += 1;
+                print(f"Bye received by defender {self.__number}")
                 self.__defender_bye_received = True
                 return True
         return False
