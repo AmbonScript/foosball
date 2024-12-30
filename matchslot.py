@@ -71,6 +71,7 @@ class MatchSlot:
             if rank == 0: continue
             if rank == Player.has_bye_for(self.__position): continue
             if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): continue
+            if self.__repeating_configuration(Player.get_player_with_rank(rank, self.__position)): continue
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
