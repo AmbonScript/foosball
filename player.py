@@ -56,21 +56,23 @@ class Player:
     def provide_byes() -> None:
         # print("In Player.provide_byes()")
         if len(Player.__players) % 2 == 1:
+            print("In Player.provide_byes()")
             Player.__provide_byes_for(Position.ATTACKER)
             Player.__provide_byes_for(Position.DEFENDER)
     
     @staticmethod
     def __provide_byes_for(position: Position) -> None:
         if position == Position.ATTACKER: 
+            print(f"In Player.__provide_byes_for ATTACKERS")
             unbyed_players: List[Player] = [player for player in Player.__players if player.__attacker_bye_received == False]
+            print(f"Length of unbyed_attackers is: {len(unbyed_players)}")
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
-            lowest_ranked_player.__attacker_bye_received = True
-            Player.__current_attacker_bye = lowest_ranked_player.get_rank(position)
         else:
+            print(f"In Player.__provide_byes_for DEFENDERS")
             unbyed_players: List[Player] = [player for player in Player.__players if player.__defender_bye_received == False]
+            print(f"Length of unbyed_defenders is: {len(unbyed_players)}")
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
-            lowest_ranked_player.__defender_bye_received = True
-            Player.__current_defender_bye = lowest_ranked_player.get_rank(position)
+        lowest_ranked_player.receive_bye(position)
     
     @staticmethod
     def rank_players():
@@ -119,6 +121,7 @@ class Player:
         if position == Position.ATTACKER:
             if self.__attacker_bye_received == False:
                 self.__attacker_wins += 1;
+                print(f"Bye received by player {self.__number}")
                 self.__attacker_bye_received = True
                 return True
         else:
