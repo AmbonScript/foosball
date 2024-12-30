@@ -97,7 +97,7 @@ class MatchSlot:
     def __repeating_configuration(self, player: Player) -> bool:
         other_occupied_slots_in_match: List[MatchSlot] = self.__find_slots_occupied_by_other_players_in_match()
         if len(other_occupied_slots_in_match) == 0: return False
-        previous_matches = self.__find_previous_matches_with_player_in_same_position(self.__position)
+        previous_matches: List[int] = self.__find_previous_matches_with_player_in_same_position(self.__position)
         return False
     
     def __find_slots_occupied_by_other_players_in_match(self, other_occupied_slots_in_match: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
@@ -113,6 +113,9 @@ class MatchSlot:
     
     def __find_previous_matches_with_player_in_same_position(self, position: Position) -> List[int]:
         previous_matches = []
+        for i in range(len(MatchSlot.__historical_match_slots)):
+            print(i)
+# HIER ZOMETEEN VERDER GAAN
         return previous_matches
 
     def __player_next_slot_same(self, player: Player) -> bool:
