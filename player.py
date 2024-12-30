@@ -48,7 +48,7 @@ class Player:
         else: return False
 
     @staticmethod
-    def get_bye_for(position: Position):
+    def has_bye_for(position: Position):
         if position == Position.ATTACKER: return Player.__current_attacker_bye
         else: return Player.__current_defender_bye
     
