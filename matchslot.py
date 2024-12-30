@@ -94,11 +94,10 @@ class MatchSlot:
             else:
                 return self.__next_match_slot.__already_in_same_postion_or_match(player, start_slot)
 
-    def __repeating_configuration(self, player: Player, start_slot: MatchSlot = None) -> bool:
-        # print(f"__repeating_configuration aan het doen voor matchslot: {self.__slot_number}")
+    def __repeating_configuration(self, player: Player) -> bool:
         other_occupied_slots_in_match: List[MatchSlot] = self.__find_slots_occupied_by_other_players_in_match()
-        # print(len(other_occupied_slots_in_match))
         if len(other_occupied_slots_in_match) == 0: return False
+        previous_matches = self.__find_previous_matches_with_player_in_same_position(self.__position)
         return False
     
     def __find_slots_occupied_by_other_players_in_match(self, other_occupied_slots_in_match: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
@@ -111,7 +110,11 @@ class MatchSlot:
         if (self.__next_match_slot.__match == start_slot.__match) and (self.__next_match_slot.__player is not None):
             other_occupied_slots_in_match.append(self.__next_match_slot)
         return self.__next_match_slot.__find_slots_occupied_by_other_players_in_match(other_occupied_slots_in_match, start_slot)
-        
+    
+    def __find_previous_matches_with_player_in_same_position(self, position: Position) -> List[int]:
+        previous_matches = []
+        return previous_matches
+
     def __player_next_slot_same(self, player: Player) -> bool:
         if self.__next_match_slot.__player is None:
             return False
