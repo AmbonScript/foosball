@@ -139,9 +139,9 @@ class Player:
         self.__register_wins(win, position)
         self.__register_goal_difference(win, position, goal_difference)
         self.__register_opponents(position, attacker_opponent, defender_opponent)
-        print(f"In Player#process_results(). Processing results for Player {self.__number}")
-        print(f"attacker_opponent is: {attacker_opponent}")
-        print(f"attacker_opponent is: {defender_opponent}")
+        # print(f"In Player#process_results(). Processing results for Player {self.__number}")
+        # print(f"attacker_opponent is: {attacker_opponent}")
+        # print(f"attacker_opponent is: {defender_opponent}")
     
     def __win(self, team: Team, winning_team: Team) -> bool:
         if team == winning_team:
@@ -173,7 +173,7 @@ class Player:
             self.__defender_defender_opponents.append(defender_opponent)
 
     def __determine_resistance_points(self) -> None:
-        print(f"In Player#__determine_resistance_points() for Player {self.__number}")
+        # print(f"In Player#__determine_resistance_points() for Player {self.__number}")
         for player in self.__attacker_attacker_opponents:
             self.__attacker_resistance_points += player.__attacker_wins
         for player in self.__attacker_defender_opponents:

@@ -27,6 +27,6 @@ class Round:
         # Player.process_round_results(self.get_round_number())
     
     def __process_results(self) -> None:
-        print(f"In Round#process_results() voor ronde {self.__number}")
+        # print(f"In Round#process_results() voor ronde {self.__number}")
         self.__match_slot.process_results(self.get_round_number())
         Player.rank_players()
