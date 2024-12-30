@@ -86,8 +86,8 @@ class Player:
             ranked_attackers[i].__attacker_rank = (i + 1)
         for i in range(len(ranked_defenders)):
             ranked_defenders[i].__defender_rank = (i + 1)
-        # for player in ranked_attackers:
-            # print(f"Attacker rank of player {player.__number} is {player.__attacker_rank}. Wins are: {player.__attacker_wins}. Resistance points are: {player.__attacker_resistance_points}. Goal difference is: {player.__attacker_goal_difference}")
+        for player in ranked_attackers:
+            print(f"Attacker rank of player {player.__number} is {player.__attacker_rank}. Wins are: {player.__attacker_wins}. Resistance points are: {player.__attacker_resistance_points}. Goal difference is: {player.__attacker_goal_difference}")
 
     def __init__(self, number: int):
         self.__number: int = number
