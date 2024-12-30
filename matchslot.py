@@ -95,7 +95,14 @@ class MatchSlot:
                 return self.__next_match_slot.__already_in_same_postion_or_match(player, start_slot)
 
     def __repeating_configuration(self, player: Player, start_slot: MatchSlot = None) -> bool:
+        other_players_in_match: List[Player] = self.__find_other_players_in_match()
         return False
+    
+    def __find_other_players_in_match(self, other_players_in_match: List[Player] = [], start_slot: MatchSlot = None) -> List[Player]:
+        if start_slot is None:
+            start_slot = self
+        
+        
 
     def __player_next_slot_same(self, player: Player) -> bool:
         if self.__next_match_slot.__player is None:
