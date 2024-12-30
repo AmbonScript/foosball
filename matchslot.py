@@ -70,8 +70,7 @@ class MatchSlot:
             # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
             if rank == 0: continue
             if rank == Player.has_bye_for(self.__position): continue
-            cannot_place: bool = not self.__can_place(Player.get_player_with_rank(rank, self.__position))
-            if cannot_place: continue
+            if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): continue
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
@@ -79,7 +78,7 @@ class MatchSlot:
         self.__player = None
         return False
         
-    def __can_place(self, player:Player, beginning_slot: MatchSlot = None) -> bool:
+    def __already_in_same_postion_or_match(self, player:Player, beginning_slot: MatchSlot = None) -> bool:
         if beginning_slot == None:
             beginning_slot = self
         next_player_same: bool = self.__player_next_slot_same(player)
@@ -87,12 +86,12 @@ class MatchSlot:
         next_match_same: bool = self.__match_next_slot_same(beginning_slot)
         next_match_slot_same: bool = self.__next_match_slot == beginning_slot
         if next_player_same and (next_position_same or next_match_same):
-            return False
+            return True
         else:
             if next_match_slot_same:
-                return True
+                return False
             else:
-                return self.__next_match_slot.__can_place(player, beginning_slot)
+                return self.__next_match_slot.__already_in_same_postion_or_match(player, beginning_slot)
 
     def __player_next_slot_same(self, player: Player) -> bool:
         if self.__next_match_slot.__player is None:
