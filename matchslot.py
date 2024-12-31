@@ -99,7 +99,7 @@ class MatchSlot:
     def __repeating_configuration(self, player: Player) -> bool:
         other_occupied_slots_in_match: List[MatchSlot] = self.__find_slots_occupied_by_other_players_in_match()
         if len(other_occupied_slots_in_match) == 0: return False
-        previous_matches: List[int] = self.__find_previous_matches_with_player_in_same_position(self.__position)
+        previous_matches: List[int] = self.__find_previous_matches_with_player_in_same_position()
         return False
     
     def __find_slots_occupied_by_other_players_in_match(self, other_occupied_slots_in_match: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
@@ -113,7 +113,7 @@ class MatchSlot:
             other_occupied_slots_in_match.append(self.__next_match_slot)
         return self.__next_match_slot.__find_slots_occupied_by_other_players_in_match(other_occupied_slots_in_match, start_slot)
     
-    def __find_previous_matches_with_player_in_same_position(self, position: Position) -> List[int]:
+    def __find_previous_matches_with_player_in_same_position(self) -> List[int]:
         previous_matches = []
         # Elk item (i.e. cirkel van matchslots) in __histroical_matchslots gaat opleveren:
             # Of 1 nummer van de wedstrijd waarin de speler van het huidige slot opgesteld stond in dezelfde positie
