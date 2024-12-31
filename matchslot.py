@@ -128,7 +128,13 @@ class MatchSlot:
     def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot = None) -> int:
         if start_slot is None:
             start_slot = self
-        return 1
+        if self.__next_match_slot == start_slot:
+            return 0
+        if ((position == self.__position) and (player == self.__player)):
+            return self.__slot_number
+        else:
+            return self.__next_match_slot.__find_same_position_match(position, player, start_slot)
+
     #     if self.
     #     if self == start_slot:
     #         return 0
