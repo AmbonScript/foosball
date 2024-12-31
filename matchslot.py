@@ -114,7 +114,7 @@ class MatchSlot:
         return self.__next_match_slot.__find_slots_occupied_by_other_players_in_match(other_occupied_slots_in_match, start_slot)
     
     def __find_previous_matches_with_player_in_same_position(self) -> List[int]:
-        previous_matches = []
+        previous_matches_with_player_in_same_position: List[int] = []
         # Elk item (i.e. cirkel van matchslots) in __histroical_matchslots gaat opleveren:
             # Of 1 nummer van de wedstrijd waarin de speler van het huidige slot opgesteld stond in dezelfde positie
             # Of niet, als de speler een bye had -> return dan 0
@@ -124,7 +124,7 @@ class MatchSlot:
         for match_slot in MatchSlot.__historical_match_slots:
             # match_nr: int = self.__find_same_position_match(position, self.__player, match_slot)
             match_nr: int = 1
-        return previous_matches
+        return previous_matches_with_player_in_same_position
     
     # def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot) -> int:
     #     if self.
