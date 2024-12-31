@@ -140,17 +140,22 @@ class MatchSlot:
             # - Het slot zelf juist niet die ene was waar de speler in stond
             # Doe dit in een aparte-recursieve methode
         for i in range(len(MatchSlot.__historical_match_slots)):
+            # print(f"Finding previous opponent slots for slot#{self.__number}")
             player_slot: MatchSlot = previous_match_slots[i]
             if player_slot is None:
                 previous_match_slots.append(None)
             else:
                 round_slots: MatchSlot = MatchSlot.__historical_match_slots[i]
-                opponent_slots: List[MatchSlot] = round_slots.__find_opponent_slots_in_round(player_slot)
-                print(len(opponent_slots))
+                opponent_slots: List[MatchSlot] = []
+                opponent_slots = round_slots.__find_opponent_slots_in_round(player_slot)
+                print(f"len(opponent_slots) is: {len(opponent_slots)}")
                 previous_match_slots.append(opponent_slots)
         return previous_opponent_slots
     
-    def __find_opponent_slots_in_round(self, player_slot: MatchSlot, opponent_slots: List[MatchSlot] = [], start_slot: MatchSlot = None) -> List[MatchSlot]:
+    def __find_opponent_slots_in_round(self, player_slot: MatchSlot, opponent_slots: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
+        if opponent_slots is None:
+            opponent_slots = []
+        # print(f"len(opponent_slots) is: {len(opponent_slots)}")
         if start_slot is None:
             start_slot = self
         if ((self.__match == player_slot.__match) and (self != player_slot)):
