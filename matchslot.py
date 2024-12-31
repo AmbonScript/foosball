@@ -42,7 +42,9 @@ class MatchSlot:
         return first_batch_placed
     
     def store(self) -> None:
+        # print(f"Before appending len(MatchSlot.__historical_match_slots) is: {len(MatchSlot.__historical_match_slots)}")
         MatchSlot.__historical_match_slots.append(self)
+        # print(f"After appending len(MatchSlot.__historical_match_slots) is: {len(MatchSlot.__historical_match_slots)}")
     
     def process_results(self, round: int, first_match_slot: MatchSlot = None) -> None:
         if first_match_slot is None:
@@ -115,7 +117,6 @@ class MatchSlot:
         previous_matches = []
         # for i in range(len(MatchSlot.__historical_match_slots)):
             # print(i)
-# HIER ZOMETEEN VERDER GAAN
         return previous_matches
 
     def __player_next_slot_same(self, player: Player) -> bool:
