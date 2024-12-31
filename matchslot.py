@@ -117,6 +117,8 @@ class MatchSlot:
         previous_matches = []
         # for i in range(len(MatchSlot.__historical_match_slots)):
             # print(i)
+        for match_slot in MatchSlot.__historical_match_slots:
+            match_slot.print_slots()
         return previous_matches
 
     def __player_next_slot_same(self, player: Player) -> bool:
