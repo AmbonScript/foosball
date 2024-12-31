@@ -113,8 +113,8 @@ class MatchSlot:
     
     def __find_previous_matches_with_player_in_same_position(self, position: Position) -> List[int]:
         previous_matches = []
-        for i in range(len(MatchSlot.__historical_match_slots)):
-            print(i)
+        # for i in range(len(MatchSlot.__historical_match_slots)):
+            # print(i)
 # HIER ZOMETEEN VERDER GAAN
         return previous_matches
 
