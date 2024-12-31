@@ -122,10 +122,10 @@ class MatchSlot:
         # for i in range(len(MatchSlot.__historical_match_slots)):
             # print(i)
         for match_slot in MatchSlot.__historical_match_slots:
-            match_nr: int = self.__find_same_position_match(self.__position, self.__player, match_slot)
+            match_nr: int = match_slot.__find_same_position_match(self.__position, self.__player)
         return previous_match_nrs_with_player_in_same_position
     
-    def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot) -> int:
+    def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot = None) -> int:
         return 1
     #     if self.
     #     if self == start_slot:
