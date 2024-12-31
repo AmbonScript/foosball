@@ -140,11 +140,14 @@ class MatchSlot:
             # - Het slot zelf juist niet die ene was waar de speler in stond
             # Doe dit in een aparte-recursieve methode
         for i in range(len(MatchSlot.__historical_match_slots)):
-            round_slots: MatchSlot = MatchSlot.__historical_match_slots[i]
             player_slot: MatchSlot = previous_match_slots[i]
-            opponent_slots: List[MatchSlot] = self.__find_opponent_slots_in_round(player_slot, round_slots)
-            # assert len(opponent_slots) == 3
-            previous_match_slots.append(opponent_slots)
+            if player_slot is None:
+                previous_match_slots.append(None)
+            else:
+                round_slots: MatchSlot = MatchSlot.__historical_match_slots[i]
+                opponent_slots: List[MatchSlot] = self.__find_opponent_slots_in_round(player_slot, round_slots)
+                # assert len(opponent_slots) == 3
+                previous_match_slots.append(opponent_slots)
         return previous_opponent_slots
     
     def __find_opponent_slots_in_round(self, player_slot: MatchSlot, round_slots: MatchSlot) -> List[MatchSlot]:
