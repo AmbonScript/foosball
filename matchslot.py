@@ -103,13 +103,13 @@ class MatchSlot:
         # print(f"previous_match_slots of player#{player.get_number()}: {previous_match_slots}")
         previous_opponent_slots: List[List[MatchSlot]] = self.__find_previous_opponent_slots(previous_match_slots)
         # print(f"len(previous_opponent_slots) = {len(previous_opponent_slots)}")
-        for opponent_slot in opponent_slots_in_match:
-            for i in range(len(previous_match_slots)):
-                # print(f"i = {i}")
-                previous_slot: MatchSlot = previous_match_slots[i]
-                previous_opponent_set: List[MatchSlot] = previous_opponent_slots[i]
-                for previous_opponent_slot in previous_opponent_set:
-                    if self.__configuration_same(opponent_slot, previous_slot, previous_opponent_slot): return True
+        # for opponent_slot in opponent_slots_in_match:
+        #     for i in range(len(previous_match_slots)):
+        #         # print(f"i = {i}")
+        #         previous_slot: MatchSlot = previous_match_slots[i]
+        #         previous_opponent_set: List[MatchSlot] = previous_opponent_slots[i]
+        #         for previous_opponent_slot in previous_opponent_set:
+        #             if self.__configuration_same(opponent_slot, previous_slot, previous_opponent_slot): return True
         return False
     
     def __configuration_same(self, opponent_slot: MatchSlot, previous_slot: MatchSlot, previous_opponent_slot: MatchSlot) -> bool:
@@ -164,7 +164,7 @@ class MatchSlot:
                 round_slots: MatchSlot = MatchSlot.__historical_match_slots[i]
                 opponent_slots: List[MatchSlot] = []
                 opponent_slots = round_slots.__find_opponent_slots_in_round(player_slot)
-                print(f"len(opponent_slots) is: {len(opponent_slots)}")
+                # print(f"len(opponent_slots) is: {len(opponent_slots)}")
                 previous_opponent_slots.append(opponent_slots)
         return previous_opponent_slots
     
