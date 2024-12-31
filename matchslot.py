@@ -148,7 +148,7 @@ class MatchSlot:
                 round_slots: MatchSlot = MatchSlot.__historical_match_slots[i]
                 opponent_slots: List[MatchSlot] = []
                 opponent_slots = round_slots.__find_opponent_slots_in_round(player_slot)
-                print(f"len(opponent_slots) is: {len(opponent_slots)}")
+                # print(f"len(opponent_slots) is: {len(opponent_slots)}")
                 previous_match_slots.append(opponent_slots)
         return previous_opponent_slots
     
