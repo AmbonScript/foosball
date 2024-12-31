@@ -99,7 +99,7 @@ class MatchSlot:
     def __repeating_configuration(self, player: Player) -> bool:
         other_occupied_slots_in_match: List[MatchSlot] = self.__find_slots_occupied_by_other_players_in_match()
         if len(other_occupied_slots_in_match) == 0: return False
-        previous_matches: List[int] = self.__find_previous_match_nrs_with_player_in_same_position(player)
+        previous_matches: List[MatchSlot] = self.__find_previous_matches_with_player_in_same_position(player)
         # print(f"previous_matches of player#{player.get_number()}: {previous_matches}")
         return False
     
@@ -114,18 +114,18 @@ class MatchSlot:
             other_occupied_slots_in_match.append(self.__next_slot)
         return self.__next_slot.__find_slots_occupied_by_other_players_in_match(other_occupied_slots_in_match, start_slot)
     
-    def __find_previous_match_nrs_with_player_in_same_position(self, player: Player) -> List[int]:
-        previous_match_nrs_with_player_in_same_position: List[int] = []
+    def __find_previous_matches_with_player_in_same_position(self, player: Player) -> List[MatchSlot]:
+        previous_match_nrs_with_player_in_same_position: List[MatchSlot] = []
         for match_slot in MatchSlot.__historical_match_slots:
-            match_nr: int = match_slot.__find_same_position_match(self.__position, player)
+            match_nr: MatchSlot = match_slot.__find_same_position_match(self.__position, player)
             previous_match_nrs_with_player_in_same_position.append(match_nr)
         return previous_match_nrs_with_player_in_same_position
     
-    def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot = None) -> int:
+    def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot = None) -> MatchSlot:
         if start_slot is None:
             start_slot = self
         if self.__next_slot == start_slot:
-            return 0
+            return None
         # print("-----------")
         # print(f"Gezochte positie = {position}")
         # print(f"   Eigen positie = {self.__position}")
@@ -135,7 +135,7 @@ class MatchSlot:
         # print(f"(player == self.__player) is: {(player == self.__player)}")
         if ((position == self.__position) and (player == self.__player)):
             # print("A")
-            return self.__slot_number
+            return self
         else:
             # print("B")
             return self.__next_slot.__find_same_position_match(position, player, start_slot)
