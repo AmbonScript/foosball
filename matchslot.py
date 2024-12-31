@@ -47,7 +47,7 @@ class MatchSlot:
     def process_results(self, round: int, first_match_slot: MatchSlot = None) -> None:
         if first_match_slot is None:
             first_match_slot = self
-        # print("In MatchSlot#process_results()")
+        # print(f"In MatchSlot#process_results() van slot#{self.__slot_number}")
         winning_team: Team = Result.get_result(round, self.__match).get_winning_team()
         goal_difference: int = Result.get_result(round, self.__match).get_goal_difference()
         attacker_opponent: Player = self.__get_opponent(Position.ATTACKER, self)
@@ -165,3 +165,10 @@ class MatchSlot:
         if slot_number < self.__determine_end_slot():
             self.__next_match_slot = MatchSlot()
             self.__next_match_slot.set_up_match_slots(slot_number + 1)
+        
+    def print_slots(self, start_slot: MatchSlot = None) -> None:
+        if start_slot is None:
+            start_slot = self
+        print(f"In slot#{self.__slot_number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.get_number()}")
+        if self.__next_match_slot != start_slot:
+            self.__next_match_slot.print_slots(start_slot)
