@@ -4,7 +4,7 @@ from matchslot import MatchSlot
 
 class Round:
     def __init__(self, number: int):
-        print(f"Starting Round #{number}")
+        # print(f"Starting Round #{number}")
         self.__number: int = number
         self.__match_slot: MatchSlot = MatchSlot()
     
@@ -29,6 +29,6 @@ class Round:
     
     def __process_results(self) -> None:
         # print(f"In Round#process_results() voor ronde {self.__number}")
-        self.__match_slot.print_slots()
+        # self.__match_slot.print_slots()
         self.__match_slot.process_results(self.get_round_number())
         Player.rank_players()
