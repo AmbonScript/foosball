@@ -4,6 +4,7 @@ from matchslot import MatchSlot
 
 class Round:
     def __init__(self, number: int):
+        print(f"Starting Round #{number}")
         self.__number: int = number
         self.__match_slot: MatchSlot = MatchSlot()
     
