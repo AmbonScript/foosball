@@ -20,10 +20,10 @@ class MatchSlot:
         self.__position: Position = None
         self.__next_slot: MatchSlot = None
         self.__player: Player = None
-        self.__slot_number: int = None
+        self.__number: int = None
     
     def set_up_match_slots(self, slot_number: int = 1) -> None:
-        self.__slot_number = slot_number
+        self.__number = slot_number
         self.__set_match(slot_number)
         self.__set_team(slot_number)
         self.__set_position(slot_number)
@@ -150,8 +150,11 @@ class MatchSlot:
                 previous_match_slots.append(opponent_slots)
         return previous_opponent_slots
     
-    def __find_opponent_slots_in_round(self, player_slot: MatchSlot, round_slots: MatchSlot) -> List[MatchSlot]:
+    def __find_opponent_slots_in_round(self, player_slot: MatchSlot, round_slots: MatchSlot, start_slot: MatchSlot = None) -> List[MatchSlot]:
+        if start_slot is None:
+            start_slot = self
         opponent_slots: List[MatchSlot] = []
+        # if self.__number
         return opponent_slots
 
     def __player_next_slot_same(self, player: Player) -> bool:
@@ -172,7 +175,7 @@ class MatchSlot:
         
     def __done_placing(self) -> bool:
         end_slot: int = self.__determine_end_slot()
-        if self.__slot_number == end_slot:
+        if self.__number == end_slot:
             is_done: bool =  True
         else:
             is_done: bool =  False
@@ -205,6 +208,6 @@ class MatchSlot:
     def print_slots(self, start_slot: MatchSlot = None) -> None:
         if start_slot is None:
             start_slot = self
-        print(f"In slot#{self.__slot_number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.get_number()}")
+        print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.get_number()}")
         if self.__next_slot != start_slot:
             self.__next_slot.print_slots(start_slot)
