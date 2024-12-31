@@ -130,7 +130,6 @@ class MatchSlot:
         if ((position == self.__position) and (player == self.__player)):
             return self
         else:
-            # print("B")
             return self.__next_slot.__find_same_position_match(position, player, start_slot)
 
     def __find_previous_opponent_slots(self, previous_match_slots: List[MatchSlot]) -> List[List[MatchSlot]]:
