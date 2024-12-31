@@ -128,7 +128,6 @@ class MatchSlot:
         if self.__next_slot == start_slot:
             return None
         if ((position == self.__position) and (player == self.__player)):
-            # print("A")
             return self
         else:
             # print("B")
