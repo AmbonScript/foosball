@@ -156,13 +156,7 @@ class MatchSlot:
 
     def __find_previous_opponent_slots(self, previous_match_slots: List[MatchSlot]) -> List[List[MatchSlot]]:
         previous_opponent_slots: List[List[MatchSlot]] = []
-        # Zoek in alle vorige rondes
-        # Vindt daar de 3 matchslots waarvan:
-            # - Het matchnummer overeenkomt met die uit previous_match_slots
-            # - Het slot zelf juist niet die ene was waar de speler in stond
-            # Doe dit in een aparte-recursieve methode
         for i in range(len(MatchSlot.__historical_match_slots)):
-            # print(f"Finding previous opponent slots for slot#{self.__number}")
             player_slot: MatchSlot = previous_match_slots[i]
             if player_slot is None:
                 previous_opponent_slots.append(None)
@@ -172,7 +166,6 @@ class MatchSlot:
                 opponent_slots = round_slots.__find_opponent_slots_in_round(player_slot)
                 print(f"len(opponent_slots) is: {len(opponent_slots)}")
                 previous_opponent_slots.append(opponent_slots)
-        # print(f"len()")
         return previous_opponent_slots
     
     def __find_opponent_slots_in_round(self, player_slot: MatchSlot, opponent_slots: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
