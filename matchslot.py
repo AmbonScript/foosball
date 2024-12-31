@@ -146,14 +146,13 @@ class MatchSlot:
             else:
                 round_slots: MatchSlot = MatchSlot.__historical_match_slots[i]
                 opponent_slots: List[MatchSlot] = round_slots.__find_opponent_slots_in_round(player_slot)
-                # assert len(opponent_slots) == 3
+                print(len(opponent_slots))
                 previous_match_slots.append(opponent_slots)
         return previous_opponent_slots
     
-    def __find_opponent_slots_in_round(self, player_slot: MatchSlot, opponent_slots: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
+    def __find_opponent_slots_in_round(self, player_slot: MatchSlot, opponent_slots: List[MatchSlot] = [], start_slot: MatchSlot = None) -> List[MatchSlot]:
         if start_slot is None:
             start_slot = self
-        opponent_slots: List[MatchSlot] = []
         if ((self.__match == player_slot.__match) and (self != player_slot)):
             opponent_slots.append(self)
         if self.__next_slot == start_slot:
