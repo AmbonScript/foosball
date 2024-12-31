@@ -127,13 +127,6 @@ class MatchSlot:
             start_slot = self
         if self.__next_slot == start_slot:
             return None
-        # print("-----------")
-        # print(f"Gezochte positie = {position}")
-        # print(f"   Eigen positie = {self.__position}")
-        # print(f"(position == self.__position) is: {(position == self.__position)}")
-        # print(f"Gezochte player = {player}")
-        # print(f"   Eigen player = {self.__player}")
-        # print(f"(player == self.__player) is: {(player == self.__player)}")
         if ((position == self.__position) and (player == self.__player)):
             # print("A")
             return self
