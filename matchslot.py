@@ -126,6 +126,8 @@ class MatchSlot:
         return previous_match_nrs_with_player_in_same_position
     
     def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot = None) -> int:
+        if start_slot is None:
+            start_slot = self
         return 1
     #     if self.
     #     if self == start_slot:
