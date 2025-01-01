@@ -8,18 +8,18 @@ import math
 
 class MatchSlot:
     __historical_slots: List[MatchSlot] = []
-            
-    def set_up_slots(self, slot_number: int = 1, first_slot: MatchSlot = None) -> bool:
+    
+    def __init__(self, number: int = 1, first_slot: MatchSlot = None):
         if first_slot is None:
             first_slot = self
         self.__next_slot = first_slot
-        self.__number = slot_number
+        self.__number = number
         self.__match = self.__set_match()
         self.__team = self.__set_team()
         self.__position = self.__set_position()
-        if self.__done_placing(): return True
+        if self.__done_placing(): return
         else:
-            # return self.
+            self.__next_slot = MatchSlot(number + 1, first_slot)
 
     
     def __place_player(self):
