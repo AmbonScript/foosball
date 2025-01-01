@@ -54,26 +54,18 @@ class Player:
     
     @staticmethod
     def provide_byes() -> None:
-        # print("In Player.provide_byes()")
         if len(Player.__players) % 2 == 1:
-            # print("In Player.provide_byes()")
             Player.__provide_byes_for(Position.ATTACKER)
             Player.__provide_byes_for(Position.DEFENDER)
     
     @staticmethod
     def __provide_byes_for(position: Position) -> None:
         if position == Position.ATTACKER: 
-            # print(f"In Player.__provide_byes_for ATTACKERS")
             unbyed_players: List[Player] = [player for player in Player.__players if player.__attacker_bye_received == False]
-            # print(f"Length of unbyed_attackers is: {len(unbyed_players)}")
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
-            # print(f"Lowest ranked attacker is: {lowest_ranked_player.__number}")
         else:
-            # print(f"In Player.__provide_byes_for DEFENDERS")
             unbyed_players: List[Player] = [player for player in Player.__players if player.__defender_bye_received == False]
-            # print(f"Length of unbyed_defenders is: {len(unbyed_players)}")
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
-            # print(f"Lowest ranked defender is: {lowest_ranked_player.__number}")
         lowest_ranked_player.receive_bye(position)
     
     @staticmethod
@@ -86,8 +78,6 @@ class Player:
             ranked_attackers[i].__attacker_rank = (i + 1)
         for i in range(len(ranked_defenders)):
             ranked_defenders[i].__defender_rank = (i + 1)
-        # for player in ranked_attackers:
-            # print(f"Attacker rank of player {player.__number} is {player.__attacker_rank}. Wins are: {player.__attacker_wins}. Resistance points are: {player.__attacker_resistance_points}. Goal difference is: {player.__attacker_goal_difference}")
 
     def __init__(self, number: int):
         self.__number: int = number
@@ -125,13 +115,11 @@ class Player:
         if position == Position.ATTACKER:
             if self.__attacker_bye_received == False:
                 self.__attacker_wins += 1;
-                # print(f"Bye received by attacker {self.__number}. Attacker wins are: {self.__attacker_wins}")
                 self.__attacker_bye_received = True
                 return True
         else:
             if self.__defender_bye_received == False:
                 self.__defender_wins += 1;
-                # print(f"Bye received by defender {self.__number}. Defender wins are: {self.__defender_wins}")
                 self.__defender_bye_received = True
                 return True
         return False
@@ -147,9 +135,6 @@ class Player:
         self.__register_wins(win, position)
         self.__register_goal_difference(win, position, goal_difference)
         self.__register_opponents(position, attacker_opponent, defender_opponent)
-        # print(f"In Player#process_results(). Processing results for Player {self.__number}")
-        # print(f"attacker_opponent is: {attacker_opponent}")
-        # print(f"attacker_opponent is: {defender_opponent}")
     
     def __win(self, team: Team, winning_team: Team) -> bool:
         if team == winning_team:
