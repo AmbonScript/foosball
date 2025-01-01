@@ -187,14 +187,10 @@ class MatchSlot:
             return self.__next_slot.__player == player
     
     def __position_next_slot_same(self, start_slot: MatchSlot) -> bool:
-        position = start_slot.__position
-        # print(f"    In __position_next_match_slot_same_as_first and position is: {position}")
-        return self.__next_slot.__position == position
+        return self.__next_slot.__position == start_slot.__position
 
     def __match_next_slot_same(self, start_slot: MatchSlot) -> bool:
-        match = start_slot.__match
-        # print(f"    In __match_next_match_slot_same_as_first and match is: {match}")
-        return self.__next_slot.__match == match
+        return self.__next_slot.__match == start_slot.__match
         
     def __done_placing(self) -> bool:
         end_slot: int = self.__determine_end_slot()
@@ -202,7 +198,6 @@ class MatchSlot:
             is_done: bool =  True
         else:
             is_done: bool =  False
-        # print(f"    done_placing is: {is_done}")
         return is_done
     
     def __determine_end_slot(self) -> int:
