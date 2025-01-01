@@ -8,10 +8,7 @@ import math
 
 class MatchSlot:
     __historical_slots: List[MatchSlot] = []
-    
-    def __init__(self):
-        self.__player: Player = None
-        
+            
     def set_up_slots(self, slot_number: int = 1) -> None:
         self.__number = slot_number
         self.__set_match(slot_number)
