@@ -14,9 +14,9 @@ class MatchSlot:
             first_slot = self
         self.__next_slot = first_slot
         self.__number = slot_number
-        self.__set_match()
-        self.__set_team()
-        self.__set_position()
+        self.__match = self.__set_match()
+        self.__team = self.__set_team()
+        self.__position = self.__set_position()
         # if self.__done_placing(): return True
         # else:
         #     if self.__next_slot.__do_placements(): return True
@@ -218,20 +218,16 @@ class MatchSlot:
     def __determine_end_slot(self) -> int:
         return (Player.get_number_of_players_in_round() * 2)
 
-    def __set_match(self) -> None:
-        self.__match = math.ceil(self.__number / 4)
+    def __set_match(self) -> int:
+        return math.ceil(self.__number / 4)
     
-    def __set_team(self) -> None:
-        if (self.__number+1) % 4 > 1:
-            self.__team = Team.A
-        else:
-            self.__team = Team.B
+    def __set_team(self) -> Team:
+        if (self.__number+1) % 4 > 1: return Team.A
+        else: return Team.B
     
-    def __set_position(self) -> None:
-        if self.__number % 2 == 1:
-            self.__position = Position.ATTACKER
-        else:
-            self.__position = Position.DEFENDER
+    def __set_position(self) -> Position:
+        if self.__number % 2 == 1: return Position.ATTACKER
+        else: return Position.DEFENDER
     
     def __set_next_slot(self, slot_number: int) -> None:
         self.__next_slot = None
