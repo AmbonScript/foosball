@@ -18,8 +18,6 @@ class Round:
         self.__process_results()
     
     def __set_up_matches(self):
-        self.__match_slot.set_up_slots()
-        self.__match_slot.closeLoop()
         self.__match_slot.place_players()
     
     def __play_matches(self) -> None:
