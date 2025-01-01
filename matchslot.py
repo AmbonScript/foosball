@@ -10,9 +10,6 @@ class MatchSlot:
     __historical_slots: List[MatchSlot] = []
     
     def __init__(self):
-        self.__match: int = None
-        self.__team: Team = None
-        self.__position: Position = None
         self.__next_slot: MatchSlot = None
         self.__player: Player = None
         
