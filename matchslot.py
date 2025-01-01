@@ -106,14 +106,6 @@ class MatchSlot:
         for opponent_slot in opponent_slots_in_match:
             repeated: bool = self.__check_configuration_repeated(opponent_slot, previous_match_slots, previous_opponent_slots)
             if repeated: return True
-        # print(f"len(previous_opponent_slots) = {len(previous_opponent_slots)}")
-        # for opponent_slot in opponent_slots_in_match:
-        #     for i in range(len(previous_match_slots)):
-        #         # print(f"i = {i}")
-        #         previous_slot: MatchSlot = previous_match_slots[i]
-        #         previous_opponent_set: List[MatchSlot] = previous_opponent_slots[i]
-        #         for previous_opponent_slot in previous_opponent_set:
-        #             if self.__configuration_same(opponent_slot, previous_slot, previous_opponent_slot): return True
         return False
     
     def __check_configuration_repeated(self, opponent_slot: MatchSlot, previous_match_slots: List[MatchSlot], previous_opponent_slots: List[List[MatchSlot]]) -> bool:
@@ -127,10 +119,6 @@ class MatchSlot:
                 repeated: bool = self.__configuration_repeated(opponent_slot, previous_slot, previous_opponent_set)
                 if repeated: return True
         return False
-            # assert len(previous_opponent_set) == 3
-            
-            # for previous_opponent_slot in previous_opponent_set:
-            #     if self.__configuration_same(opponent_slot, previous_slot, previous_opponent_slot): return True
 
     def __configuration_repeated(self, opponent_slot: MatchSlot, previous_slot: MatchSlot, previous_opponent_set: List[MatchSlot]) -> bool:
         for previous_opponent_slot in previous_opponent_set:
