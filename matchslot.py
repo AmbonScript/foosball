@@ -17,7 +17,6 @@ class MatchSlot:
         self.__next_slot: MatchSlot = None
         self.__player: Player = None
         
-    
     def set_up_slots(self, slot_number: int = 1) -> None:
         self.__number = slot_number
         self.__set_match(slot_number)
