@@ -17,13 +17,10 @@ class MatchSlot:
         self.__match = self.__set_match()
         self.__team = self.__set_team()
         self.__position = self.__set_position()
-        # if self.__done_placing(): return True
-        # else:
-        #     if self.__next_slot.__do_placements(): return True
-        # self.__place_player()
-        # Eerst een speler plaatsen
-        # Dan pas het volgende slot plaatsen
-        # self.__set_next_slot(slot_number)
+        if self.__done_placing(): return True
+        else:
+            # return self.
+
     
     def __place_player(self):
         for rank in range((Player.get_number_of_players_in_round() + 1)):
