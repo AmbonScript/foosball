@@ -211,6 +211,7 @@ class MatchSlot:
             self.__position = Position.DEFENDER
     
     def __set_next_slot(self, slot_number: int) -> None:
+        self.__next_slot = None
         if slot_number < self.__determine_end_slot():
             self.__next_slot = MatchSlot()
             self.__next_slot.set_up_slots(slot_number + 1)
@@ -222,5 +223,5 @@ class MatchSlot:
         print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}.")
         # else:    
         # print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.get_number()}")
-        if self.__next_slot != start_slot:
+        if ((self.__next_slot != start_slot) and (self.__next_slot is not None)):
             self.__next_slot.print_slots(start_slot)
