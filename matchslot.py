@@ -36,9 +36,7 @@ class MatchSlot:
         return self.__do_placements()
     
     def store(self) -> None:
-        # print(f"Before appending len(MatchSlot.__historical_match_slots) is: {len(MatchSlot.__historical_match_slots)}")
         MatchSlot.__historical_slots.append(self)
-        # print(f"After appending len(MatchSlot.__historical_match_slots) is: {len(MatchSlot.__historical_match_slots)}")
     
     def process_results(self, round: int, first_slot: MatchSlot = None) -> None:
         if first_slot is None:
