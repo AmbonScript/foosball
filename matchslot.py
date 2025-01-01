@@ -218,9 +218,9 @@ class MatchSlot:
     def print_slots(self, start_slot: MatchSlot = None) -> None:
         if start_slot is None:
             start_slot = self
-        if self.__player is None:
-            print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}.")
-        else:    
-            print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.get_number()}")
+        # if self.__player is None:
+        print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}.")
+        # else:    
+        # print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.get_number()}")
         if self.__next_slot != start_slot:
             self.__next_slot.print_slots(start_slot)
