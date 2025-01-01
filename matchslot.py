@@ -33,8 +33,7 @@ class MatchSlot:
             self.__next_slot.closeLoop(first_slot)
         
     def place_players(self) -> bool:
-        first_batch_placed: bool = self.__do_placements()
-        return first_batch_placed
+        return self.__do_placements()
     
     def store(self) -> None:
         # print(f"Before appending len(MatchSlot.__historical_match_slots) is: {len(MatchSlot.__historical_match_slots)}")
