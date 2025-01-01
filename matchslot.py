@@ -9,13 +9,36 @@ import math
 class MatchSlot:
     __historical_slots: List[MatchSlot] = []
             
-    def set_up_slots(self, slot_number: int = 1) -> None:
+    def set_up_slots(self, slot_number: int = 1, first_slot: MatchSlot = None) -> bool:
+        if first_slot is None:
+            first_slot = self
+        self.__next_slot = first_slot
         self.__number = slot_number
-        self.__set_match(slot_number)
-        self.__set_team(slot_number)
-        self.__set_position(slot_number)
-        self.__set_next_slot(slot_number)
+        self.__set_match()
+        self.__set_team()
+        self.__set_position()
+        # if self.__done_placing(): return True
+        # else:
+        #     if self.__next_slot.__do_placements(): return True
+        # self.__place_player()
+        # Eerst een speler plaatsen
+        # Dan pas het volgende slot plaatsen
+        # self.__set_next_slot(slot_number)
     
+    def __place_player(self):
+        for rank in range((Player.get_number_of_players_in_round() + 1)):
+            # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
+            if rank == 0: continue
+            if rank == Player.has_bye_for(self.__position): continue
+            if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): continue
+            if self.__repeating_configuration(Player.get_player_with_rank(rank, self.__position)): continue
+            self.__player = Player.get_player_with_rank(rank, self.__position)
+            if self.__done_placing(): return True
+            else:
+                if self.__next_slot.__do_placements(): return True
+        self.__player = None
+        return False
+
     def closeLoop(self, first_slot: MatchSlot = None) -> None:
         if first_slot is None:
             first_slot = self
@@ -195,17 +218,17 @@ class MatchSlot:
     def __determine_end_slot(self) -> int:
         return (Player.get_number_of_players_in_round() * 2)
 
-    def __set_match(self, slot_number: int) -> None:
-        self.__match = math.ceil(slot_number / 4)
+    def __set_match(self) -> None:
+        self.__match = math.ceil(self.__number / 4)
     
-    def __set_team(self, slot_number: int) -> None:
-        if (slot_number+1) % 4 > 1:
+    def __set_team(self) -> None:
+        if (self.__number+1) % 4 > 1:
             self.__team = Team.A
         else:
             self.__team = Team.B
     
-    def __set_position(self, slot_number: int) -> None:
-        if slot_number % 2 == 1:
+    def __set_position(self) -> None:
+        if self.__number % 2 == 1:
             self.__position = Position.ATTACKER
         else:
             self.__position = Position.DEFENDER
