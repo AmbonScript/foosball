@@ -10,7 +10,6 @@ class MatchSlot:
     __historical_slots: List[MatchSlot] = []
     
     def __init__(self, number: int = 1, first_slot: MatchSlot = None):
-        self.__player: Player = None
         self.__number = number
         self.__match = self.__set_match()
         self.__team = self.__set_team()
@@ -18,6 +17,7 @@ class MatchSlot:
         self.__next_slot = self.__set_next_slot(first_slot)
     
     def place_players(self) -> bool:
+        self.__player: Player = None
         first_slot: MatchSlot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             if not self.__can_place(rank): continue
@@ -27,7 +27,6 @@ class MatchSlot:
                 self.__next_slot = MatchSlot(self.__number + 1, self.__next_slot)
                 if self.__next_slot.place_players(): return True
                 else: self.__next_slot = first_slot
-        self.__player = None
         return False
     
     def __can_place(self, rank: int) -> bool:
