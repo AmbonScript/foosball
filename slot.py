@@ -26,7 +26,7 @@ class Slot:
             if self.__done_placing(): return True
             else:
                 from slot_factory import SlotFactory
-                slot_factory: SlotFactory = SlotFactory(copy.deepcopy(first_slot))
+                slot_factory: SlotFactory = SlotFactory(copy.deepcopy(self))
                 self.__next_slot = Slot(self.__number + 1, self.__next_slot)
                 if self.__next_slot.place_players(): return True
                 else: self.__next_slot = first_slot

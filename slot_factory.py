@@ -11,3 +11,6 @@ class SlotFactory:
 
     def __init__(self, slot: Slot):
         self.__slot = slot
+    
+    def choose_next_slot(self) -> int:
+        return 1
