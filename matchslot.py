@@ -20,7 +20,6 @@ class MatchSlot:
     def place_players(self) -> bool:
         first_slot: MatchSlot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):
-            # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
             if not self.__can_place(rank): continue
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
