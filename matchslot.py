@@ -164,10 +164,8 @@ class MatchSlot:
             return self.__next_slot.__find_opponent_slots_in_round(player_slot, opponent_slots, start_slot)
 
     def __player_next_slot_same(self, player: Player) -> bool:
-        if self.__next_slot.__player is None:
-            return False
-        else:
-            return self.__next_slot.__player == player
+        if self.__next_slot.__player is None: return False
+        else: return self.__next_slot.__player == player
     
     def __position_next_slot_same(self, start_slot: MatchSlot) -> bool:
         return self.__next_slot.__position == start_slot.__position
