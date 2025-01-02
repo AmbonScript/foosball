@@ -16,10 +16,6 @@ class MatchSlot:
         self.__team = self.__set_team()
         self.__position = self.__set_position()
         self.__next_slot = self.__set_next_slot(first_slot)
-        
-        # self.__place_player()
-        # if not self.__done_placing():
-        #     self.__next_slot = MatchSlot(number + 1, first_slot)
     
     def place_players(self) -> bool:
         for rank in range((Player.get_number_of_players_in_round() + 1)):
