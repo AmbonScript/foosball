@@ -31,17 +31,6 @@ class MatchSlot:
                 if self.__next_slot.place_players(): return True
         self.__player = None
         return False
-
-    def closeLoop(self, first_slot: MatchSlot = None) -> None:
-        if first_slot is None:
-            first_slot = self
-        if self.__next_slot == None:
-            self.__next_slot = first_slot
-        else:
-            self.__next_slot.closeLoop(first_slot)
-        
-    # def place_players(self) -> bool:
-    #     return self.__do_placements()
     
     def store(self) -> None:
         MatchSlot.__historical_slots.append(self)
