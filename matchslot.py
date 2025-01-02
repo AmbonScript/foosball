@@ -223,9 +223,8 @@ class MatchSlot:
         else: return Position.DEFENDER
     
     def __set_next_slot(self, first_slot: MatchSlot) -> MatchSlot:
-        if first_slot is None:
-            first_slot = self
-        self.__next_slot = first_slot
+        if first_slot is None: return self
+        else: return first_slot
            
     def print_slots(self, start_slot: MatchSlot = None) -> None:
         if start_slot is None:
