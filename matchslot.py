@@ -176,12 +176,7 @@ class MatchSlot:
         return self.__next_slot.__match == start_slot.__match
         
     def __done_placing(self) -> bool:
-        end_slot: int = self.__determine_end_slot()
-        if self.__number == end_slot:
-            is_done: bool =  True
-        else:
-            is_done: bool =  False
-        return is_done
+        return self.__number == self.__determine_end_slot()
     
     def __determine_end_slot(self) -> int:
         return (Player.get_number_of_players_in_round() * 2)
