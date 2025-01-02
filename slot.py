@@ -5,6 +5,7 @@ from position import Position
 from result import Result
 from typing import List
 import math
+import copy
 
 class Slot:
     __historical_slots: List[Slot] = []
@@ -24,6 +25,8 @@ class Slot:
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
+                from slot_factory import SlotFactory
+                slot_factory: SlotFactory = SlotFactory(copy.deepcopy(first_slot))
                 self.__next_slot = Slot(self.__number + 1, self.__next_slot)
                 if self.__next_slot.place_players(): return True
                 else: self.__next_slot = first_slot
