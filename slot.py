@@ -182,8 +182,17 @@ class Slot:
         return self.__next_slot.__match == start_slot.__match
         
     def __done_placing(self) -> bool:
-        return self.__number == self.__determine_end_slot()
+        return self.__count_placed_slots() == self.__determine_end_slot()
     
+    def __count_placed_slots(self, count: int = None, start_slot: Slot = None) -> int:
+        if start_slot is None:
+            start_slot = self
+            count = 1
+        if self.__next_slot == start_slot:
+            return count
+        else:
+            return self.__next_slot.__count_placed_slots((count + 1), start_slot)
+
     def __determine_end_slot(self) -> int:
         return (Player.get_number_of_players_in_round() * 2)
 
