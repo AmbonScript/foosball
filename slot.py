@@ -21,6 +21,10 @@ class Slot:
     def number(self) -> int:
         return self.__number
     
+    @property
+    def match(self) -> int:
+        return self.__match
+    
     def place_players(self) -> bool:
         self.__player: Player = None
         first_slot: Slot = self.__next_slot
