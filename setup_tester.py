@@ -3,7 +3,7 @@ from player import Player
 from team import Team
 from position import Position
 
-Player.set_players(17)
+Player.set_players(29)
 slot: Slot = Slot()
 slot.place_players()
 assert slot._Slot__match == 1
