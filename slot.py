@@ -46,8 +46,9 @@ class Slot:
     def determine_occupied_slots_in_match(self, occupied_slots: List[Slot] = None, start_slot: Slot = None) -> List[Slot]:
         if start_slot is None:
             occupied_slots = []
-            occupied_slots.append(self)
             start_slot = self
+        if self.__match == start_slot.__match:
+            occupied_slots.append(self)
         if self.__next_slot == start_slot:
             return occupied_slots
         else:
