@@ -17,6 +17,10 @@ class Slot:
         self.__position = self.__set_position()
         self.__next_slot = self.__set_next_slot(first_slot)
     
+    @property
+    def number(self) -> int:
+        return self.__number
+    
     def place_players(self) -> bool:
         self.__player: Player = None
         first_slot: Slot = self.__next_slot

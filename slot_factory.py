@@ -13,4 +13,7 @@ class SlotFactory:
         self.__slot = slot
     
     def choose_next_slot(self) -> int:
-        return 1
+        return self.__empty_slots_in_match()
+    
+    def __empty_slots_in_match(self) -> int:
+        return self.__slot.number
