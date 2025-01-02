@@ -21,7 +21,7 @@ class MatchSlot:
         # if not self.__done_placing():
         #     self.__next_slot = MatchSlot(number + 1, first_slot)
     
-    def __place_player(self) -> bool:
+    def place_players(self) -> bool:
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
             if rank == 0: continue
@@ -32,7 +32,7 @@ class MatchSlot:
             if self.__done_placing(): return True
             else:
                 self.__next_slot = MatchSlot(self.__number + 1, self.__next_slot)
-                if self.__next_slot.__place_player(): return True
+                if self.__next_slot.place_players(): return True
         self.__player = None
         return False
 
@@ -44,8 +44,8 @@ class MatchSlot:
         else:
             self.__next_slot.closeLoop(first_slot)
         
-    def place_players(self) -> bool:
-        return self.__do_placements()
+    # def place_players(self) -> bool:
+    #     return self.__do_placements()
     
     def store(self) -> None:
         MatchSlot.__historical_slots.append(self)
