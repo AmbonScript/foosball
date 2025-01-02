@@ -10,7 +10,6 @@ class MatchSlot:
     __historical_slots: List[MatchSlot] = []
     
     def __init__(self, number: int = 1, first_slot: MatchSlot = None):
-        self.__player: Player = None
         if first_slot is None:
             first_slot = self
         self.__next_slot = first_slot
@@ -18,10 +17,12 @@ class MatchSlot:
         self.__match = self.__set_match()
         self.__team = self.__set_team()
         self.__position = self.__set_position()
-        if not self.__done_placing():
-            self.__next_slot = MatchSlot(number + 1, first_slot)
+        self.__player: Player = None
+        # self.__place_player()
+        # if not self.__done_placing():
+        #     self.__next_slot = MatchSlot(number + 1, first_slot)
     
-    def __place_player(self):
+    def __place_player(self) -> bool:
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
             if rank == 0: continue
@@ -31,7 +32,8 @@ class MatchSlot:
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
-                if self.__next_slot.__do_placements(): return True
+                self.__next_slot = MatchSlot(self.__number + 1, self.__next_slot)
+                if self.__next_slot.__place_player(): return True
         self.__player = None
         return False
 
