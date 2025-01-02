@@ -16,5 +16,5 @@ class SlotFactory:
         return self.__empty_slots_in_match()
     
     def __empty_slots_in_match(self) -> int:
-        return self.__slot.number % 4
+        return 4 - self.__slot.number % 4
     
