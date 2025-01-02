@@ -30,7 +30,7 @@ class Slot:
             if self.__done_placing(): return True
             else:
                 from slot_factory import SlotFactory
-                print(SlotFactory(copy.deepcopy(self)).choose_next_slot())
+                SlotFactory(copy.deepcopy(self)).choose_next_slot()
                 self.__next_slot = Slot(self.__number + 1, self.__next_slot)
                 if self.__next_slot.place_players(): return True
                 else: self.__next_slot = first_slot
@@ -42,6 +42,16 @@ class Slot:
         if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): return False
         if self.__repeating_configuration(Player.get_player_with_rank(rank, self.__position)): return False
         return True
+    
+    def determine_occupied_slots_in_match(self, occupied_slots: List[Slot] = None, start_slot: Slot = None) -> List[Slot]:
+        if start_slot is None:
+            occupied_slots = []
+            occupied_slots.append(self)
+            start_slot = self
+        if self.__next_slot == start_slot:
+            return occupied_slots
+        else:
+            return self.__next_slot.determine_occupied_slots_in_match(occupied_slots, start_slot)
     
     def store(self) -> None:
         Slot.__historical_slots.append(self)
