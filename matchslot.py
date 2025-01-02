@@ -54,20 +54,6 @@ class MatchSlot:
             return self.__next_slot.__player
         else:
             return self.__next_slot.__get_opponent(position, start_slot)
-
-    def __do_placements(self) -> bool:
-        for rank in range((Player.get_number_of_players_in_round() + 1)):
-            # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
-            if rank == 0: continue
-            if rank == Player.has_bye_for(self.__position): continue
-            if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): continue
-            if self.__repeating_configuration(Player.get_player_with_rank(rank, self.__position)): continue
-            self.__player = Player.get_player_with_rank(rank, self.__position)
-            if self.__done_placing(): return True
-            else:
-                if self.__next_slot.__do_placements(): return True
-        self.__player = None
-        return False
         
     def __already_in_same_postion_or_match(self, player:Player, start_slot: MatchSlot = None) -> bool:
         if start_slot == None:
