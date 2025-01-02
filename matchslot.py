@@ -10,14 +10,13 @@ class MatchSlot:
     __historical_slots: List[MatchSlot] = []
     
     def __init__(self, number: int = 1, first_slot: MatchSlot = None):
-        if first_slot is None:
-            first_slot = self
-        self.__next_slot = first_slot
+        self.__player: Player = None
         self.__number = number
         self.__match = self.__set_match()
         self.__team = self.__set_team()
         self.__position = self.__set_position()
-        self.__player: Player = None
+        self.__next_slot = self.__set_next_slot(first_slot)
+        
         # self.__place_player()
         # if not self.__done_placing():
         #     self.__next_slot = MatchSlot(number + 1, first_slot)
@@ -227,12 +226,11 @@ class MatchSlot:
         if self.__number % 2 == 1: return Position.ATTACKER
         else: return Position.DEFENDER
     
-    def __set_next_slot(self, slot_number: int) -> None:
-        self.__next_slot = None
-        if slot_number < self.__determine_end_slot():
-            self.__next_slot = MatchSlot()
-            self.__next_slot.set_up_slots(slot_number + 1)
-        
+    def __set_next_slot(self, first_slot: MatchSlot) -> MatchSlot:
+        if first_slot is None:
+            first_slot = self
+        self.__next_slot = first_slot
+           
     def print_slots(self, start_slot: MatchSlot = None) -> None:
         if start_slot is None:
             start_slot = self
