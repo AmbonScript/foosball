@@ -21,10 +21,7 @@ class MatchSlot:
         first_slot: MatchSlot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             # print(f"Bezig speler met {self.__position}-rank {rank} te plaatsen in match slot {self.__slot_number}")
-            if rank == 0: continue
-            if rank == Player.has_bye_for(self.__position): continue
-            if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): continue
-            if self.__repeating_configuration(Player.get_player_with_rank(rank, self.__position)): continue
+            if not self.__can_place(rank): continue
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
@@ -33,6 +30,13 @@ class MatchSlot:
                 else: self.__next_slot = first_slot
         self.__player = None
         return False
+    
+    def __can_place(self, rank: int) -> bool:
+        if rank == 0: return False
+        if rank == Player.has_bye_for(self.__position): return False
+        if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): return False
+        if self.__repeating_configuration(Player.get_player_with_rank(rank, self.__position)): return False
+        return True
     
     def store(self) -> None:
         MatchSlot.__historical_slots.append(self)
