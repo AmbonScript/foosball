@@ -6,10 +6,10 @@ from result import Result
 from typing import List
 import math
 
-class MatchSlot:
-    __historical_slots: List[MatchSlot] = []
+class Slot:
+    __historical_slots: List[Slot] = []
     
-    def __init__(self, number: int = 1, first_slot: MatchSlot = None):
+    def __init__(self, number: int = 1, first_slot: Slot = None):
         self.__number = number
         self.__match = self.__set_match()
         self.__team = self.__set_team()
@@ -18,13 +18,13 @@ class MatchSlot:
     
     def place_players(self) -> bool:
         self.__player: Player = None
-        first_slot: MatchSlot = self.__next_slot
+        first_slot: Slot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             if not self.__can_place(rank): continue
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
-                self.__next_slot = MatchSlot(self.__number + 1, self.__next_slot)
+                self.__next_slot = Slot(self.__number + 1, self.__next_slot)
                 if self.__next_slot.place_players(): return True
                 else: self.__next_slot = first_slot
         return False
@@ -37,9 +37,9 @@ class MatchSlot:
         return True
     
     def store(self) -> None:
-        MatchSlot.__historical_slots.append(self)
+        Slot.__historical_slots.append(self)
     
-    def process_results(self, round: int, first_slot: MatchSlot = None) -> None:
+    def process_results(self, round: int, first_slot: Slot = None) -> None:
         if first_slot is None:
             first_slot = self
         winning_team: Team = Result.get_result(round, self.__match).get_winning_team()
@@ -50,7 +50,7 @@ class MatchSlot:
         if self.__next_slot != first_slot:
             self.__next_slot.process_results(round, first_slot)
 
-    def __get_opponent(self, position: Position, start_slot: MatchSlot) -> Player:
+    def __get_opponent(self, position: Position, start_slot: Slot) -> Player:
         match_same: bool = self.__next_slot.__match == start_slot.__match
         team_different: bool = self.__next_slot.__team != start_slot.__team
         position_correct: bool = self.__next_slot.__position == position
@@ -59,7 +59,7 @@ class MatchSlot:
         else:
             return self.__next_slot.__get_opponent(position, start_slot)
         
-    def __already_in_same_postion_or_match(self, player:Player, start_slot: MatchSlot = None) -> bool:
+    def __already_in_same_postion_or_match(self, player:Player, start_slot: Slot = None) -> bool:
         if start_slot == None:
             start_slot = self
         next_player_same: bool = self.__player_next_slot_same(player)
@@ -72,32 +72,32 @@ class MatchSlot:
             else: return self.__next_slot.__already_in_same_postion_or_match(player, start_slot)
 
     def __repeating_configuration(self, player: Player) -> bool:
-        opponent_slots_in_match: List[MatchSlot] = self.__find_opponent_slots_in_match()
+        opponent_slots_in_match: List[Slot] = self.__find_opponent_slots_in_match()
         if len(opponent_slots_in_match) == 0: return False
-        previous_slots: List[MatchSlot] = self.__find_previous_slots_with_player_in_same_position(player)
-        previous_opponent_slots: List[List[MatchSlot]] = self.__find_previous_opponent_slots(previous_slots)
+        previous_slots: List[Slot] = self.__find_previous_slots_with_player_in_same_position(player)
+        previous_opponent_slots: List[List[Slot]] = self.__find_previous_opponent_slots(previous_slots)
         for opponent_slot in opponent_slots_in_match:
             repeated: bool = self.__check_configuration_repeated(opponent_slot, previous_slots, previous_opponent_slots)
             if repeated: return True
         return False
     
-    def __check_configuration_repeated(self, opponent_slot: MatchSlot, previous_slots: List[MatchSlot], previous_opponent_slots: List[List[MatchSlot]]) -> bool:
+    def __check_configuration_repeated(self, opponent_slot: Slot, previous_slots: List[Slot], previous_opponent_slots: List[List[Slot]]) -> bool:
         for i in range(len(previous_slots)):
-            previous_slot: MatchSlot = previous_slots[i]
-            previous_opponent_set: List[MatchSlot] = previous_opponent_slots[i]
+            previous_slot: Slot = previous_slots[i]
+            previous_opponent_set: List[Slot] = previous_opponent_slots[i]
             if previous_opponent_set is not None:
                 repeated: bool = self.__configuration_repeated(opponent_slot, previous_slot, previous_opponent_set)
                 if repeated: return True
         return False
 
-    def __configuration_repeated(self, opponent_slot: MatchSlot, previous_slot: MatchSlot, previous_opponent_set: List[MatchSlot]) -> bool:
+    def __configuration_repeated(self, opponent_slot: Slot, previous_slot: Slot, previous_opponent_set: List[Slot]) -> bool:
         for previous_opponent_slot in previous_opponent_set:
             repeated: bool = self.__configuration_same(opponent_slot, previous_slot, previous_opponent_slot)
             if repeated:
                 return True
         return False
 
-    def __configuration_same(self, opponent_slot: MatchSlot, previous_slot: MatchSlot, previous_opponent_slot: MatchSlot) -> bool:
+    def __configuration_same(self, opponent_slot: Slot, previous_slot: Slot, previous_opponent_slot: Slot) -> bool:
         if opponent_slot.__player == previous_opponent_slot.__player:
             if self.__team == opponent_slot.__team:
                 if  previous_slot.__team == previous_opponent_slot.__team: return True
@@ -108,7 +108,7 @@ class MatchSlot:
                     if previous_slot.__position != previous_opponent_slot.__position: return True
         return False
 
-    def __find_opponent_slots_in_match(self, other_occupied_slots_in_match: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
+    def __find_opponent_slots_in_match(self, other_occupied_slots_in_match: List[Slot] = None, start_slot: Slot = None) -> List[Slot]:
         if other_occupied_slots_in_match is None: other_occupied_slots_in_match = []
         if start_slot is None: start_slot = self
         if self.__next_slot == start_slot: return other_occupied_slots_in_match
@@ -116,33 +116,33 @@ class MatchSlot:
             other_occupied_slots_in_match.append(self.__next_slot)
         return self.__next_slot.__find_opponent_slots_in_match(other_occupied_slots_in_match, start_slot)
     
-    def __find_previous_slots_with_player_in_same_position(self, player: Player) -> List[MatchSlot]:
-        previous_match_nrs_with_player_in_same_position: List[MatchSlot] = []
-        for match_slot in MatchSlot.__historical_slots:
-            match_nr: MatchSlot = match_slot.__find_same_position_match(self.__position, player)
+    def __find_previous_slots_with_player_in_same_position(self, player: Player) -> List[Slot]:
+        previous_match_nrs_with_player_in_same_position: List[Slot] = []
+        for match_slot in Slot.__historical_slots:
+            match_nr: Slot = match_slot.__find_same_position_match(self.__position, player)
             previous_match_nrs_with_player_in_same_position.append(match_nr)
         return previous_match_nrs_with_player_in_same_position
     
-    def __find_same_position_match(self, position: Position, player: Player, start_slot: MatchSlot = None) -> MatchSlot:
+    def __find_same_position_match(self, position: Position, player: Player, start_slot: Slot = None) -> Slot:
         if start_slot is None: start_slot = self
         if self.__next_slot == start_slot: return None
         if ((position == self.__position) and (player == self.__player)): return self
         else: return self.__next_slot.__find_same_position_match(position, player, start_slot)
 
-    def __find_previous_opponent_slots(self, previous_slots: List[MatchSlot]) -> List[List[MatchSlot]]:
-        previous_opponent_slots: List[List[MatchSlot]] = []
-        for i in range(len(MatchSlot.__historical_slots)):
-            player_slot: MatchSlot = previous_slots[i]
+    def __find_previous_opponent_slots(self, previous_slots: List[Slot]) -> List[List[Slot]]:
+        previous_opponent_slots: List[List[Slot]] = []
+        for i in range(len(Slot.__historical_slots)):
+            player_slot: Slot = previous_slots[i]
             if player_slot is None:
                 previous_opponent_slots.append(None)
             else:
-                round_slots: MatchSlot = MatchSlot.__historical_slots[i]
-                opponent_slots: List[MatchSlot] = []
+                round_slots: Slot = Slot.__historical_slots[i]
+                opponent_slots: List[Slot] = []
                 opponent_slots = round_slots.__find_opponent_slots_in_round(player_slot)
                 previous_opponent_slots.append(opponent_slots)
         return previous_opponent_slots
     
-    def __find_opponent_slots_in_round(self, player_slot: MatchSlot, opponent_slots: List[MatchSlot] = None, start_slot: MatchSlot = None) -> List[MatchSlot]:
+    def __find_opponent_slots_in_round(self, player_slot: Slot, opponent_slots: List[Slot] = None, start_slot: Slot = None) -> List[Slot]:
         if opponent_slots is None: opponent_slots = []
         if start_slot is None: start_slot = self
         if ((self.__match == player_slot.__match) and (self != player_slot)): opponent_slots.append(self)
@@ -153,10 +153,10 @@ class MatchSlot:
         if self.__next_slot.__player is None: return False
         else: return self.__next_slot.__player == player
     
-    def __position_next_slot_same(self, start_slot: MatchSlot) -> bool:
+    def __position_next_slot_same(self, start_slot: Slot) -> bool:
         return self.__next_slot.__position == start_slot.__position
 
-    def __match_next_slot_same(self, start_slot: MatchSlot) -> bool:
+    def __match_next_slot_same(self, start_slot: Slot) -> bool:
         return self.__next_slot.__match == start_slot.__match
         
     def __done_placing(self) -> bool:
@@ -176,11 +176,11 @@ class MatchSlot:
         if self.__number % 2 == 1: return Position.ATTACKER
         else: return Position.DEFENDER
     
-    def __set_next_slot(self, first_slot: MatchSlot) -> MatchSlot:
+    def __set_next_slot(self, first_slot: Slot) -> Slot:
         if first_slot is None: return self
         else: return first_slot
            
-    def print_slots(self, start_slot: MatchSlot = None) -> None:
+    def print_slots(self, start_slot: Slot = None) -> None:
         if start_slot is None:
             start_slot = self
         if self.__player is None:

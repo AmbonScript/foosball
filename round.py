@@ -1,12 +1,12 @@
 from player import Player
 from result import Result
-from matchslot import MatchSlot
+from slot import Slot
 
 class Round:
     def __init__(self, number: int):
         print(f"Starting Round #{number}")
         self.__number: int = number
-        self.__match_slot: MatchSlot = MatchSlot()
+        self.__match_slot: Slot = Slot()
     
     def get_round_number(self) -> int:
         return self.__number
