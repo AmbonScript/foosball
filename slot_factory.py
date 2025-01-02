@@ -21,12 +21,15 @@ class SlotFactory:
             print(self.__determine_slot_position_in_match(slot))
             slot_numbers.remove(self.__determine_slot_position_in_match(slot))
         print(slot_numbers)
+        ophoger: int = 0
         if len(slot_numbers) == 0:
             slot_numbers = [1, 2, 3, 4]
+            ophoger = 4
             ## En hier ook het volgende slot in de volgende WEDSTRIJD stoppen. Niet dezelfde!
+            ## En ook nog inbouwen
         picked_slot: Slot = random.choice(slot_numbers)
         print(f"picked_slot is: {picked_slot}")
-        next_slot_number: int = (self.__slot.match - 1) + picked_slot
+        next_slot_number: int = ((self.__slot.match - 1)*4) + picked_slot + ophoger
         print(next_slot_number)
         return next_slot_number
     
