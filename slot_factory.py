@@ -18,13 +18,12 @@ class SlotFactory:
         occupied_slots: List[Slot] = self.__determine_occupied_slots()
         for slot in occupied_slots:
             slot_numbers.remove(self.__determine_slot_position_in_match(slot))
-        ophoger: int = 0
+        next_match_increaser: int = 0
         if len(slot_numbers) == 0:
             slot_numbers = [1, 2, 3, 4]
-            ophoger = 4
+            next_match_increaser = 4
         picked_slot: Slot = random.choice(slot_numbers)
-        next_slot_number: int = ((self.__slot.match - 1)*4) + picked_slot + ophoger
-        return next_slot_number
+        return ((self.__slot.match - 1)*4) + picked_slot + next_match_increaser
     
     def __determine_slot_position_in_match(self, slot: Slot) -> int:
         position: int = slot.number % 4
