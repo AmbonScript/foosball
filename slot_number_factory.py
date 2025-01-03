@@ -19,6 +19,7 @@ class SlotNumberFactory:
         base_nr: int = SlotNumberFactory.__get_base_nr()
         occupied_slots: List[Slot] = SlotNumberFactory.__get_occupied_slots()
         open_slot_nrs: List[int] = SlotNumberFactory.__get_open_slot_nrs(base_nr, occupied_slots)
+        # lowest_placeable_ranks: List[int] = SlotNumberFactory.__get_lowest_placeable_ranks(open_slot_nrs)
         return SlotNumberFactory.__choose_slot_nr(open_slot_nrs)
     
     @staticmethod
@@ -42,12 +43,17 @@ class SlotNumberFactory:
     
     @staticmethod
     def __choose_slot_nr(open_slot_nrs: List[int]) -> int:
-        lowest_placeable_ranks: List[int] = []
-        for slot_nr in open_slot_nrs:
-            lowest_placeable_ranks.append(SlotNumberFactory.__find_lowest_placeable_rank(slot_nr))
+        lowest_placeable_ranks: List[int] = SlotNumberFactory.__get_lowest_placeable_ranks(open_slot_nrs)
         slot_nr: int = SlotNumberFactory.__select_slot_nr_with_lowest_placeable_rank(open_slot_nrs, lowest_placeable_ranks)
         return slot_nr
     
+    @staticmethod
+    def __get_lowest_placeable_ranks(open_slot_nrs: List[int]) -> List[int]:
+        lowest_placeable_ranks: List[int] = []
+        for slot_nr in open_slot_nrs:
+            lowest_placeable_ranks.append(SlotNumberFactory.__find_lowest_placeable_rank(slot_nr))
+        return lowest_placeable_ranks
+
     @staticmethod
     def __find_lowest_placeable_rank(slot_nr: int) -> int:
         initial_next_slot: Slot = copy.copy(SlotNumberFactory.__slot.next_slot)
