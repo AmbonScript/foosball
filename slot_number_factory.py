@@ -20,7 +20,8 @@ class SlotNumberFactory:
         occupied_slots: List[Slot] = SlotNumberFactory.__get_occupied_slots()
         open_slot_nrs: List[int] = SlotNumberFactory.__get_open_slot_nrs(base_nr, occupied_slots)
         lowest_placeable_ranks: List[int] = SlotNumberFactory.__get_lowest_placeable_ranks(open_slot_nrs)
-        return SlotNumberFactory.__choose_slot_nr(open_slot_nrs, lowest_placeable_ranks)
+        next_slot_nr: int = SlotNumberFactory.__choose_slot_nr(open_slot_nrs, lowest_placeable_ranks)
+        return next_slot_nr
     
     @staticmethod
     def __get_base_nr() -> int:
