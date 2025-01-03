@@ -44,10 +44,7 @@ class SlotNumberFactory:
         lowest_placeable_ranks: List[int] = []
         for slot_nr in open_slot_nrs:
             lowest_placeable_ranks.append(SlotNumberFactory.__find_lowest_placeable_rank(slot_nr))
-        print(f"open_slot_nrs zijn:              {open_slot_nrs}")
-        print(f"laagst plaatsbare rankings zijn: {lowest_placeable_ranks}")
         slot_nr: int = SlotNumberFactory.__select_slot_nr_with_lowest_placeable_rank(open_slot_nrs, lowest_placeable_ranks)
-        print(f"gekozen volgende slot_nr is:     {slot_nr}")
         return slot_nr
     
     @staticmethod
