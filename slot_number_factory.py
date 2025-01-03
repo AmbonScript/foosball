@@ -8,24 +8,24 @@ from typing import List
 import math
 import random
 
-class SlotFactory:
+class SlotNumberFactory:
     __slot: Slot = None
 
     @staticmethod
-    def create_slot_number(slot: Slot) -> int:
-        SlotFactory.__slot = slot
-        base_nr: int = SlotFactory.__get_base_nr()
-        occupied_slots: List[Slot] = SlotFactory.__get_occupied_slots()
-        open_slot_nrs: List[int] = SlotFactory.__get_open_slot_nrs(base_nr, occupied_slots)
+    def get_next_slot_number(slot: Slot) -> int:
+        SlotNumberFactory.__slot = slot
+        base_nr: int = SlotNumberFactory.__get_base_nr()
+        occupied_slots: List[Slot] = SlotNumberFactory.__get_occupied_slots()
+        open_slot_nrs: List[int] = SlotNumberFactory.__get_open_slot_nrs(base_nr, occupied_slots)
         return random.choice(open_slot_nrs)
     
     @staticmethod
     def __get_base_nr() -> int:
-        return (SlotFactory.__slot.match - 1) * 4
+        return (SlotNumberFactory.__slot.match - 1) * 4
     
     @staticmethod
     def __get_occupied_slots() -> List[Slot]:
-        return SlotFactory.__slot.determine_occupied_slots_in_match()
+        return SlotNumberFactory.__slot.determine_occupied_slots_in_match()
 
     @staticmethod
     def __get_open_slot_nrs(base_nr: int, occupied_slots: List[Slot]) -> List[int]:

@@ -33,8 +33,8 @@ class Slot:
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
-                from slot_factory import SlotFactory
-                next_slot_number: int = SlotFactory.create_slot_number(copy.deepcopy(self))
+                from slot_number_factory import SlotNumberFactory
+                next_slot_number: int = SlotNumberFactory.get_next_slot_number(copy.deepcopy(self))
                 self.__next_slot = Slot(next_slot_number, self.__next_slot)
                 if self.__next_slot.place_players(): return True
                 else: self.__next_slot = first_slot
