@@ -37,7 +37,7 @@ class Slot:
         self.__player: Player = None
         first_slot: Slot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):
-            if not self.__can_place(rank): continue
+            if not self.can_place(rank): continue
             self.__player = Player.get_player_with_rank(rank, self.__position)
             if self.__done_placing(): return True
             else:
@@ -48,7 +48,7 @@ class Slot:
                 else: self.__next_slot = first_slot
         return False
     
-    def __can_place(self, rank: int) -> bool:
+    def can_place(self, rank: int) -> bool:
         if rank == 0: return False
         if rank == Player.has_bye_for(self.__position): return False
         if self.__already_in_same_postion_or_match(Player.get_player_with_rank(rank, self.__position)): return False
