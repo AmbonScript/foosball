@@ -164,7 +164,7 @@ class Slot:
     def __find_same_position_match(self, position: Position, player: Player, start_slot: Slot = None) -> Slot:
         if start_slot is None: start_slot = self
         if self.__next_slot == start_slot: return None
-        if ((position == self.__position) and (player == self.__player)): return self
+        if ((position == self.__position) and (player.get_number() == self.__player.get_number())): return self
         else: return self.__next_slot.__find_same_position_match(position, player, start_slot)
 
     def __find_previous_opponent_slots(self, previous_slots: List[Slot]) -> List[List[Slot]]:
