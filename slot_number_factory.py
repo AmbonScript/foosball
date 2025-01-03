@@ -43,13 +43,14 @@ class SlotNumberFactory:
         lowest_placeable_ranks: List[int] = []
         for slot_nr in open_slot_nrs:
             lowest_placeable_ranks.append(SlotNumberFactory.__find_lowest_placeable_rank(slot_nr))
+        print(lowest_placeable_ranks)
         return random.choice(open_slot_nrs)
     
     @staticmethod
     def __find_lowest_placeable_rank(slot_nr: int) -> int:
         SlotNumberFactory.__slot.next_slot = Slot(slot_nr, SlotNumberFactory.__slot.next_slot)
         lowest_placeable_rank: int = SlotNumberFactory.__try_ranks(SlotNumberFactory.__slot.next_slot)
-        return 1
+        return lowest_placeable_rank
     
     @staticmethod
     def __try_ranks(slot: Slot) -> int:

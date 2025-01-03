@@ -189,7 +189,7 @@ class Slot:
 
     def __player_next_slot_same(self, player: Player) -> bool:
         if self.__next_slot.__player is None: return False
-        else: return self.__next_slot.__player == player
+        else: return self.__next_slot.__player.get_number() == player.get_number()
     
     def __position_next_slot_same(self, start_slot: Slot) -> bool:
         return self.__next_slot.__position == start_slot.__position
