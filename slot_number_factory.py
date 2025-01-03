@@ -17,7 +17,7 @@ class SlotNumberFactory:
         base_nr: int = SlotNumberFactory.__get_base_nr()
         occupied_slots: List[Slot] = SlotNumberFactory.__get_occupied_slots()
         open_slot_nrs: List[int] = SlotNumberFactory.__get_open_slot_nrs(base_nr, occupied_slots)
-        return random.choice(open_slot_nrs)
+        return SlotNumberFactory.__choose_slot_nr(open_slot_nrs)
     
     @staticmethod
     def __get_base_nr() -> int:
@@ -37,3 +37,7 @@ class SlotNumberFactory:
             base_nr += 4
             open_slot_nrs: List[int] = [num + base_nr for num in [1, 2, 3, 4]]
         return open_slot_nrs
+    
+    @staticmethod
+    def __choose_slot_nr(open_slot_nrs: List[int]):
+        return random.choice(open_slot_nrs)
