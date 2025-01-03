@@ -13,6 +13,7 @@ class SlotNumberFactory:
 
     @staticmethod
     def get_next_slot_number(slot: Slot) -> int:
+        SlotNumberFactory.__slot = None
         SlotNumberFactory.__slot = slot
         base_nr: int = SlotNumberFactory.__get_base_nr()
         occupied_slots: List[Slot] = SlotNumberFactory.__get_occupied_slots()
@@ -45,8 +46,9 @@ class SlotNumberFactory:
             lowest_placeable_ranks.append(SlotNumberFactory.__find_lowest_placeable_rank(slot_nr))
         print(f"open_slot_nrs zijn:              {open_slot_nrs}")
         print(f"laagst plaatsbare rankings zijn: {lowest_placeable_ranks}")
-        print(f"gekozen volgende slot_nr is:     {SlotNumberFactory.__select_slot_nr_with_lowest_placeable_rank(open_slot_nrs, lowest_placeable_ranks)}")
-        return SlotNumberFactory.__select_slot_nr_with_lowest_placeable_rank(open_slot_nrs, lowest_placeable_ranks)
+        slot_nr: int = SlotNumberFactory.__select_slot_nr_with_lowest_placeable_rank(open_slot_nrs, lowest_placeable_ranks)
+        print(f"gekozen volgende slot_nr is:     {slot_nr}")
+        return slot_nr
     
     @staticmethod
     def __find_lowest_placeable_rank(slot_nr: int) -> int:
