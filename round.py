@@ -19,6 +19,7 @@ class Round:
     
     def __set_up_matches(self):
         self.__match_slot.place_players()
+        self.__match_slot.print_slots()
     
     def __play_matches(self) -> None:
         Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))

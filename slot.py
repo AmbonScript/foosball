@@ -136,7 +136,7 @@ class Slot:
         return False
 
     def __configuration_same(self, opponent_slot: Slot, previous_slot: Slot, previous_opponent_slot: Slot) -> bool:
-        if opponent_slot.__player == previous_opponent_slot.__player:
+        if opponent_slot.__player.get_number() == previous_opponent_slot.__player.get_number():
             if self.__team == opponent_slot.__team:
                 if  previous_slot.__team == previous_opponent_slot.__team: return True
             else:

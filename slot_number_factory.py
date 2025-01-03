@@ -7,6 +7,7 @@ from result import Result
 from typing import List
 import math
 import random
+import copy
 
 class SlotNumberFactory:
     __slot: Slot = None
@@ -18,7 +19,9 @@ class SlotNumberFactory:
         base_nr: int = SlotNumberFactory.__get_base_nr()
         occupied_slots: List[Slot] = SlotNumberFactory.__get_occupied_slots()
         open_slot_nrs: List[int] = SlotNumberFactory.__get_open_slot_nrs(base_nr, occupied_slots)
-        return SlotNumberFactory.__choose_slot_nr(open_slot_nrs)
+        lowest_placeable_ranks: List[int] = SlotNumberFactory.__get_lowest_placeable_ranks(open_slot_nrs)
+        next_slot_nr: int = SlotNumberFactory.__choose_slot_nr(open_slot_nrs, lowest_placeable_ranks)
+        return next_slot_nr
     
     @staticmethod
     def __get_base_nr() -> int:
@@ -40,17 +43,18 @@ class SlotNumberFactory:
         return open_slot_nrs
     
     @staticmethod
-    def __choose_slot_nr(open_slot_nrs: List[int]) -> int:
+    def __get_lowest_placeable_ranks(open_slot_nrs: List[int]) -> List[int]:
         lowest_placeable_ranks: List[int] = []
         for slot_nr in open_slot_nrs:
             lowest_placeable_ranks.append(SlotNumberFactory.__find_lowest_placeable_rank(slot_nr))
-        slot_nr: int = SlotNumberFactory.__select_slot_nr_with_lowest_placeable_rank(open_slot_nrs, lowest_placeable_ranks)
-        return slot_nr
-    
+        return lowest_placeable_ranks
+
     @staticmethod
     def __find_lowest_placeable_rank(slot_nr: int) -> int:
+        initial_next_slot: Slot = copy.copy(SlotNumberFactory.__slot.next_slot)
         SlotNumberFactory.__slot.next_slot = Slot(slot_nr, SlotNumberFactory.__slot.next_slot)
         lowest_placeable_rank: int = SlotNumberFactory.__try_ranks(SlotNumberFactory.__slot.next_slot)
+        SlotNumberFactory.__slot.next_slot = initial_next_slot
         return lowest_placeable_rank
     
     @staticmethod
@@ -62,7 +66,7 @@ class SlotNumberFactory:
         return 1000
     
     @staticmethod
-    def __select_slot_nr_with_lowest_placeable_rank(open_slot_nrs: List[int], lowest_placeable_ranks: List[int]) -> int:
+    def __choose_slot_nr(open_slot_nrs: List[int], lowest_placeable_ranks: List[int]) -> int:
         min_value = min(lowest_placeable_ranks)
         min_indices = [i for i, value in enumerate(lowest_placeable_ranks) if value == min_value]
         min_index = random.choice(min_indices)
