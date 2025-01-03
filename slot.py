@@ -33,6 +33,14 @@ class Slot:
     def next_slot(self, next_slot: Slot) -> None:
         self.__next_slot = next_slot
     
+    @property
+    def player(self) -> Slot:
+        return self.__player
+    
+    @player.setter
+    def player(self, player: Player) -> None:
+        self.__player = player
+    
     def place_players(self) -> bool:
         self.__player: Player = None
         first_slot: Slot = self.__next_slot

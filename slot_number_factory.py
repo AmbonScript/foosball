@@ -53,6 +53,8 @@ class SlotNumberFactory:
     
     @staticmethod
     def __try_ranks(slot: Slot) -> int:
-        # for rank in range((Player.get_number_of_players_in_round() + 1)):
-        #     if not slot.__can_place(rank): continue
-        return 1
+        slot.player = None
+        for rank in range((Player.get_number_of_players_in_round() + 1)):
+            if not slot.can_place(rank): continue
+            else: return rank
+        return 1000
