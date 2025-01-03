@@ -42,11 +42,6 @@ class SlotNumberFactory:
         return open_slot_nrs
     
     @staticmethod
-    def __choose_slot_nr(open_slot_nrs: List[int], lowest_placeable_ranks: List[int]) -> int:
-        slot_nr: int = SlotNumberFactory.__select_slot_nr_with_lowest_placeable_rank(open_slot_nrs, lowest_placeable_ranks)
-        return slot_nr
-    
-    @staticmethod
     def __get_lowest_placeable_ranks(open_slot_nrs: List[int]) -> List[int]:
         lowest_placeable_ranks: List[int] = []
         for slot_nr in open_slot_nrs:
@@ -70,7 +65,7 @@ class SlotNumberFactory:
         return 1000
     
     @staticmethod
-    def __select_slot_nr_with_lowest_placeable_rank(open_slot_nrs: List[int], lowest_placeable_ranks: List[int]) -> int:
+    def __choose_slot_nr(open_slot_nrs: List[int], lowest_placeable_ranks: List[int]) -> int:
         min_value = min(lowest_placeable_ranks)
         min_indices = [i for i, value in enumerate(lowest_placeable_ranks) if value == min_value]
         min_index = random.choice(min_indices)
