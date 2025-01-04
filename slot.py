@@ -16,6 +16,7 @@ class Slot:
         self.__team = self.__set_team()
         self.__position = self.__set_position()
         self.__next_slot = self.__set_next_slot(first_slot)
+        self.__player: Player = None
     
     @property
     def number(self) -> int:
@@ -42,7 +43,6 @@ class Slot:
         self.__player = player
     
     def place_players(self) -> bool:
-        self.__player: Player = None
         first_slot: Slot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             if not self.can_place(rank): continue
@@ -53,8 +53,13 @@ class Slot:
                 next_slot_number: int = SlotNumberFactory.get_next_slot_number(copy.deepcopy(self))
                 self.__next_slot = Slot(next_slot_number, self.__next_slot)
                 if self.__next_slot.place_players(): return True
-                else: self.__next_slot = first_slot
+                else: self.__reset(first_slot)
+        self.__reset(first_slot)
         return False
+    
+    def __reset(self, first_slot: Slot) -> None:
+        self.__player: Player = None
+        self.__next_slot = first_slot
     
     def can_place(self, rank: int) -> bool:
         if rank == 0: return False
