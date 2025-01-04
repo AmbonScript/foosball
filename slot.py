@@ -60,6 +60,13 @@ class Slot:
     def __reset(self, first_slot: Slot) -> None:
         self.__player: Player = None
         self.__next_slot = first_slot
+
+    def find_lowest_placeable(self) -> int:
+        for rank in range((Player.get_number_of_players_in_round() + 1)):
+            if not self.can_place(rank): continue
+            return rank
+        else:
+            return 1000
     
     def can_place(self, rank: int) -> bool:
         if rank == 0: return False
@@ -143,12 +150,15 @@ class Slot:
     def __configuration_same(self, opponent_slot: Slot, previous_slot: Slot, previous_opponent_slot: Slot) -> bool:
         if opponent_slot.__player.get_number() == previous_opponent_slot.__player.get_number():
             if self.__team == opponent_slot.__team:
-                if  previous_slot.__team == previous_opponent_slot.__team: return True
+                if  previous_slot.__team == previous_opponent_slot.__team: 
+                    if self.__position == previous_slot.__position: return True
             else:
                 if self.__position == opponent_slot.__position:
-                    if previous_slot.__position == previous_opponent_slot.__position: return True
+                    if previous_slot.__position == previous_opponent_slot.__position:
+                        if self.__position == previous_slot.__position: return True
                 else:
-                    if previous_slot.__position != previous_opponent_slot.__position: return True
+                    if previous_slot.__position != previous_opponent_slot.__position:
+                        if self.__position == previous_slot.__position: return True
         return False
 
     def __find_opponent_slots_in_match(self, other_occupied_slots_in_match: List[Slot] = None, start_slot: Slot = None) -> List[Slot]:
