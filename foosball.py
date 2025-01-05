@@ -1,4 +1,4 @@
 from competition import Competition
-competition: Competition = Competition(13)
-for i in range(5):
+competition: Competition = Competition(48)
+for i in range(2):
     competition.play_round()
