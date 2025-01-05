@@ -152,22 +152,22 @@ class Slot:
 
     def __configuration_same(self, opponent_slot: Slot, previous_slot: Slot, previous_opponent_slot: Slot) -> bool:
         if opponent_slot.__player.get_number() == previous_opponent_slot.__player.get_number():
-            print("current and previous opponent same")
+            # print("current and previous opponent same")
             if self.__team == opponent_slot.__team:
                 if  previous_slot.__team == previous_opponent_slot.__team: 
-                    print("eerder en nu in zelfde team")
+                    # print("eerder en nu in zelfde team")
                     return True
             else:
                 if  previous_slot.__team != previous_opponent_slot.__team: 
                     if self.__position == opponent_slot.__position:
-                        print("Nu in zelfde team")
+                        # print("Nu in zelfde team")
                         if previous_slot.__position == previous_opponent_slot.__position: return True
                     else:
-                        print("Nu NIET op zelfde positie")
+                        # print("Nu NIET op zelfde positie")
                         if previous_slot.__position != previous_opponent_slot.__position: 
-                            print("Eerder OOk al niet op zelfde positie")
-                            print(f"Want eigen eerdere positie was: {previous_slot.__position}")
-                            print(f"En eerdere positie van tegenstander was {previous_opponent_slot.__position}")
+                            # print("Eerder OOk al niet op zelfde positie")
+                            # print(f"Want eigen eerdere positie was: {previous_slot.__position}")
+                            # print(f"En eerdere positie van tegenstander was {previous_opponent_slot.__position}")
                             return True
         return False
 
