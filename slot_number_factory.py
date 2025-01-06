@@ -53,7 +53,7 @@ class SlotNumberFactory:
     def __find_lowest_placeable_rank(slot_nr: int) -> int:
         initial_next_slot: Slot = copy.copy(SlotNumberFactory.__slot.next_slot)
         SlotNumberFactory.__slot.next_slot = Slot(slot_nr, SlotNumberFactory.__slot.next_slot)
-        lowest_placeable_rank: int = SlotNumberFactory.__slot.next_slot.find_lowest_placeable()
+        lowest_placeable_rank: int = SlotNumberFactory.__try_ranks(SlotNumberFactory.__slot.next_slot)
         SlotNumberFactory.__slot.next_slot = initial_next_slot
         return lowest_placeable_rank
     

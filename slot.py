@@ -63,13 +63,6 @@ class Slot:
     def __reset(self, first_slot: Slot) -> None:
         self.__player: Player = None
         self.__next_slot = first_slot
-
-    def find_lowest_placeable(self) -> int:
-        for rank in range((Player.get_number_of_players_in_round() + 1)):
-            if not self.can_place(rank): continue
-            return rank
-        else:
-            return 1000
     
     def can_place(self, rank: int) -> bool:
         if rank == 0: return False
