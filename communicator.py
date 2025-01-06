@@ -15,6 +15,20 @@ class Communicator:
             for i in range(number_of_players):
                 Communicator.__receive_player_name(f"Please provide the name of player {i + 1}: ", i)
     
+    def start_first_round() -> bool:
+        return Communicator.get_bool("Would you like to start the first round? [Y/N] ")
+
+    def get_bool(message) -> bool:
+        Communicator.__type_out(message)
+        choice: str = input()
+        if choice == "y" or choice == "Y":
+            return True
+        if choice == "n" or choice == "N":
+            return False
+        else:
+            Communicator.__type_out("Please choose either Y or N: ")
+            return Communicator.get_bool("")
+    
     def __receive_player_name(message, i: int) -> None:
         Communicator.__type_out(message)
         name: str = input()
@@ -28,7 +42,7 @@ class Communicator:
     def __receive_int(message) -> int:
         Communicator.__type_out(message)
         num: int = input()
-        print()  # Print a newline at the end of the message
+        # print()  # Print a newline at the end of the message
         return num
     
     def __get_number_of_players(message) -> int:
@@ -41,18 +55,7 @@ class Communicator:
             Communicator.__type_out(f"Please choose a number between 8 and {len(Player.get_names())}: ")
             return Communicator.__get_number_of_players("")
         return num
-    
-    def get_bool(message) -> bool:
-        Communicator.__type_out(message)
-        choice: str = input()
-        if choice == "y" or choice == "Y":
-            return True
-        if choice == "n" or choice == "N":
-            return False
-        else:
-            Communicator.__type_out("Please choose either Y or N: ")
-            return Communicator.get_bool("")
-    
+        
     def __type_out(message, delay=0.03):
         for char in message:
             sys.stdout.write(char)  # Write character without a newline

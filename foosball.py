@@ -8,11 +8,14 @@ number_of_players: int = Communicator.choose_number_of_players()
 # Choose player names
 Communicator.choose_player_names(number_of_players)
 
-# Run the foosball competition
+# Start the competition
 competition: Competition = Competition(number_of_players)
-running: bool = Communicator.get_bool("Would you like to start the first round? [Y/N] ")
+running: bool = Communicator.start_first_round()
+
+# Run the competition
 while running:
     competition.play_round()
     running = Communicator.get_bool("Would you like to start another round? [Y/N] ")
 
+# End the competition
 
