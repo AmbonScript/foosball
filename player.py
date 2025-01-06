@@ -81,6 +81,7 @@ class Player:
 
     def __init__(self, number: int):
         self.__number: int = number
+        self.__name = Player.__names[number]
         self.__attacker_rank: int = None
         self.__defender_rank: int = None
         self.__attacker_wins: int = 0
