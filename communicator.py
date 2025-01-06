@@ -1,5 +1,6 @@
 import sys
 import time
+import os
 from player import Player
 
 class Communicator:
@@ -16,6 +17,9 @@ class Communicator:
                 Communicator.__receive_player_name(f"Please provide the name of player {i + 1}: ", i)
     
     def start_first_round() -> bool:
+        Communicator.__type_out("Great, looks like the tournament is almost ready to start")
+        Communicator.__count_down()
+        Communicator.__clear_screen()
         return Communicator.get_bool("Would you like to start the first round? [Y/N] ")
 
     def get_bool(message) -> bool:
@@ -64,3 +68,13 @@ class Communicator:
                 time.sleep(.5)
             time.sleep(delay)       # Wait for the specified delay
         time.sleep(.5)
+    
+    def __clear_screen():
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    def __count_down(counts: int = 4):
+        print()
+        for i in range(counts):
+            count: int = counts - i - 1
+            print(f"{count}", end="\r")
+            time.sleep(1)
