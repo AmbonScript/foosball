@@ -43,7 +43,12 @@ class Communicator:
             B_Team_Defender: str = slot.get_slot(i*4 + 4).player.name
     
     def display_table():
-        print("|     |         |         |         |            |            |         |         |         |     |")
+        Communicator.__clear_screen()
+        print()
+        print()
+        print("                          |                                   |                   |         |      ")
+        print("                          |                                   |                   |         |      ")
+        print("                          |                                   |                   |         |      ")
         print(" -------------------------------------------------------------------------------------------------")
         print("|     |         |         |         |            |            |         |         |         |     |")
         print("|     |         |         |         |            |            |         |         |         |     |")
@@ -52,13 +57,13 @@ class Communicator:
         print("|     |         |         |         |            |            |         |         |         |     |")
         print("|     |         |         |         |            |            |         |         |         |     |")
         print("|     |         |         |         |            |            |         |         |         |     |")
-        print("|     |         |         |         |        /\u203E\u203E\u203E|\u203E\u203E\u203E\        |         |         |         |     |")
+        print("|     |        (*)        |         |        /\u203E\u203E\u203E|\u203E\u203E\u203E\        |         |         |         |     |")
         print("|\u203E\u203E|  |         |         |         |       /    |    \       |         |         |         |  |\u203E\u203E|")
         print("|  |  |         |         |         |      |     |     |      |         |         |         |  |  |")
-        print("|  |  |         |         |         |      |     |     |      |         |         |         |  |  |")
+        print("|  | (*)        |        [#]        |      |     |     |      |         |         |         |  |  |")
         print("|  |  |         |         |         |      |     |     |      |         |         |         |  |  |")
         print("|__|  |         |         |         |       \    |    /       |         |         |         |  |__|")
-        print("|     |         |         |         |        \___|___/        |         |         |         |     |")
+        print("|     |        (*)        |         |        \___|___/        |         |         |         |     |")
         print("|     |         |         |         |            |            |         |         |         |     |")
         print("|     |         |         |         |            |            |         |         |         |     |")
         print("|     |         |         |         |            |            |         |         |         |     |")
@@ -67,8 +72,11 @@ class Communicator:
         print("|     |         |         |         |            |            |         |         |         |     |")
         print("|     |         |         |         |            |            |         |         |         |     |")
         print(" ------------------------------------------------|------------------------------------------------")
-        print("|     |         |         |         |            |            |         |         |         |     |")
-
+        print("      |         |                   |                                   |                          ")
+        print("      |         |                   |                                   |                          ")
+        print("      |         |                   |                                   |                          ")
+        print()
+        print()
     
     def __receive_player_name(message, i: int) -> None:
         Communicator.__type_out(message)
