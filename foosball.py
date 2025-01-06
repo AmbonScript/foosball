@@ -3,13 +3,12 @@ from communicator import Communicator
 from player import Player
 
 # Choose # of players
-Communicator.output_message("Welcome to foosball!\nI will help you organize your tournament. Just follow my instructions")
-players: int = Communicator.get_number_of_players("How many players will take part in the tournament? ")
-Communicator.output_message(f"Very well. You chose {players} players")
+number_of_players: int = Communicator.choose_number_of_players()
 
 # Choose player names
+# Communicator.choose_player_names(number_of_players)
 
-competition: Competition = Competition(players)
+competition: Competition = Competition(number_of_players)
 running: bool = Communicator.get_bool("Would you like to start the first round? [Y/N] ")
 while running:
     competition.play_round()

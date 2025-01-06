@@ -4,38 +4,50 @@ from player import Player
 
 class Communicator:
 
-    @staticmethod
+    def choose_number_of_players() -> int:
+        Communicator.output_message("Welcome to foosball!\nI will help you run your tournament. Just follow my instructions")
+        players: int = Communicator.get_number_of_players("How many players will take part in the tournament? ")
+        Communicator.output_message(f"Very well. You chose {players} players")
+        return players
+    
+    # def choose_player_names(number_of_players: int) -> None:
+    #     if Communicator.get_bool("Would you like to input the player names yourself? (If not, I will generate them for you) [Y/N] "):
+
+
     def output_message(message):
-        Communicator.type_out(message)
+        Communicator.__type_out(message)
         print()  # Print a newline at the end of the message
         print()
 
-    def receive_int(message) -> int:
-        Communicator.type_out(message)
+    def __receive_int(message) -> int:
+        Communicator.__type_out(message)
         num: int = input()
         print()  # Print a newline at the end of the message
         return num
     
     def get_number_of_players(message) -> int:
-        num: int = Communicator.receive_int(message)
+        num: int = Communicator.__receive_int(message)
         if not num.isdigit():
-            Communicator.type_out("Please input a number: ")
+            Communicator.__type_out("Please input a number: ")
             return Communicator.get_number_of_players("")
         num = int(num)
         if (num < 8) or (num > len(Player.get_names())):
-            Communicator.type_out(f"Please choose a number between 8 and {len(Player.get_names())}: ")
+            Communicator.__type_out(f"Please choose a number between 8 and {len(Player.get_names())}: ")
             return Communicator.get_number_of_players("")
         return num
     
     def get_bool(message) -> bool:
-        Communicator.type_out(message)
+        Communicator.__type_out(message)
         choice: str = input()
         if choice == "y" or choice == "Y":
             return True
         if choice == "n" or choice == "N":
             return False
+        else:
+            Communicator.__type_out("Please choose either Y or N: ")
+            return Communicator.get_bool("")
     
-    def type_out(message, delay=0.03):
+    def __type_out(message, delay=0.03):
         for char in message:
             sys.stdout.write(char)  # Write character without a newline
             sys.stdout.flush()      # Ensure the character is printed immediately
