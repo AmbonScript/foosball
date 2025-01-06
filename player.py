@@ -81,7 +81,7 @@ class Player:
 
     def __init__(self, number: int):
         self.__number: int = number
-        self.__name = Player.__names[number]
+        self.__name: str = Player.__names[number]
         self.__attacker_rank: int = None
         self.__defender_rank: int = None
         self.__attacker_wins: int = 0
@@ -96,7 +96,11 @@ class Player:
         self.__attacker_defender_opponents: List[Player] = []
         self.__defender_attacker_opponents: List[Player] = []
         self.__defender_defender_opponents: List[Player] = []
-        
+    
+    @property
+    def name(self) -> str:
+        return self.__name
+
     def get_number(self) -> int:
         return self.__number
 

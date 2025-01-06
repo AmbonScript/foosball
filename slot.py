@@ -244,6 +244,6 @@ class Slot:
         if self.__player is None:
             print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}.")
         else:    
-            print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.get_number()} with rank {self.__player.get_rank(self.__position)}")
+            print(f"In slot#{self.__number}. Match = {self.__match}. Team = {self.__team}. Position = {self.__position}. Player = {self.__player.name} with rank {self.__player.get_rank(self.__position)}")
         if ((self.__next_slot != start_slot) and (self.__next_slot is not None)):
             self.__next_slot.print_slots(start_slot)
