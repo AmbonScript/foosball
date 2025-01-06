@@ -2,20 +2,23 @@ from competition import Competition
 from communicator import Communicator
 from player import Player
 
+Communicator.display_table()
+
 # Choose # of players
-number_of_players: int = Communicator.choose_number_of_players()
+# number_of_players: int = Communicator.choose_number_of_players()
 
 # Choose player names
-Communicator.choose_player_names(number_of_players)
+# Communicator.choose_player_names(number_of_players)
 
 # Start the competition
-competition: Competition = Competition(number_of_players)
-running: bool = Communicator.start_first_round()
+# number_of_players: int = 8
+# competition: Competition = Competition(number_of_players)
+# running: bool = Communicator.start_first_round()
 
 # Run the competition
-while running:
-    competition.play_round()
-    running = Communicator.get_bool("Would you like to start another round? [Y/N] ")
+# while running:
+#     competition.play_round()
+#     running = Communicator.get_bool("Would you like to start another round? [Y/N] ")
 
 # End the competition
 

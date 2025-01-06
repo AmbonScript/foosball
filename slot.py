@@ -45,6 +45,12 @@ class Slot:
     def player(self, player: Player) -> None:
         self.__player = player
     
+    def get_slot(self, number: int) -> Slot:
+        if number == self.__number:
+            return self
+        else:
+            return self.__next_slot.get_slot(number)
+    
     def place_players(self) -> bool:
         first_slot: Slot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):

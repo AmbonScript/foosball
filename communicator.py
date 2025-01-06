@@ -1,3 +1,4 @@
+from __future__ import annotations
 import sys
 import time
 import os
@@ -36,7 +37,36 @@ class Communicator:
     
     def display_matches(slot: Slot) -> None:
         for i in range(int(Player.get_number_of_players_in_round() / 2)):
-            print(i)
+            A_Team_Attacker: str = slot.get_slot(i*4 + 1).player.name
+            A_Team_Defender: str = slot.get_slot(i*4 + 2).player.name
+            B_Team_Attacker: str = slot.get_slot(i*4 + 3).player.name
+            B_Team_Defender: str = slot.get_slot(i*4 + 4).player.name
+    
+    def display_table():
+        print(" ---------------------------------------------------------------------------------------------------------")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |         /\u203E\u203E\u203E|\u203E\u203E\u203E\                                                 |")
+        print("|\u203E\u203E|  |          |          |          |        /    |    \                                             |\u203E\u203E|")
+        print("|  |  |          |          |          |       |     |     |                                            |  |")
+        print("|  |  |          |          |          |       |     |     |                                            |  |")
+        print("|  |  |          |          |          |       |     |     |                                            |  |")
+        print("|__|  |          |          |          |        \    |    /                                             |__|")
+        print("|     |          |          |          |         \___|___/                                                 |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print("|     |          |          |          |             |                                                     |")
+        print(" ----------------------------------------------------|-----------------------------------------------------")
+
     
     def __receive_player_name(message, i: int) -> None:
         Communicator.__type_out(message)
