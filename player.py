@@ -174,3 +174,72 @@ class Player:
             self.__defender_resistance_points += player.__attacker_wins
         for player in self.__defender_defender_opponents:
             self.__defender_resistance_points += player.__defender_wins
+    
+
+    @staticmethod
+    def get_names() -> List[str]:
+        return Player.__names
+    
+    __names: List[str] = [
+        "Ome Henk",
+        "Eppie",
+        "Asterix",
+        "Obelix",
+        "Hachi",
+        "Simba",
+        "Wouter",
+        "Demcon",
+        "Max",
+        "Fc Volendam",
+        "Keukentafel",
+        "Jacques",
+        "Lampie",
+        "Eelco",
+        "Jesse",
+        "Victoria",
+        "Deborah",
+        "Lihi",
+        "De Blinde",
+        "De Lamme",
+        "Mette Bus",
+        "Bennie Weijs",
+        "Lieve Lingen",
+        "Co de Kraker",
+        "Be Thalen",
+        "Nies Slim",
+        "Dino Saris",
+        "Rocky Dool",
+        "Elke Gram - Raak",
+        "Ik Raas - Kal",
+        "Connie Boere",
+        "Mat Ras",
+        "Adriaan Bassie",
+        "Kenneth Wilhelmus",
+        "Nikky Maus",
+        "Elke Kant",
+        "Ben Vierkant",
+        "Anne Bol",
+        "Eddy Schekman",
+        "Jack Pot",
+        "Adrianus Bleeker"
+        "Klaar Wakker",
+        "Hilbrand Baar",
+        "Riet Suiker",
+        "Sjef Kock",
+        "Joska Bouter",
+        "Dies Goorman",
+        "Willie Wortel",
+        "Chris Mus",
+        "Iet Sanders",
+        "Mario Netten",
+        "Candy Man",
+        "Loek Out",
+        "Ferry Kuhlman",
+        "Ben Dral",
+        "Per Ooijevaar",
+        "Vogel Kooi",
+        "Wil Helmes",
+        "Kitty Miao",
+        "Indy Haan",
+        "Fried Kaanen"
+    ]

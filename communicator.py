@@ -1,5 +1,6 @@
 import sys
 import time
+from player import Player
 
 class Communicator:
 
@@ -21,8 +22,8 @@ class Communicator:
             Communicator.type_out("Please input a number: ")
             return Communicator.get_number_of_players("")
         num = int(num)
-        if (num < 8) or (num > 60):
-            Communicator.type_out("Please choose a number between 8 and 60: ")
+        if (num < 8) or (num > len(Player.get_names())):
+            Communicator.type_out(f"Please choose a number between 8 and {len(Player.get_names())}: ")
             return Communicator.get_number_of_players("")
         return num
     
