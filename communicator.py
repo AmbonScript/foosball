@@ -10,9 +10,17 @@ class Communicator:
         Communicator.output_message(f"Very well. You chose {players} players")
         return players
     
-    # def choose_player_names(number_of_players: int) -> None:
-    #     if Communicator.get_bool("Would you like to input the player names yourself? (If not, I will generate them for you) [Y/N] "):
-
+    def choose_player_names(number_of_players: int) -> None:
+        if Communicator.get_bool("Would you like to input the player names yourself? (If not, I will generate them for you) [Y/N] "):
+            for i in range(number_of_players):
+                Communicator.__receive_player_name(f"Please provide the name of player {i + 1}: ", i)
+        else:
+            Communicator.output_message("Ok, ik kies voor je")
+    
+    def __receive_player_name(message, i: int) -> None:
+        Communicator.__type_out(message)
+        name: str = input()
+        Player.set_name(name, i)
 
     def output_message(message):
         Communicator.__type_out(message)

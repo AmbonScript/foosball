@@ -180,6 +180,10 @@ class Player:
     def get_names() -> List[str]:
         return Player.__names
     
+    @staticmethod
+    def set_name(name: str, item: int) -> None:
+        Player.__names[item] = name
+    
     __names: List[str] = [
         "Ome Henk",
         "Eppie",
@@ -189,16 +193,6 @@ class Player:
         "Simba",
         "Wouter",
         "Demcon",
-        "Max",
-        "Fc Volendam",
-        "Keukentafel",
-        "Jacques",
-        "Lampie",
-        "Eelco",
-        "Jesse",
-        "Victoria",
-        "Deborah",
-        "Lihi",
         "De Blinde",
         "De Lamme",
         "Mette Bus",
@@ -221,7 +215,6 @@ class Player:
         "Anne Bol",
         "Eddy Schekman",
         "Jack Pot",
-        "Adrianus Bleeker"
         "Klaar Wakker",
         "Hilbrand Baar",
         "Riet Suiker",
@@ -241,5 +234,15 @@ class Player:
         "Wil Helmes",
         "Kitty Miao",
         "Indy Haan",
-        "Fried Kaanen"
+        "Fried Kaanen",
+        "Max",
+        "Fc Volendam",
+        "Keukentafel",
+        "Jacques",
+        "Lampie",
+        "Eelco",
+        "Jesse",
+        "Victoria",
+        "Deborah",
+        "Lihi"
     ]

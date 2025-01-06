@@ -6,12 +6,14 @@ from player import Player
 number_of_players: int = Communicator.choose_number_of_players()
 
 # Choose player names
-# Communicator.choose_player_names(number_of_players)
+Communicator.choose_player_names(number_of_players)
+for name in Player.get_names():
+    print(name)
 
 competition: Competition = Competition(number_of_players)
 running: bool = Communicator.get_bool("Would you like to start the first round? [Y/N] ")
 while running:
     competition.play_round()
-    running = Communicator.get_bool("Would you like to start anbother round? [Y/N] ")
+    running = Communicator.get_bool("Would you like to start another round? [Y/N] ")
 
 
