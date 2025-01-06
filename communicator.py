@@ -26,6 +26,14 @@ class Communicator:
             return Communicator.get_number_of_players("")
         return num
     
+    def get_bool(message) -> bool:
+        Communicator.type_out(message)
+        choice: str = input()
+        if choice == "y" or choice == "Y":
+            return True
+        if choice == "n" or choice == "N":
+            return False
+    
     def type_out(message, delay=0.03):
         for char in message:
             sys.stdout.write(char)  # Write character without a newline
