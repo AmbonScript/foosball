@@ -2,6 +2,7 @@ import sys
 import time
 import os
 from player import Player
+from slot import Slot
 
 class Communicator:
 
@@ -32,6 +33,10 @@ class Communicator:
         else:
             Communicator.__type_out("Please choose either Y or N: ")
             return Communicator.get_bool("")
+    
+    def display_matches(slot: Slot) -> None:
+        for i in range(int(Player.get_number_of_players_in_round() / 2)):
+            print(i)
     
     def __receive_player_name(message, i: int) -> None:
         Communicator.__type_out(message)

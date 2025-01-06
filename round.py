@@ -1,6 +1,7 @@
 from player import Player
 from result import Result
 from slot import Slot
+from communicator import Communicator
 
 class Round:
     def __init__(self, number: int):
@@ -19,6 +20,7 @@ class Round:
     
     def __set_up_matches(self):
         self.__match_slot.place_players()
+        Communicator.display_matches(self.__match_slot)
         self.__match_slot.print_slots()
     
     def __play_matches(self) -> None:
