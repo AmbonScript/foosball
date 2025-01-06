@@ -2,7 +2,6 @@ import sys
 import time
 
 class Communicator:
-    __delay=0.037
 
     @staticmethod
     def output_message(message):
@@ -10,7 +9,7 @@ class Communicator:
         print()  # Print a newline at the end of the message
         print()
 
-    def receive_int(message, delay=0.03) -> int:
+    def receive_int(message) -> int:
         Communicator.type_out(message)
         num: int = input()
         print()  # Print a newline at the end of the message
