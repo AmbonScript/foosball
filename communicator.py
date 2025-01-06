@@ -5,24 +5,22 @@ from player import Player
 class Communicator:
 
     def choose_number_of_players() -> int:
-        Communicator.output_message("Welcome to foosball!\nI will help you run your tournament. Just follow my instructions")
-        players: int = Communicator.get_number_of_players("How many players will take part in the tournament? ")
-        Communicator.output_message(f"Very well. You chose {players} players")
+        Communicator.__output_message("Welcome to foosball!\nI will help you run your tournament. Just answer a few simple questions")
+        players: int = Communicator.__get_number_of_players("How many players will take part in the tournament? ")
+        Communicator.__output_message(f"Very well. You chose {players} players")
         return players
     
     def choose_player_names(number_of_players: int) -> None:
         if Communicator.get_bool("Would you like to input the player names yourself? (If not, I will generate them for you) [Y/N] "):
             for i in range(number_of_players):
                 Communicator.__receive_player_name(f"Please provide the name of player {i + 1}: ", i)
-        else:
-            Communicator.output_message("Ok, ik kies voor je")
     
     def __receive_player_name(message, i: int) -> None:
         Communicator.__type_out(message)
         name: str = input()
         Player.set_name(name, i)
 
-    def output_message(message):
+    def __output_message(message):
         Communicator.__type_out(message)
         print()  # Print a newline at the end of the message
         print()
@@ -33,15 +31,15 @@ class Communicator:
         print()  # Print a newline at the end of the message
         return num
     
-    def get_number_of_players(message) -> int:
+    def __get_number_of_players(message) -> int:
         num: int = Communicator.__receive_int(message)
         if not num.isdigit():
             Communicator.__type_out("Please input a number: ")
-            return Communicator.get_number_of_players("")
+            return Communicator.__get_number_of_players("")
         num = int(num)
         if (num < 8) or (num > len(Player.get_names())):
             Communicator.__type_out(f"Please choose a number between 8 and {len(Player.get_names())}: ")
-            return Communicator.get_number_of_players("")
+            return Communicator.__get_number_of_players("")
         return num
     
     def get_bool(message) -> bool:
