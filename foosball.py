@@ -7,9 +7,8 @@ number_of_players: int = Communicator.choose_number_of_players()
 
 # Choose player names
 Communicator.choose_player_names(number_of_players)
-for name in Player.get_names():
-    print(name)
 
+# Run the foosball competition
 competition: Competition = Competition(number_of_players)
 running: bool = Communicator.get_bool("Would you like to start the first round? [Y/N] ")
 while running:
