@@ -55,9 +55,11 @@ class Communicator:
             Communicator.__type_out("Please choose either A or B: ")
             return Communicator.__get_winner(match_nr, "")
 
-    def __get_goal_difference() -> int:
-        goals: int = Communicator.__receive_int("How many goals did the losing team score? ")
-        return (8 - int(goals))
+    def __get_goal_difference(message: str = "How many goals did the losing team score? ") -> int:
+        goals: int = int(Communicator.__receive_int(message))
+        if (goals < 0) or (goals > 7):
+            goals = Communicator.__get_goal_difference("Please input a number between 0 and 7 ")
+        return (8 - goals)
     
     def display_table(A1: str, D1: str, A2: str, D2: str, match_nr: int):
         Communicator.clear_screen()
