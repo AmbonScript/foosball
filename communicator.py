@@ -37,7 +37,7 @@ class Communicator:
             Communicator.__type_out("Please choose either Y or N: ")
             return Communicator.get_bool("")
     
-    def display_matches(slot: Slot, match_nr: int) -> None:
+    def display_matches_and_get_results(slot: Slot, match_nr: int) -> None:
         A_Team_Attacker: str = slot.get_slot(match_nr*4 + 1).player.name
         A_Team_Defender: str = slot.get_slot(match_nr*4 + 2).player.name
         B_Team_Attacker: str = slot.get_slot(match_nr*4 + 3).player.name

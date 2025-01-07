@@ -23,13 +23,13 @@ class Round:
         # self.__match_slot.print_slots()
     
     def __play_matches(self) -> None:
-        self.__input_results()
-        Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
+        self.__manual_input_results()
+        # Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
         self.__match_slot.store()
     
-    def __input_results(self) -> None:
+    def __manual_input_results(self) -> None:
         for match_nr in range(int(Player.get_number_of_players_in_round() / 2)):
-            Communicator.display_matches(self.__match_slot, match_nr)
+            Communicator.display_matches_and_get_results(self.__match_slot, match_nr)
     
     def __process_results(self) -> None:
         self.__match_slot.process_results(self.get_round_number())
