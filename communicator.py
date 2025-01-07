@@ -21,7 +21,7 @@ class Communicator:
     def start_first_round() -> bool:
         Communicator.__type_out("Great, the tournament is about to start")
         Communicator.__count_down()
-        Communicator.__clear_screen()
+        Communicator.clear_screen()
         return Communicator.get_bool("Would you like to start the first round? [Y/N] ")
 
     def get_bool(message) -> bool:
@@ -40,16 +40,17 @@ class Communicator:
         A_Team_Defender: str = slot.get_slot(match_nr*4 + 2).player.name
         B_Team_Attacker: str = slot.get_slot(match_nr*4 + 3).player.name
         B_Team_Defender: str = slot.get_slot(match_nr*4 + 4).player.name
-        Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender)
-        Communicator.__type_out("Which team won [A/B]?")
+        Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender, match_nr + 1)
+        Communicator.__type_out(f"Which team won MATCH {match_nr + 1} [A/B]?")
         input()
 
     
-    def display_table(A1: str, D1: str, A2: str, D2: str):
-        Communicator.__clear_screen()
+    def display_table(A1: str, D1: str, A2: str, D2: str, match_nr: int):
+        Communicator.clear_screen()
         print()
         print()
-        print("                             TEAM A")
+        print(f"MATCH {match_nr}")
+        print("TEAM A")
         print(f"                       {A1}{Communicator.__make_space_between(A1)}{D1}     ")
         print("                       [#]                              [#]               [#]      [#]     ")
         print("                       [#]                              [#]               [#]      [#]     ")
@@ -79,7 +80,7 @@ class Communicator:
         print("     (*)      (*)               (*)                              (*)                       ")
         print("     (*)      (*)               (*)                              (*)                       ")
         print(f"     {D2}{Communicator.__make_space_between(D2, 59)}{A2}                       ")
-        print("                             TEAM B")
+        print("TEAM B")
         print()
         print()
     
@@ -125,7 +126,7 @@ class Communicator:
             time.sleep(delay)       # Wait for the specified delay
         time.sleep(.5)
     
-    def __clear_screen():
+    def clear_screen():
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def __count_down(counts: int = 4):
