@@ -2,7 +2,7 @@ from competition import Competition
 from communicator import Communicator
 from player import Player
 
-Communicator.display_table()
+Communicator.display_table("Wouterrrrrrrrrrrrrrrrrrrr", "Lihi", "Pietje", "Pukkkkkkkkkkkkkkkkkkkkkkkkkk")
 
 # Choose # of players
 # number_of_players: int = Communicator.choose_number_of_players()

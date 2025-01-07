@@ -42,22 +42,20 @@ class Communicator:
             B_Team_Attacker: str = slot.get_slot(i*4 + 3).player.name
             B_Team_Defender: str = slot.get_slot(i*4 + 4).player.name
     
-    def display_table():
+    def display_table(A1: str, D1: str, A2: str, D2: str):
         Communicator.__clear_screen()
         print()
         print()
+        print(f"                       {A1}{Communicator.__make_space_between(A1)}{D1}     ")
         print("                       [#]                              [#]               [#]      [#]     ")
         print("                       [#]                              [#]               [#]      [#]     ")
-        print("                        |                                |                 |        |      ")
         print("                        |                                |                 |        |      ")
         print("                        |                                |                 |        |      ")
         print(" -----------------------------------------------------------------------------------------")
         print("|     |        |        |        |           |           |        |        |        |     |")
-        print("|     |        |        |        |           |           |        |        |        |     |")
         print("|     |        |        |       (*)          |          [#]       |        |        |     |")
         print("|     |        |        |        |           |           |        |        |        |     |")
         print("|     |        |       [#]       |           |           |       (*)       |        |     |")
-        print("|     |        |        |        |           |           |        |        |        |     |")
         print("|     |        |        |       (*)          |          [#]       |        |        |     |")
         print("|     |       (*)       |        |       /\u203E\u203E\u203E|\u203E\u203E\u203E\       |        |       [#]       |     |")
         print("|\u203E\u203E|  |        |        |        |      /    |    \      |        |        |        |  |\u203E\u203E|")
@@ -67,21 +65,25 @@ class Communicator:
         print("|__|  |        |        |        |      \    |    /      |        |        |        |  |__|")
         print("|     |       (*)       |        |       \___|___/       |        |       [#]       |     |")
         print("|     |        |        |       (*)          |          [#]       |        |        |     |")
-        print("|     |        |        |        |           |           |        |        |        |     |")
         print("|     |        |       [#]       |           |           |       (*)       |        |     |")
         print("|     |        |        |        |           |           |        |        |        |     |")
         print("|     |        |        |       (*)          |          [#]       |        |        |     |")
         print("|     |        |        |        |           |           |        |        |        |     |")
-        print("|     |        |        |        |           |           |        |        |        |     |")
         print(" --------------------------------------------|--------------------------------------------")
         print("      |        |                 |                                |                        ")
         print("      |        |                 |                                |                        ")
-        print("      |        |                 |                                |                        ")
         print("     (*)      (*)               (*)                              (*)                       ")
         print("     (*)      (*)               (*)                              (*)                       ")
+        print(f"     {D2}{Communicator.__make_space_between(D2, 59)}{A2}                       ")
         print()
         print()
     
+    def __make_space_between(name: str, distance = 50):
+        space_between: str = " "
+        for i in range((distance - len(name))):
+            space_between = space_between + " "
+        return space_between
+
     def __receive_player_name(message, i: int) -> None:
         Communicator.__type_out(message)
         name: str = input()
