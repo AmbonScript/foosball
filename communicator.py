@@ -41,6 +41,7 @@ class Communicator:
             A_Team_Defender: str = slot.get_slot(i*4 + 2).player.name
             B_Team_Attacker: str = slot.get_slot(i*4 + 3).player.name
             B_Team_Defender: str = slot.get_slot(i*4 + 4).player.name
+            
     
     def display_table(A1: str, D1: str, A2: str, D2: str):
         Communicator.__clear_screen()

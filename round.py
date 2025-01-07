@@ -20,13 +20,12 @@ class Round:
     
     def __set_up_matches(self):
         self.__match_slot.place_players()
-        Communicator.display_matches(self.__match_slot)
-        self.__match_slot.print_slots()
+        # self.__match_slot.print_slots()
     
     def __play_matches(self) -> None:
+        # Communicator.display_matches(self.__match_slot)
         Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
         self.__match_slot.store()
-        # Player.process_round_results(self.get_round_number())
     
     def __process_results(self) -> None:
         self.__match_slot.process_results(self.get_round_number())
