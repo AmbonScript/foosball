@@ -36,3 +36,4 @@ class Round:
     def __process_results(self) -> None:
         self.__match_slot.process_results(self.get_round_number())
         Player.rank_players()
+        Communicator.show_rankings()

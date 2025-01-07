@@ -6,6 +6,7 @@ from player import Player
 from slot import Slot
 from team import Team
 from result import Result
+from position import Position
 
 class Communicator:
 
@@ -50,6 +51,15 @@ class Communicator:
         goal_difference: int = Communicator.__get_goal_difference()
         Result.add_match_result(match_nr, winning_team, goal_difference)
 
+    def show_rankings() -> None:
+        Communicator.clear_screen()
+        
+        for i in range(Player.get_number_of_players()):
+            rank = i + 1
+            attacker: Player = Player.get_player_with_rank(rank, Position.ATTACKER)
+            print(f"{attacker.name}    {attacker._Player__attacker_wins}")
+        print("Press any key to continue")
+        input()
     
     def __get_winner(match_nr: int, message: str = None) -> Team:
         if message is None:
