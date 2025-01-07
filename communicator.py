@@ -4,6 +4,8 @@ import time
 import os
 from player import Player
 from slot import Slot
+from team import Team
+from result import Result
 
 class Communicator:
 
@@ -41,16 +43,20 @@ class Communicator:
         B_Team_Attacker: str = slot.get_slot(match_nr*4 + 3).player.name
         B_Team_Defender: str = slot.get_slot(match_nr*4 + 4).player.name
         Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender, match_nr + 1)
-        TeamA_Won: bool = Communicator.__get_winner(match_nr + 1)
+        winning_team: Team = Communicator.__get_winner(match_nr + 1)
         goal_difference: int = Communicator.__get_goal_difference()
+        Result.add_match_result(winning_team, goal_difference)
+
     
-    def __get_winner(match_nr: int, message: str = None) -> bool:
+    def __get_winner(match_nr: int, message: str = None) -> Team:
         if message is None:
             message = f"Which team won MATCH {match_nr} [A/B]? "
         Communicator.__type_out(message)
         winner: str = input()
-        if winner == "A" or winner == "B":
-            return winner == "A"
+        if winner == "A":
+            return Team.A
+        if winner == "B":
+            return Team.B
         else:
             Communicator.__type_out("Please choose either A or B: ")
             return Communicator.__get_winner(match_nr, "")
