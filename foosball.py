@@ -5,7 +5,7 @@ from player import Player
 Communicator.clear_screen()
 
 # Choose # of players
-number_of_players: int = Communicator.choose_number_of_players()
+# number_of_players: int = Communicator.choose_number_of_players()
 
 # Choose player names
 # Communicator.choose_player_names(number_of_players)

@@ -46,7 +46,7 @@ class Communicator:
     
     def __get_winner(match_nr: int, message: str = None) -> bool:
         if message is None:
-            message = f"Which team won MATCH {match_nr} [A/B]?"
+            message = f"Which team won MATCH {match_nr} [A/B]? "
         Communicator.__type_out(message)
         winner: str = input()
         if winner == "A" or winner == "B":
@@ -55,8 +55,9 @@ class Communicator:
             Communicator.__type_out("Please choose either A or B: ")
             return Communicator.__get_winner(match_nr, "")
 
-    # def get_goal_difference():
-
+    def __get_goal_difference() -> int:
+        goals: int = Communicator.__receive_int("How many goals did the losing team score? ")
+        return (8 - int(goals))
     
     def display_table(A1: str, D1: str, A2: str, D2: str, match_nr: int):
         Communicator.clear_screen()
