@@ -41,8 +41,18 @@ class Communicator:
         B_Team_Attacker: str = slot.get_slot(match_nr*4 + 3).player.name
         B_Team_Defender: str = slot.get_slot(match_nr*4 + 4).player.name
         Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender, match_nr + 1)
-        Communicator.__type_out(f"Which team won MATCH {match_nr + 1} [A/B]?")
-        input()
+        TeamA_Won: bool = Communicator.__get_winner(match_nr + 1)
+    
+    def __get_winner(match_nr: int, message: str = None) -> bool:
+        if message is None:
+            message = f"Which team won MATCH {match_nr} [A/B]?"
+        Communicator.__type_out(message)
+        winner: str = input()
+        if winner == "A" or winner == "B":
+            return winner == "A"
+        else:
+            Communicator.__type_out("Please choose either A or B: ")
+            return Communicator.__get_winner(match_nr, "")
 
     
     def display_table(A1: str, D1: str, A2: str, D2: str, match_nr: int):
