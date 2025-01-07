@@ -45,7 +45,7 @@ class Communicator:
         Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender, match_nr + 1)
         winning_team: Team = Communicator.__get_winner(match_nr + 1)
         goal_difference: int = Communicator.__get_goal_difference()
-        Result.add_match_result(winning_team, goal_difference)
+        Result.add_match_result(match_nr, winning_team, goal_difference)
 
     
     def __get_winner(match_nr: int, message: str = None) -> Team:

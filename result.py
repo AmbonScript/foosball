@@ -18,16 +18,19 @@ class Result:
     
     @staticmethod
     def add_match_result(match_nr: int, winning_team: Team, goal_difference: int) -> None:
+        print(f"match_nr is: {match_nr}")
         if Result.__result_history is None:
             Result.__result_history = []
-        round: int = len(Result.__result_history)
         if match_nr == 0:
             round_results: List[Result] = []
             Result.__result_history.append(round_results)
+        round: int = (len(Result.__result_history) - 1)
+        print(f"round is: {round}")
         result: Result = Result()
         result.__set_winning_team(winning_team)
         result.__set_goal_difference(goal_difference)
-        Result.__result_history[round].append(Result())
+        print(f"Length of result_history is {len(Result.__result_history)}")
+        Result.__result_history[round].append(result)
         
         
     @staticmethod
