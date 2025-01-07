@@ -24,8 +24,9 @@ class Result:
         if match_nr == 0:
             round_results: List[Result] = []
             Result.__result_history.append(round_results)
-        ## Set winning team
-        ## Set goal difference
+        result: Result = Result()
+        result.__set_winning_team(winning_team)
+        result.__set_goal_difference(goal_difference)
         Result.__result_history[round].append(Result())
         
         
@@ -40,17 +41,23 @@ class Result:
         self.__simulate_goal_difference()
     
     def get_winning_team(self) -> Team:
-        return self.__winningTeam
+        return self.__winning_team
+
+    def __set_winning_team(self, winning_team: Team) -> None:
+        self.__winning_team = winning_team
     
     def get_goal_difference(self) -> int:         
         return self.__goal_difference
     
+    def __set_goal_difference(self, goal_difference: int) -> None:
+        self.__goal_difference = goal_difference
+    
     def __simulate_winning_team(self) -> Team:
         coinflip: int = random.randint(0,1)
         if coinflip == 0:
-            self.__winningTeam = Team.A
+            self.__winning_team = Team.A
         else:
-            self.__winningTeam = Team.B
+            self.__winning_team = Team.B
 
     def __simulate_goal_difference(self) -> int:
         self.__goal_difference = random.randint(1,8)
