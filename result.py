@@ -15,6 +15,19 @@ class Result:
         Result.__result_history.append(round_results)
         for match in range(matches):
             Result.__result_history[round].append(Result())
+    
+    @staticmethod
+    def add_match_result(match_nr: int, winning_team: Team, goal_difference: int) -> None:
+        if Result.__result_history is None:
+            Result.__result_history = []
+        round: int = len(Result.__result_history)
+        if match_nr == 0:
+            round_results: List[Result] = []
+            Result.__result_history.append(round_results)
+        ## Set winning team
+        ## Set goal difference
+        Result.__result_history[round].append(Result())
+        
         
     @staticmethod
     def get_result(round: int, match: int) -> Result:
