@@ -46,6 +46,7 @@ class Communicator:
         Communicator.__clear_screen()
         print()
         print()
+        print("                             TEAM A")
         print(f"                       {A1}{Communicator.__make_space_between(A1)}{D1}     ")
         print("                       [#]                              [#]               [#]      [#]     ")
         print("                       [#]                              [#]               [#]      [#]     ")
@@ -75,6 +76,7 @@ class Communicator:
         print("     (*)      (*)               (*)                              (*)                       ")
         print("     (*)      (*)               (*)                              (*)                       ")
         print(f"     {D2}{Communicator.__make_space_between(D2, 59)}{A2}                       ")
+        print("                             TEAM B")
         print()
         print()
     
