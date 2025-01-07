@@ -42,6 +42,7 @@ class Communicator:
         B_Team_Defender: str = slot.get_slot(match_nr*4 + 4).player.name
         Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender, match_nr + 1)
         TeamA_Won: bool = Communicator.__get_winner(match_nr + 1)
+        goal_difference: int = Communicator.__get_goal_difference()
     
     def __get_winner(match_nr: int, message: str = None) -> bool:
         if message is None:
@@ -53,6 +54,8 @@ class Communicator:
         else:
             Communicator.__type_out("Please choose either A or B: ")
             return Communicator.__get_winner(match_nr, "")
+
+    # def get_goal_difference():
 
     
     def display_table(A1: str, D1: str, A2: str, D2: str, match_nr: int):
@@ -113,14 +116,13 @@ class Communicator:
     def __receive_int(message) -> int:
         Communicator.__type_out(message)
         num: int = input()
-        # print()  # Print a newline at the end of the message
+        if not num.isdigit():
+            Communicator.__type_out("Please input a number: ")
+            return Communicator.__receive_int("")
         return num
     
     def __get_number_of_players(message) -> int:
         num: int = Communicator.__receive_int(message)
-        if not num.isdigit():
-            Communicator.__type_out("Please input a number: ")
-            return Communicator.__get_number_of_players("")
         num = int(num)
         if (num < 8) or (num > len(Player.get_names())):
             Communicator.__type_out(f"Please choose a number between 8 and {len(Player.get_names())}: ")
