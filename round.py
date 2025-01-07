@@ -23,7 +23,7 @@ class Round:
         # self.__match_slot.print_slots()
     
     def __play_matches(self) -> None:
-        # Communicator.display_matches(self.__match_slot)
+        Communicator.display_matches(self.__match_slot)
         Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
         self.__match_slot.store()
     

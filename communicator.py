@@ -19,7 +19,7 @@ class Communicator:
                 Communicator.__receive_player_name(f"Please provide the name of player {i + 1}: ", i)
     
     def start_first_round() -> bool:
-        Communicator.__type_out("Great, looks like the tournament is almost ready to start")
+        Communicator.__type_out("Great, the tournament is about to start")
         Communicator.__count_down()
         Communicator.__clear_screen()
         return Communicator.get_bool("Would you like to start the first round? [Y/N] ")
@@ -41,7 +41,8 @@ class Communicator:
             A_Team_Defender: str = slot.get_slot(i*4 + 2).player.name
             B_Team_Attacker: str = slot.get_slot(i*4 + 3).player.name
             B_Team_Defender: str = slot.get_slot(i*4 + 4).player.name
-            
+        Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender)
+
     
     def display_table(A1: str, D1: str, A2: str, D2: str):
         Communicator.__clear_screen()
