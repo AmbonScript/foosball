@@ -35,13 +35,14 @@ class Communicator:
             Communicator.__type_out("Please choose either Y or N: ")
             return Communicator.get_bool("")
     
-    def display_matches(slot: Slot) -> None:
-        for i in range(int(Player.get_number_of_players_in_round() / 2)):
-            A_Team_Attacker: str = slot.get_slot(i*4 + 1).player.name
-            A_Team_Defender: str = slot.get_slot(i*4 + 2).player.name
-            B_Team_Attacker: str = slot.get_slot(i*4 + 3).player.name
-            B_Team_Defender: str = slot.get_slot(i*4 + 4).player.name
+    def display_matches(slot: Slot, match_nr: int) -> None:
+        A_Team_Attacker: str = slot.get_slot(match_nr*4 + 1).player.name
+        A_Team_Defender: str = slot.get_slot(match_nr*4 + 2).player.name
+        B_Team_Attacker: str = slot.get_slot(match_nr*4 + 3).player.name
+        B_Team_Defender: str = slot.get_slot(match_nr*4 + 4).player.name
         Communicator.display_table(A_Team_Attacker, A_Team_Defender, B_Team_Attacker, B_Team_Defender)
+        Communicator.__type_out("Which team won [A/B]?")
+        input()
 
     
     def display_table(A1: str, D1: str, A2: str, D2: str):
