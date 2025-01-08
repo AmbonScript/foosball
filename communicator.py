@@ -12,6 +12,7 @@ from typing import List
 class Communicator:
 
     def choose_number_of_players() -> int:
+        Communicator.clear_screen()
         Communicator.__output_message("Welcome to foosball!\nI will help you run your tournament. Just answer a few simple questions")
         players: int = Communicator.__get_number_of_players("How many players will take part in the tournament? ")
         Communicator.__output_message(f"Very well. You chose {players} players")
@@ -216,11 +217,8 @@ class Communicator:
         time.sleep(2)
     
     def __lets_play_foosball():
-        Communicator.clear_screen()
         Communicator.__shout("LET'S")
-        # Communicator.__flash_table()
         Communicator.__shout("PLAY")
-        # Communicator.__flash_table()
         Communicator.__shout("FOOSBALL!!!!")
 
     
@@ -229,13 +227,7 @@ class Communicator:
         for i in range(14):
             print()
         print(f"                                                    {word}")
-        time.sleep(1)
-        
-
-    def __flash_table():
-        Communicator.clear_screen()
-        Communicator.__show_table(0)
-        time.sleep(1)
+        time.sleep(1.5)
 
     def __show_table(start_line: int, table = None):
         if table is None:
