@@ -1,6 +1,7 @@
 from player import Player
 from result import Result
 from slot import Slot
+from communicator import Communicator
 
 class Round:
     def __init__(self, number: int):
@@ -19,13 +20,20 @@ class Round:
     
     def __set_up_matches(self):
         self.__match_slot.place_players()
-        self.__match_slot.print_slots()
+        # self.__match_slot.print_slots()
     
     def __play_matches(self) -> None:
-        Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
+        if Communicator.choose_manual_results():
+            self.__manual_input_results()
+        else:
+            Result.add_round_results(int(Player.get_number_of_players_in_round() / 2))
         self.__match_slot.store()
-        # Player.process_round_results(self.get_round_number())
+    
+    def __manual_input_results(self) -> None:
+        for match_nr in range(int(Player.get_number_of_players_in_round() / 2)):
+            Communicator.display_matches_and_get_results(self.__match_slot, match_nr)
     
     def __process_results(self) -> None:
         self.__match_slot.process_results(self.get_round_number())
         Player.rank_players()
+        Communicator.show_rankings()

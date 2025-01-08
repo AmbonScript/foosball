@@ -36,6 +36,10 @@ class Player:
     @staticmethod
     def get_player_with_rank(rank: int, position: Position) -> Player:
         return next((player for player in Player.__players if player.get_rank(position) == rank), None)
+    
+    @staticmethod 
+    def get_number_of_players() -> int:
+        return len(Player.__players)
         
     @staticmethod
     def get_number_of_players_in_round():
@@ -81,6 +85,7 @@ class Player:
 
     def __init__(self, number: int):
         self.__number: int = number
+        self.__name: str = Player.__names[number]
         self.__attacker_rank: int = None
         self.__defender_rank: int = None
         self.__attacker_wins: int = 0
@@ -95,7 +100,11 @@ class Player:
         self.__attacker_defender_opponents: List[Player] = []
         self.__defender_attacker_opponents: List[Player] = []
         self.__defender_defender_opponents: List[Player] = []
-        
+    
+    @property
+    def name(self) -> str:
+        return self.__name
+
     def get_number(self) -> int:
         return self.__number
 
@@ -174,3 +183,75 @@ class Player:
             self.__defender_resistance_points += player.__attacker_wins
         for player in self.__defender_defender_opponents:
             self.__defender_resistance_points += player.__defender_wins
+    
+
+    @staticmethod
+    def get_names() -> List[str]:
+        return Player.__names
+    
+    @staticmethod
+    def set_name(name: str, item: int) -> None:
+        Player.__names[item] = name
+    
+    __names: List[str] = [
+        "Ome Henk",
+        "Eppie",
+        "Asterix",
+        "Obelix",
+        "Hachi",
+        "Simba",
+        "Wouter",
+        "Demcon",
+        "De Blinde",
+        "De Lamme",
+        "Mette Bus",
+        "Bennie Weijs",
+        "Lieve Lingen",
+        "Co de Kraker",
+        "Be Thalen",
+        "Nies Slim",
+        "Dino Saris",
+        "Rocky Dool",
+        "Elke Gram",
+        "Ik Raas - Kal",
+        "Connie Boere",
+        "Mat Ras",
+        "Adriaan",
+        "Kenneth",
+        "Nikky Maus",
+        "Elke Kant",
+        "Ben Vierkant",
+        "Anne Bol",
+        "Eddy Schekman",
+        "Jack Pot",
+        "Klaar Wakker",
+        "Hilbrand Baar",
+        "Riet Suiker",
+        "Sjef Kock",
+        "Joska Bouter",
+        "Dies Goorman",
+        "Willie Wortel",
+        "Chris Mus",
+        "Iet Sanders",
+        "Mario Netten",
+        "Candy Man",
+        "Loek Out",
+        "Ferry Kuhlman",
+        "Ben Dral",
+        "Per Ooijevaar",
+        "Vogel Kooi",
+        "Wil Helmes",
+        "Kitty Miao",
+        "Indy Haan",
+        "Fried Kaanen",
+        "Max",
+        "Fc Volendam",
+        "Keukentafel",
+        "Jacques",
+        "Lampie",
+        "Eelco",
+        "Jesse",
+        "Victoria",
+        "Deborah",
+        "Lihi"
+    ]
