@@ -25,7 +25,7 @@ class Communicator:
         Communicator.__type_out("Great, the tournament is about to start")
         Communicator.__count_down()
         Communicator.clear_screen()
-        return Communicator.get_bool("Would you like to start the first round? [Y/N] ")
+        return True
 
     def get_bool(message) -> bool:
         Communicator.__type_out(message)
@@ -53,11 +53,10 @@ class Communicator:
 
     def show_rankings() -> None:
         Communicator.clear_screen()
-        
         for i in range(Player.get_number_of_players()):
             rank = i + 1
             attacker: Player = Player.get_player_with_rank(rank, Position.ATTACKER)
-            print(f"{attacker.name}    {attacker._Player__attacker_wins}")
+            Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}{attacker._Player__attacker_wins}\n")
         print("Press any key to continue")
         input()
     
