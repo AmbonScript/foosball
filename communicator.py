@@ -167,14 +167,14 @@ class Communicator:
             return Communicator.__get_number_of_players("")
         return num
         
-    def __type_out(message, delay=0.03):
+    def __type_out(message, delay=0.03, sleep_time=.5):
         for char in message:
             sys.stdout.write(char)  # Write character without a newline
             sys.stdout.flush()      # Ensure the character is printed immediately
             if char == "." or char == "!" or char == "?":
-                time.sleep(.5)
+                time.sleep(sleep_time)
             time.sleep(delay)       # Wait for the specified delay
-        time.sleep(.5)
+        time.sleep(sleep_time)
     
     def clear_screen():
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -198,3 +198,33 @@ class Communicator:
         for i in range(10):
             print()
         Communicator.__type_out(f"                                                     {word}")
+        Communicator.clear_screen()
+    
+    def __roll_table():
+        print("                       [#]                              [#]               [#]      [#]     ")
+        print("                       [#]                              [#]               [#]      [#]     ")
+        print("                        |                                |                 |        |      ")
+        print("                        |                                |                 |        |      ")
+        print(" -----------------------------------------------------------------------------------------")
+        print("|     |        |        |        |           |           |        |        |        |     |")
+        print("|     |        |        |       (*)          |          [#]       |        |        |     |")
+        print("|     |        |        |        |           |           |        |        |        |     |")
+        print("|     |        |       [#]       |           |           |       (*)       |        |     |")
+        print("|     |        |        |       (*)          |          [#]       |        |        |     |")
+        print("|     |       (*)       |        |       /\u203E\u203E\u203E|\u203E\u203E\u203E\       |        |       [#]       |     |")
+        print("|\u203E\u203E|  |        |        |        |      /    |    \      |        |        |        |  |\u203E\u203E|")
+        print("|  |  |        |        |        |     |     |     |     |        |        |        |  |  |")
+        print("|  | (*)       |       [#]      (*)    |     |     |    [#]      (*)       |       [#] |  |")
+        print("|  |  |        |        |        |     |     |     |     |        |        |        |  |  |")
+        print("|__|  |        |        |        |      \    |    /      |        |        |        |  |__|")
+        print("|     |       (*)       |        |       \___|___/       |        |       [#]       |     |")
+        print("|     |        |        |       (*)          |          [#]       |        |        |     |")
+        print("|     |        |       [#]       |           |           |       (*)       |        |     |")
+        print("|     |        |        |        |           |           |        |        |        |     |")
+        print("|     |        |        |       (*)          |          [#]       |        |        |     |")
+        print("|     |        |        |        |           |           |        |        |        |     |")
+        print(" --------------------------------------------|--------------------------------------------")
+        print("      |        |                 |                                |                        ")
+        print("      |        |                 |                                |                        ")
+        print("     (*)      (*)               (*)                              (*)                       ")
+        print("     (*)      (*)               (*)                              (*)                       ")
