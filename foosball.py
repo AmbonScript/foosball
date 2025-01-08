@@ -15,7 +15,6 @@ number_of_players: int = Communicator.choose_number_of_players()
 Communicator.choose_player_names(number_of_players)
 
 # Start the competition
-number_of_players: int = 8
 competition: Competition = Competition(number_of_players)
 running: bool = Communicator.start_first_round()
 
