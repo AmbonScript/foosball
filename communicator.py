@@ -188,11 +188,12 @@ class Communicator:
             time.sleep(1)
     
     def opening_animation():
-        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS AAAAAAAAND GENTLEMEN!")
-        Communicator.__are_you_ready("ARE")
-        Communicator.__are_you_ready("YOU")
-        Communicator.__are_you_ready("READY?")
-        Communicator.__roll_table()
+        # Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS AAAAAAAAND GENTLEMEN!")
+        # Communicator.__are_you_ready("ARE")
+        # Communicator.__are_you_ready("YOU")
+        # Communicator.__are_you_ready("READY?")
+        # Communicator.__roll_table()
+        Communicator.__show_table(0)
         pass
 
     def __are_you_ready(word: str):
@@ -207,6 +208,10 @@ class Communicator:
         for line in Communicator.table:
             print(line)
             time.sleep(.1)
+    
+    def __show_table(start_line: int):
+        for i in range(start_line, len(Communicator.table)):
+            print(Communicator.table[i])
 
     
     table: List[str] = [
