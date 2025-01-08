@@ -188,12 +188,12 @@ class Communicator:
             time.sleep(1)
     
     def opening_animation():
-        # Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
-        # Communicator.__are_you_ready("ARE")
-        # Communicator.__are_you_ready("YOU")
-        # Communicator.__are_you_ready("READY?")
-        # Communicator.__roll_table()
-        # Communicator.__lets_play_foosball()
+        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
+        Communicator.__are_you_ready("ARE")
+        Communicator.__are_you_ready("YOU")
+        Communicator.__are_you_ready("READY?")
+        Communicator.__roll_table()
+        Communicator.__lets_play_foosball()
         Communicator.__wiggle_table()
         pass
 
@@ -251,12 +251,12 @@ class Communicator:
         Communicator.clear_screen()
         wiggle: bool = False
         Communicator.__show_table(0)
-        for i in range(10):
+        for i in range(20):
             if wiggle:
                 Communicator.__show_table(0, Communicator.wiggle_table)
             else:
                 Communicator.__show_table(0)
-            time.sleep(1)
+            time.sleep(.5)
             wiggle = not wiggle
     
     table: List[str] = [
