@@ -58,8 +58,10 @@ class Communicator:
         goal_difference: int = Communicator.__get_goal_difference()
         Result.add_match_result(match_nr, winning_team, goal_difference)
 
-    def show_rankings() -> None:
+    def show_rankings(round_number: int) -> None:
         Communicator.clear_screen()
+        print(f"RANKINGS AFTER ROUND {round_number}")
+        print("")
         print("ATTACKER RANKINGS                            ||      DEFENDER RANKING    ")
         print("-----------------------------------------------------------------------------------------------")
         print("NAME              | WINS | RESISTANCE PNTS   ||      NAME              | WINS | RESISTANCE PNTS   ")
