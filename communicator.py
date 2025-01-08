@@ -188,19 +188,23 @@ class Communicator:
             time.sleep(1)
     
     def opening_animation():
-        # Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS AAAAAAAAND GENTLEMEN!")
-        # Communicator.__are_you_ready("ARE")
-        # Communicator.__are_you_ready("YOU")
-        # Communicator.__are_you_ready("READY?")
+        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAND. GENTLEMEN!", True)
+        Communicator.__are_you_ready("ARE")
+        Communicator.__are_you_ready("YOU")
+        Communicator.__are_you_ready("READY?")
         Communicator.__roll_table()
-        # Communicator.__show_table(10)
+        # Communicator.clear_screen()
         pass
 
-    def __are_you_ready(word: str):
+    def __are_you_ready(word: str, do_typing: bool=False):
         Communicator.clear_screen()
         for i in range(10):
             print()
-        Communicator.__type_out(f"                                                     {word}")
+        if do_typing:
+            Communicator.__type_out(f"                                                     {word}")
+        else:
+            print(f"                                                     {word}")
+            time.sleep(1)
         Communicator.clear_screen()
     
     def __roll_table():
