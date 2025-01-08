@@ -62,13 +62,13 @@ class Communicator:
         Communicator.clear_screen()
         print("ATTACKER RANKINGS                            ||      DEFENDER RANKING    ")
         print("-----------------------------------------------------------------------------------------------")
-        print("NAME              | WINS | GOAL DIFFERENCE   ||      NAME              | WINS | GOAL DIFFERENCE   ")
+        print("NAME              | WINS | RESISTANCE PNTS   ||      NAME              | WINS | RESISTANCE PNTS   ")
         print("---------------------------------------------||------------------------------------------------")
         for i in range(Player.get_number_of_players()):
             rank = i + 1
             attacker: Player = Player.get_player_with_rank(rank, Position.ATTACKER)
             defender: Player = Player.get_player_with_rank(rank, Position.DEFENDER)
-            Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}  |  {attacker._Player__attacker_wins}   |    {attacker._Player__attacker_goal_difference}{Communicator.__make_space_between(str(attacker._Player__attacker_goal_difference), 14)}||      {defender.name}{Communicator.__make_space_between(defender.name, 15)}  | {defender._Player__defender_wins}   |    {defender._Player__defender_goal_difference}\n", 0.005)
+            Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}  |  {attacker._Player__attacker_wins}   |    {attacker._Player__attacker_resistance_points}{Communicator.__make_space_between(str(attacker._Player__attacker_goal_difference), 14)}||      {defender.name}{Communicator.__make_space_between(defender.name, 15)}  | {defender._Player__defender_wins}   |    {defender._Player__defender_resistance_points}\n", 0.005)
         # print("Press any key to continue")
         # input()
     
