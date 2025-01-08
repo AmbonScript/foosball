@@ -61,10 +61,18 @@ class Communicator:
             rank = i + 1
             attacker: Player = Player.get_player_with_rank(rank, Position.ATTACKER)
             defender: Player = Player.get_player_with_rank(rank, Position.DEFENDER)
-            Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}  |  {attacker._Player__attacker_wins}   |    {attacker._Player__attacker_goal_difference}{Communicator.__make_space_between(str(attacker._Player__attacker_goal_difference), 14)}||      {defender.name}{Communicator.__make_space_between(defender.name, 15)}  | {defender._Player__defender_wins}   |    {defender._Player__defender_goal_difference}\n", 0.01)
-        print("Press any key to continue")
-        input()
+            Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}  |  {attacker._Player__attacker_wins}   |    {attacker._Player__attacker_goal_difference}{Communicator.__make_space_between(str(attacker._Player__attacker_goal_difference), 14)}||      {defender.name}{Communicator.__make_space_between(defender.name, 15)}  | {defender._Player__defender_wins}   |    {defender._Player__defender_goal_difference}\n", 0.005)
+        # print("Press any key to continue")
+        # input()
     
+    def end_competition() -> None:
+        print("\n")
+        Communicator.__type_out("The foosball competition has ended\n")
+        attacker: Player = Player.get_player_with_rank(1, Position.ATTACKER)
+        defender: Player = Player.get_player_with_rank(1, Position.DEFENDER)
+        Communicator.__type_out(f"{attacker.name} was the best attacker\n")
+        Communicator.__type_out(f"{defender.name} was the best defender\n")
+
     def __get_winner(match_nr: int, message: str = None) -> Team:
         if message is None:
             message = f"Which team won MATCH {match_nr} [A/B]? "

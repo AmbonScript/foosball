@@ -21,4 +21,4 @@ while running:
     running = Communicator.get_bool("Would you like to start another round? [Y/N] ")
 
 # End the competition
-
+Communicator.end_competition()
