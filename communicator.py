@@ -185,3 +185,6 @@ class Communicator:
             count: int = counts - i - 1
             print(f"{count}", end="\r")
             time.sleep(1)
+    
+    def opening_animation():
+        pass

@@ -2,23 +2,27 @@ from competition import Competition
 from communicator import Communicator
 from player import Player
 
+# Begin with a clear screen
 Communicator.clear_screen()
 
-# Choose # of players
-number_of_players: int = Communicator.choose_number_of_players()
+# Opening animation
+Communicator.opening_animation()
 
-# Choose player names
-Communicator.choose_player_names(number_of_players)
+# # Choose # of players
+# number_of_players: int = Communicator.choose_number_of_players()
 
-# Start the competition
-number_of_players: int = 8
-competition: Competition = Competition(number_of_players)
-running: bool = Communicator.start_first_round()
+# # Choose player names
+# Communicator.choose_player_names(number_of_players)
 
-# Run the competition
-while running:
-    competition.play_round()
-    running = Communicator.get_bool("Would you like to start another round? [Y/N] ")
+# # Start the competition
+# number_of_players: int = 8
+# competition: Competition = Competition(number_of_players)
+# running: bool = Communicator.start_first_round()
 
-# End the competition
-Communicator.end_competition()
+# # Run the competition
+# while running:
+#     competition.play_round()
+#     running = Communicator.get_bool("Would you like to start another round? [Y/N] ")
+
+# # End the competition
+# Communicator.end_competition()
