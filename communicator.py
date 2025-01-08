@@ -290,6 +290,8 @@ class Communicator:
         "             |        |                 |                                |                        ",
         "            (*)      (*)               (*)                              (*)                       ",
         "            (*)      (*)               (*)                              (*)                       ",
+        "                                                                                                         ",
+        "                                                                                                         ",
         "                                                                                                         "
         ]
     
@@ -326,5 +328,5 @@ class Communicator:
         "                     (*)               (*)                              (*)                       ",
         "                     (*)               (*)                              (*)                             ",
         "                                                                                                         ",
-        "                                                                                                         "
+        "Press any key to start the competition                                                                                                         "
         ]
