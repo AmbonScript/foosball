@@ -8,6 +8,7 @@ from team import Team
 from result import Result
 from position import Position
 from typing import List
+import keyboard
 
 class Communicator:
 
@@ -239,17 +240,24 @@ class Communicator:
         print(tafel, end="\r")
         print("\033[1;1H", end="", flush=True)
     
+    running: bool = True
     def __wiggle_table():
         Communicator.clear_screen()
         wiggle: bool = False
         Communicator.__show_table(0)
-        for i in range(20):
+        keyboard.on_press(Communicator.set_false)
+        while Communicator.running:
             if wiggle:
                 Communicator.__show_table(0, Communicator.wiggle_table)
             else:
                 Communicator.__show_table(0)
             time.sleep(.5)
             wiggle = not wiggle
+            
+    
+    def set_false(event) -> bool:
+        # global Communicator.running
+        Communicator.running = False
     
     table: List[str] = [
         "                                                                                                         ",
