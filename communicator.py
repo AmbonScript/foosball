@@ -188,12 +188,12 @@ class Communicator:
             time.sleep(1)
     
     def opening_animation():
-        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
-        Communicator.__are_you_ready("ARE")
-        Communicator.__are_you_ready("YOU")
-        Communicator.__are_you_ready("READY?")
-        Communicator.__roll_table()
-        Communicator.__lets_play_foosball()
+        # Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
+        # Communicator.__are_you_ready("ARE")
+        # Communicator.__are_you_ready("YOU")
+        # Communicator.__are_you_ready("READY?")
+        # Communicator.__roll_table()
+        # Communicator.__lets_play_foosball()
         Communicator.__wiggle_table()
         pass
 
@@ -260,9 +260,9 @@ class Communicator:
             wiggle = not wiggle
     
     table: List[str] = [
-        "",
-        "",
-        "",
+        "                                                                                                         ",
+        "                                                                                                         ",
+        "                                                                                                         ",
         "                              [#]                              [#]               [#]      [#]     ",
         "                              [#]                              [#]               [#]      [#]     ",
         "                               |                                |                 |        |      ",
@@ -290,11 +290,12 @@ class Communicator:
         "             |        |                 |                                |                        ",
         "            (*)      (*)               (*)                              (*)                       ",
         "            (*)      (*)               (*)                              (*)                       ",
+        "                                                                                                         "
         ]
     
     wiggle_table: List[str] = [
-        "",
-        "",
+        "                                                                                                         ",
+        "                                                                                                         ",
         "                              [#]                                                                 ",
         "                              [#]                              [#]               [#]      [#]     ",
         "                               |                               [#]               [#]      [#]     ",
@@ -324,4 +325,6 @@ class Communicator:
         "            (*)       |                (*)                              (*)                       ",
         "                     (*)               (*)                              (*)                       ",
         "                     (*)                                                                          ",
+        "                                                                                                         ",
+        "                                                                                                         "
         ]
