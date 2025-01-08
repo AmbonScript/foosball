@@ -23,7 +23,7 @@ class Communicator:
     
     def start_first_round() -> bool:
         Communicator.__type_out("Great, the tournament is about to start")
-        # Communicator.__count_down()
+        Communicator.__count_down()
         Communicator.clear_screen()
         return True
 
