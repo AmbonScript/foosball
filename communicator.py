@@ -54,11 +54,12 @@ class Communicator:
     def show_rankings() -> None:
         Communicator.clear_screen()
         print("ATTACKER RANKINGS                            || DEFENDER RANKING    \n")
-        print("NAME              | WINS | GOAL DIFFERENCE   || NAME          | WINS | GOAL DIFFERENCE   ||\n")
+        print("NAME              | WINS | GOAL DIFFERENCE   || NAME              | WINS | GOAL DIFFERENCE   ||\n")
         for i in range(Player.get_number_of_players()):
             rank = i + 1
             attacker: Player = Player.get_player_with_rank(rank, Position.ATTACKER)
-            Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}  |  {attacker._Player__attacker_wins}   |    {attacker._Player__attacker_goal_difference}{Communicator.__make_space_between(str(attacker._Player__attacker_goal_difference), 14)}||\n", 0.01)
+            defender: Player = Player.get_player_with_rank(rank, Position.DEFENDER)
+            Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}  |  {attacker._Player__attacker_wins}   |    {attacker._Player__attacker_goal_difference}{Communicator.__make_space_between(str(attacker._Player__attacker_goal_difference), 14)}|| {defender.name}{Communicator.__make_space_between(defender.name, 15)}  | {defender._Player__defender_wins}\n", 0.01)
         print("Press any key to continue")
         input()
     
