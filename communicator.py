@@ -7,10 +7,13 @@ from slot import Slot
 from team import Team
 from result import Result
 from position import Position
+from typing import List
+import keyboard
 
 class Communicator:
 
     def choose_number_of_players() -> int:
+        Communicator.clear_screen()
         Communicator.__output_message("Welcome to foosball!\nI will help you run your tournament. Just answer a few simple questions")
         players: int = Communicator.__get_number_of_players("How many players will take part in the tournament? ")
         Communicator.__output_message(f"Very well. You chose {players} players")
@@ -167,14 +170,14 @@ class Communicator:
             return Communicator.__get_number_of_players("")
         return num
         
-    def __type_out(message, delay=0.03):
+    def __type_out(message, delay=0.03, sleep_time=.5):
         for char in message:
             sys.stdout.write(char)  # Write character without a newline
             sys.stdout.flush()      # Ensure the character is printed immediately
             if char == "." or char == "!" or char == "?":
-                time.sleep(.5)
+                time.sleep(sleep_time)
             time.sleep(delay)       # Wait for the specified delay
-        time.sleep(.5)
+        time.sleep(sleep_time)
     
     def clear_screen():
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -185,3 +188,145 @@ class Communicator:
             count: int = counts - i - 1
             print(f"{count}", end="\r")
             time.sleep(1)
+    
+    def opening_animation():
+        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
+        Communicator.__are_you_ready("ARE")
+        Communicator.__are_you_ready("YOU")
+        Communicator.__are_you_ready("READY?")
+        Communicator.__roll_table()
+        Communicator.__lets_play_foosball()
+        Communicator.__wiggle_table()
+        pass
+
+    def __are_you_ready(word: str, do_typing: bool=False):
+        Communicator.clear_screen()
+        for i in range(10):
+            print()
+        if do_typing:
+            Communicator.__type_out(f"                                                     {word}")
+        else:
+            print(f"                                                     {word}")
+            time.sleep(1)
+        Communicator.clear_screen()
+    
+    def __roll_table():
+        # Communicator.clear_screen()
+        for i in range(len(Communicator.table)):
+            Communicator.__show_table((len(Communicator.table)-i))
+            time.sleep(.1)
+        time.sleep(2)
+    
+    def __lets_play_foosball():
+        Communicator.__shout("LET'S")
+        Communicator.__shout("PLAY")
+        Communicator.__shout("FOOSBALL!!!!")
+
+    
+    def __shout(word: str):
+        Communicator.clear_screen()
+        for i in range(14):
+            print()
+        print(f"                                                    {word}")
+        time.sleep(1.5)
+
+    def __show_table(start_line: int, table = None):
+        if table is None:
+            table = Communicator.table
+        tafel = ""
+        for i in range(start_line, len(table)):
+            tafel = tafel + table[i] + "\n"
+        # Communicator.clear_screen()
+        print(tafel, end="\r")
+        print("\033[1;1H", end="", flush=True)
+    
+    running: bool = True
+    def __wiggle_table():
+        Communicator.clear_screen()
+        wiggle: bool = False
+        Communicator.__show_table(0)
+        keyboard.on_press(Communicator.set_false)
+        while Communicator.running:
+            if wiggle:
+                Communicator.__show_table(0, Communicator.wiggle_table)
+            else:
+                Communicator.__show_table(0)
+            time.sleep(.5)
+            wiggle = not wiggle
+            
+    
+    def set_false(event) -> bool:
+        # global Communicator.running
+        Communicator.running = False
+    
+    table: List[str] = [
+        "                                                                                                         ",
+        "                                                                                                         ",
+        "                                                                                                         ",
+        "                              [#]                              [#]               [#]      [#]     ",
+        "                              [#]                              [#]               [#]      [#]     ",
+        "                               |                                |                 |        |      ",
+        "                               |                                |                 |        |      ",
+        "        -----------------------------------------------------------------------------------------",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |        |       (*)          |          [#]       |        |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |       [#]       |           |           |       (*)       |        |     |",
+        "       |     |        |        |       (*)          |          [#]       |        |        |     |",
+        "       |     |       (*)       |        |       /\u203E\u203E\u203E|\u203E\u203E\u203E\       |        |       [#]       |     |",
+        "       |\u203E\u203E|  |        |        |        |      /    |    \      |        |        |        |  |\u203E\u203E|",
+        "       |  |  |        |        |        |     |     |     |     |        |        |        |  |  |",
+        "       |  | (*)       |       [#]      (*)    |     |     |    [#]      (*)       |       [#] |  |",
+        "       |  |  |        |        |        |     |     |     |     |        |        |        |  |  |",
+        "       |__|  |        |        |        |      \    |    /      |        |        |        |  |__|",
+        "       |     |       (*)       |        |       \___|___/       |        |       [#]       |     |",
+        "       |     |        |        |       (*)          |          [#]       |        |        |     |",
+        "       |     |        |       [#]       |           |           |       (*)       |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |        |       (*)          |          [#]       |        |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "        --------------------------------------------|--------------------------------------------",
+        "             |        |                 |                                |                        ",
+        "             |        |                 |                                |                        ",
+        "            (*)      (*)               (*)                              (*)                       ",
+        "            (*)      (*)               (*)                              (*)                       ",
+        "                                                                                                         ",
+        "                                                                                                         ",
+        "                                                                                                         "
+        ]
+    
+    wiggle_table: List[str] = [
+        "                                                                                                         ",
+        "                                                                                                         ",
+        "                              [#]                              [#]               [#]               ",
+        "                              [#]                              [#]               [#]              ",
+        "                               |                                |                 |       [#]     ",
+        "                               |                                |                 |       [#]     ",
+        "                               |                                |                 |        |      ",
+        "        -----------------------------------------------------------------------------------------",
+        "       |     |        |        |        |           |          [#]       |        |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |       [#]      (*)          |           |        |        |        |     |",
+        "       |     |        |        |        |           |          [#]       |        |        |     |",
+        "       |     |        |        |        |           |           |       (*)      [#]       |     |",
+        "       |     |        |        |       (*)      /\u203E\u203E\u203E|\u203E\u203E\u203E\       |        |        |        |     |",
+        "       |\u203E\u203E|  |       (*)       |        |      /    |    \      |        |        |        |  |\u203E\u203E|",
+        "       |  | (*)       |       [#]       |     |     |     |    [#]       |        |        |  |  |",
+        "       |  |  |        |        |        |     |     |     |     |        |        |        |  |  |",
+        "       |  |  |        |        |       (*)    |     |     |     |       (*)       |       [#] |  |",
+        "       |__|  |        |        |        |      \    |    /      |        |       [#]       |  |__|",
+        "       |     |        |        |        |       \___|___/      [#]       |        |        |     |",
+        "       |     |       (*)      [#]       |           |           |        |        |        |     |",
+        "       |     |        |        |       (*)          |           |        |        |        |     |",
+        "       |     |        |        |        |           |          [#]      (*)       |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |        |       (*)          |           |        |        |        |     |",
+        "        --------------------------------------------|--------------------------------------------",
+        "             |        |                 |                                |                        ",
+        "            (*)       |                 |                                |                        ",
+        "            (*)       |                 |                                |                       ",
+        "                     (*)               (*)                              (*)                       ",
+        "                     (*)               (*)                              (*)                             ",
+        "                                                                                                         ",
+        "Press any key to start the competition                                                                                                         "
+        ]
