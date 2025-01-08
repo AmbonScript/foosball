@@ -192,8 +192,8 @@ class Communicator:
         # Communicator.__are_you_ready("ARE")
         # Communicator.__are_you_ready("YOU")
         # Communicator.__are_you_ready("READY?")
-        # Communicator.__roll_table()
-        Communicator.__show_table(0)
+        Communicator.__roll_table()
+        # Communicator.__show_table(10)
         pass
 
     def __are_you_ready(word: str):
@@ -205,11 +205,12 @@ class Communicator:
     
     def __roll_table():
         Communicator.clear_screen()
-        for line in Communicator.table:
-            print(line)
+        for i in range(len(Communicator.table)):
+            Communicator.__show_table((len(Communicator.table)-i))
             time.sleep(.1)
     
     def __show_table(start_line: int):
+        Communicator.clear_screen()
         print()
         print()
         print()
