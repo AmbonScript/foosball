@@ -187,4 +187,14 @@ class Communicator:
             time.sleep(1)
     
     def opening_animation():
+        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS AAAAAAAAND GENTLEMEN!")
+        Communicator.__are_you_ready("ARE")
+        Communicator.__are_you_ready("YOU")
+        Communicator.__are_you_ready("READY?")
         pass
+
+    def __are_you_ready(word: str):
+        Communicator.clear_screen()
+        for i in range(10):
+            print()
+        Communicator.__type_out(f"                                                     {word}")
