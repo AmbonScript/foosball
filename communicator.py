@@ -26,6 +26,10 @@ class Communicator:
         Communicator.__count_down()
         Communicator.clear_screen()
         return True
+    
+    def start_round(number: int) -> None:
+        Communicator.clear_screen()
+        Communicator.__type_out(f"Starting Round #{number}\n")
 
     def get_bool(message) -> bool:
         Communicator.__type_out(message)

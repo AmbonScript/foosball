@@ -5,7 +5,7 @@ from communicator import Communicator
 
 class Round:
     def __init__(self, number: int):
-        print(f"Starting Round #{number}")
+        Communicator.start_round(number)
         self.__number: int = number
         self.__match_slot: Slot = Slot()
     
