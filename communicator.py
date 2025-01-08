@@ -239,10 +239,10 @@ class Communicator:
         time.sleep(1)
 
     def __show_table(start_line: int, table = None):
+        Communicator.clear_screen()
         if table is None:
             table = Communicator.table
-        Communicator.clear_screen()
-        print()
+            print()
         print()
         print()
         for i in range(start_line, len(table)):
@@ -250,11 +250,15 @@ class Communicator:
     
     def __wiggle_table():
         Communicator.clear_screen()
-        wiggle: bool = True
+        wiggle: bool = False
         Communicator.__show_table(0)
         for i in range(10):
-            Communicator.__show_table(0)
+            if wiggle:
+                Communicator.__show_table(0, Communicator.wiggle_table)
+            else:
+                Communicator.__show_table(0)
             time.sleep(1)
+            wiggle = not wiggle
     
     table: List[str] = [
         "                              [#]                              [#]               [#]      [#]     ",
@@ -284,4 +288,36 @@ class Communicator:
         "             |        |                 |                                |                        ",
         "            (*)      (*)               (*)                              (*)                       ",
         "            (*)      (*)               (*)                              (*)                       ",
+        ]
+    
+    wiggle_table: List[str] = [
+        "                              [#]                                                                 ",
+        "                              [#]                              [#]               [#]      [#]     ",
+        "                               |                               [#]               [#]      [#]     ",
+        "                               |                                |                 |        |      ",
+        "                               |                                |                 |        |      ",
+        "        -----------------------------------------------------------------------------------------",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |        |       (*)          |          [#]       |        |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |       [#]       |           |           |       (*)       |        |     |",
+        "       |     |        |        |       (*)          |          [#]       |        |        |     |",
+        "       |     |        |        |        |       /\u203E\u203E\u203E|\u203E\u203E\u203E\       |        |       [#]       |     |",
+        "       |\u203E\u203E|  |       (*)       |        |      /    |    \      |        |        |        |  |\u203E\u203E|",
+        "       |  | (*)       |        |        |     |     |     |     |        |        |        |  |  |",
+        "       |  |  |        |       [#]      (*)    |     |     |    [#]      (*)       |       [#] |  |",
+        "       |  |  |        |        |        |     |     |     |     |        |        |        |  |  |",
+        "       |__|  |        |        |        |      \    |    /      |        |        |        |  |__|",
+        "       |     |        |        |        |       \___|___/       |        |       [#]       |     |",
+        "       |     |       (*)       |       (*)          |          [#]       |        |        |     |",
+        "       |     |        |       [#]       |           |           |       (*)       |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "       |     |        |        |       (*)          |          [#]       |        |        |     |",
+        "       |     |        |        |        |           |           |        |        |        |     |",
+        "        --------------------------------------------|--------------------------------------------",
+        "             |        |                 |                                |                        ",
+        "            (*)       |                 |                                |                        ",
+        "            (*)       |                (*)                              (*)                       ",
+        "                     (*)               (*)                              (*)                       ",
+        "                     (*)                                                                          ",
         ]
