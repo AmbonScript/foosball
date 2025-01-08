@@ -188,11 +188,12 @@ class Communicator:
             time.sleep(1)
     
     def opening_animation():
-        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAND. GENTLEMEN!", True)
+        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
         Communicator.__are_you_ready("ARE")
         Communicator.__are_you_ready("YOU")
         Communicator.__are_you_ready("READY?")
         Communicator.__roll_table()
+        Communicator.__lets_play_foosball()
         # Communicator.clear_screen()
         pass
 
@@ -212,7 +213,30 @@ class Communicator:
         for i in range(len(Communicator.table)):
             Communicator.__show_table((len(Communicator.table)-i))
             time.sleep(.1)
+        time.sleep(2)
     
+    def __lets_play_foosball():
+        Communicator.clear_screen()
+        Communicator.__shout("LET'S")
+        Communicator.__flash_table()
+        Communicator.__shout("PLAY")
+        Communicator.__flash_table()
+        Communicator.__shout("FOOSBALL!!!!")
+
+    
+    def __shout(word: str):
+        Communicator.clear_screen()
+        for i in range(14):
+            print()
+        print(f"                                                    {word}")
+        time.sleep(1)
+        
+
+    def __flash_table():
+        Communicator.clear_screen()
+        Communicator.__show_table(0)
+        time.sleep(1)
+
     def __show_table(start_line: int):
         Communicator.clear_screen()
         print()
