@@ -206,6 +206,8 @@ class Communicator:
         Communicator.clear_screen()
         for line in Communicator.table:
             print(line)
+            time.sleep(.1)
+
     
     table: List[str] = [
         "                       [#]                              [#]               [#]      [#]     ",
