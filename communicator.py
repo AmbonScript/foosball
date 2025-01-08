@@ -22,7 +22,7 @@ class Communicator:
                 Communicator.__receive_player_name(f"Please provide the name of player {i + 1}: ", i)
     
     def start_first_round() -> bool:
-        Communicator.__type_out("Great, the tournament is about to start")
+        Communicator.__type_out("Great, the tournament is about to start in:")
         Communicator.__count_down()
         Communicator.clear_screen()
         return True
