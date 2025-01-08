@@ -188,13 +188,13 @@ class Communicator:
             time.sleep(1)
     
     def opening_animation():
-        Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
-        Communicator.__are_you_ready("ARE")
-        Communicator.__are_you_ready("YOU")
-        Communicator.__are_you_ready("READY?")
-        Communicator.__roll_table()
-        Communicator.__lets_play_foosball()
-        # Communicator.clear_screen()
+        # Communicator.__are_you_ready("LAAAAAAAAAAAAAAAAAADIIIIEEEEEESSSSS. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAND. GENTLEMEN!", True)
+        # Communicator.__are_you_ready("ARE")
+        # Communicator.__are_you_ready("YOU")
+        # Communicator.__are_you_ready("READY?")
+        # Communicator.__roll_table()
+        # Communicator.__lets_play_foosball()
+        Communicator.__wiggle_table()
         pass
 
     def __are_you_ready(word: str, do_typing: bool=False):
@@ -222,7 +222,6 @@ class Communicator:
         Communicator.__shout("PLAY")
         Communicator.__flash_table()
         Communicator.__shout("FOOSBALL!!!!")
-        Communicator.__wiggle_table()
 
     
     def __shout(word: str):
@@ -239,15 +238,12 @@ class Communicator:
         time.sleep(1)
 
     def __show_table(start_line: int, table = None):
-        Communicator.clear_screen()
         if table is None:
             table = Communicator.table
-            print()
-        print()
-        print()
         tafel = ""
         for i in range(start_line, len(table)):
             tafel = tafel + table[i] + "\n"
+        Communicator.clear_screen()
         print(tafel)
     
     def __wiggle_table():
@@ -263,6 +259,9 @@ class Communicator:
             wiggle = not wiggle
     
     table: List[str] = [
+        "",
+        "",
+        "",
         "                              [#]                              [#]               [#]      [#]     ",
         "                              [#]                              [#]               [#]      [#]     ",
         "                               |                                |                 |        |      ",
@@ -293,6 +292,8 @@ class Communicator:
         ]
     
     wiggle_table: List[str] = [
+        "",
+        "",
         "                              [#]                                                                 ",
         "                              [#]                              [#]               [#]      [#]     ",
         "                               |                               [#]               [#]      [#]     ",
@@ -301,18 +302,18 @@ class Communicator:
         "        -----------------------------------------------------------------------------------------",
         "       |     |        |        |        |           |           |        |        |        |     |",
         "       |     |        |        |       (*)          |          [#]       |        |        |     |",
-        "       |     |        |        |        |           |           |        |        |        |     |",
-        "       |     |        |       [#]       |           |           |       (*)       |        |     |",
+        "       |     |        |       [#]       |           |           |        |        |        |     |",
+        "       |     |        |        |        |           |           |       (*)       |        |     |",
         "       |     |        |        |       (*)          |          [#]       |        |        |     |",
         "       |     |        |        |        |       /\u203E\u203E\u203E|\u203E\u203E\u203E\       |        |       [#]       |     |",
         "       |\u203E\u203E|  |       (*)       |        |      /    |    \      |        |        |        |  |\u203E\u203E|",
-        "       |  | (*)       |        |        |     |     |     |     |        |        |        |  |  |",
-        "       |  |  |        |       [#]      (*)    |     |     |    [#]      (*)       |       [#] |  |",
+        "       |  | (*)       |       [#]       |     |     |     |     |        |        |        |  |  |",
+        "       |  |  |        |        |       (*)    |     |     |    [#]      (*)       |       [#] |  |",
         "       |  |  |        |        |        |     |     |     |     |        |        |        |  |  |",
         "       |__|  |        |        |        |      \    |    /      |        |        |        |  |__|",
         "       |     |        |        |        |       \___|___/       |        |       [#]       |     |",
-        "       |     |       (*)       |       (*)          |          [#]       |        |        |     |",
-        "       |     |        |       [#]       |           |           |       (*)       |        |     |",
+        "       |     |       (*)      [#]      (*)          |          [#]       |        |        |     |",
+        "       |     |        |        |        |           |           |       (*)       |        |     |",
         "       |     |        |        |        |           |           |        |        |        |     |",
         "       |     |        |        |       (*)          |          [#]       |        |        |     |",
         "       |     |        |        |        |           |           |        |        |        |     |",
