@@ -245,8 +245,10 @@ class Communicator:
             print()
         print()
         print()
+        tafel = ""
         for i in range(start_line, len(table)):
-            print(table[i])
+            tafel = tafel + table[i] + "\n"
+        print(tafel)
     
     def __wiggle_table():
         Communicator.clear_screen()
