@@ -194,16 +194,6 @@ class Player:
         Player.__names[item] = name
     
     __names: List[str] = [
-        "Ome Henk",
-        "Eppie",
-        "Asterix",
-        "Obelix",
-        "Hachi",
-        "Simba",
-        "Wouter",
-        "Demcon",
-        "De Blinde",
-        "De Lamme",
         "Mette Bus",
         "Bennie Weijs",
         "Lieve Lingen",
@@ -253,5 +243,15 @@ class Player:
         "Jesse",
         "Victoria",
         "Deborah",
-        "Lihi"
+        "Lihi",
+        "Ome Henk",
+        "Eppie",
+        "Asterix",
+        "Obelix",
+        "Hachi",
+        "Simba",
+        "Wouter",
+        "Demcon",
+        "De Blinde",
+        "De Lamme"
     ]
