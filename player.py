@@ -32,6 +32,7 @@ class Player:
         for i in range(len(Player.__players)):
             Player.__players[i].set_rank(Position.ATTACKER, attackerRanks[i])
             Player.__players[i].set_rank(Position.DEFENDER, defenderRanks[i])
+            Player.__players[i].__set_initial_ranks()
     
     @staticmethod
     def get_player_with_rank(rank: int, position: Position) -> Player:
@@ -76,8 +77,8 @@ class Player:
     def rank_players():
         for player in Player.__players:
             player.__determine_resistance_points()
-        ranked_attackers: List[Player] = sorted(Player.__players, key=lambda player: (-player.__attacker_wins, -player.__attacker_resistance_points, -player.__attacker_goal_difference, random.random()))
-        ranked_defenders: List[Player] = sorted(Player.__players, key=lambda player: (-player.__defender_wins, -player.__defender_resistance_points, -player.__defender_goal_difference, random.random()))
+        ranked_attackers: List[Player] = sorted(Player.__players, key=lambda player: (-player.__attacker_wins, -player.__attacker_resistance_points, -player.__attacker_goal_difference, player.__initial_attacker_rank))
+        ranked_defenders: List[Player] = sorted(Player.__players, key=lambda player: (-player.__defender_wins, -player.__defender_resistance_points, -player.__defender_goal_difference, player.__initial_defender_rank))
         for i in range(len(ranked_attackers)):
             ranked_attackers[i].__attacker_rank = (i + 1)
         for i in range(len(ranked_defenders)):
@@ -100,6 +101,8 @@ class Player:
         self.__attacker_defender_opponents: List[Player] = []
         self.__defender_attacker_opponents: List[Player] = []
         self.__defender_defender_opponents: List[Player] = []
+        self.__initial_attacker_rank: int = None
+        self.__initial_defender_rank: int = None
     
     @property
     def name(self) -> str:
@@ -113,6 +116,10 @@ class Player:
             self.__attacker_rank = rank
         else:
             self.__defender_rank = rank
+    
+    def __set_initial_ranks(self) -> None:
+        self.__initial_attacker_rank = self.__attacker_rank
+        self.__initial_defender_rank = self.__defender_rank
     
     def get_rank(self, position: Position) -> int:
         if position == Position.ATTACKER:
