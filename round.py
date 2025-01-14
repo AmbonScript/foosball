@@ -20,7 +20,6 @@ class Round:
     
     def __set_up_matches(self):
         self.__match_slot.place_players()
-        # self.__match_slot.print_slots()
     
     def __play_matches(self) -> None:
         if Communicator.choose_manual_results():
