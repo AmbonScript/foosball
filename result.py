@@ -6,7 +6,6 @@ import random
 class Result:
     __result_history: List[List[Result]] = None
 
-    @staticmethod
     def add_round_results(matches: int) -> None:
         if Result.__result_history is None:
             Result.__result_history = []
@@ -16,7 +15,6 @@ class Result:
         for match in range(matches):
             Result.__result_history[round].append(Result())
     
-    @staticmethod
     def add_match_result(match_nr: int, winning_team: Team, goal_difference: int) -> None:
         if Result.__result_history is None:
             Result.__result_history = []
@@ -29,8 +27,6 @@ class Result:
         result.__set_goal_difference(goal_difference)
         Result.__result_history[round].append(result)
         
-        
-    @staticmethod
     def get_result(round: int, match: int) -> Result:
         round -= round
         wedstrijd = (match - 1)

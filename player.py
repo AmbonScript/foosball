@@ -10,19 +10,16 @@ class Player:
     __current_attacker_bye: int = None
     __current_defender_bye: int = None
 
-    @staticmethod
     def set_players(number_of_players: int) -> None:
         if (Player.__players == None):
             Player.__initialize_players(number_of_players)
     
-    @staticmethod
     def __initialize_players(number_of_players: int) -> None:
         Player.__players = []
         for i in range(number_of_players):
             Player.__players.append(Player(i))
         Player.__rank_players_randomly()
 
-    @staticmethod
     def __rank_players_randomly() -> None:
         attackerRanks: List[int] = list(range(1, len(Player.__players) + 1))
         random.shuffle(attackerRanks)
@@ -34,36 +31,29 @@ class Player:
             Player.__players[i].set_rank(Position.DEFENDER, defenderRanks[i])
             Player.__players[i].__set_initial_ranks()
     
-    @staticmethod
     def get_player_with_rank(rank: int, position: Position) -> Player:
         return next((player for player in Player.__players if player.get_rank(position) == rank), None)
     
-    @staticmethod 
     def get_number_of_players() -> int:
         return len(Player.__players)
         
-    @staticmethod
     def get_number_of_players_in_round():
         if Player.is_bye_necessary(): return len(Player.__players) - 1
         else: return len(Player.__players)
 
-    @staticmethod
     def is_bye_necessary():
         if len(Player.__players) % 2 == 1: return True
         else: return False
 
-    @staticmethod
     def has_bye_for(position: Position) -> int:
         if position == Position.ATTACKER: return Player.__current_attacker_bye
         else: return Player.__current_defender_bye
     
-    @staticmethod
     def provide_byes() -> None:
         if len(Player.__players) % 2 == 1:
             Player.__provide_byes_for(Position.ATTACKER)
             Player.__provide_byes_for(Position.DEFENDER)
     
-    @staticmethod
     def __provide_byes_for(position: Position) -> None:
         if position == Position.ATTACKER: 
             unbyed_players: List[Player] = [player for player in Player.__players if player.__attacker_bye_received == False]
@@ -73,7 +63,6 @@ class Player:
             lowest_ranked_player: Player = max(unbyed_players, key=lambda player: player.get_rank(position))
         lowest_ranked_player.receive_bye(position)
     
-    @staticmethod
     def rank_players():
         for player in Player.__players:
             player.__determine_resistance_points()
@@ -192,11 +181,11 @@ class Player:
             self.__defender_resistance_points += player.__defender_wins
     
 
-    @staticmethod
+    
     def get_names() -> List[str]:
         return Player.__names
     
-    @staticmethod
+    
     def set_name(name: str, item: int) -> None:
         Player.__names[item] = name
     
