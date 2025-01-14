@@ -1,6 +1,5 @@
 from competition import Competition
 from communicator import Communicator
-from player import Player
 
 # Begin with a clear screen
 Communicator.clear_screen()

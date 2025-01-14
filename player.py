@@ -180,11 +180,8 @@ class Player:
         for player in self.__defender_defender_opponents:
             self.__defender_resistance_points += player.__defender_wins
     
-
-    
     def get_names() -> List[str]:
         return Player.__names
-    
     
     def set_name(name: str, item: int) -> None:
         Player.__names[item] = name
