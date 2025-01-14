@@ -71,8 +71,6 @@ class Communicator:
             attacker: Player = Player.get_player_with_rank(rank, Position.ATTACKER)
             defender: Player = Player.get_player_with_rank(rank, Position.DEFENDER)
             Communicator.__type_out(f"{attacker.name}{Communicator.__make_space_between(attacker.name, 15)}  |  {attacker._Player__attacker_wins}   |    {attacker._Player__attacker_resistance_points}{Communicator.__make_space_between(str(attacker._Player__attacker_resistance_points), 14)}||      {defender.name}{Communicator.__make_space_between(defender.name, 15)}  | {defender._Player__defender_wins}   |    {defender._Player__defender_resistance_points}\n", 0.005)
-        # print("Press any key to continue")
-        # input()
     
     def end_competition() -> None:
         print("\n")
@@ -175,11 +173,11 @@ class Communicator:
         
     def __type_out(message, delay=0.03, sleep_time=.5):
         for char in message:
-            sys.stdout.write(char)  # Write character without a newline
-            sys.stdout.flush()      # Ensure the character is printed immediately
+            sys.stdout.write(char)
+            sys.stdout.flush()
             if char == "." or char == "!" or char == "?":
                 time.sleep(sleep_time)
-            time.sleep(delay)       # Wait for the specified delay
+            time.sleep(delay)
         time.sleep(sleep_time)
     
     def clear_screen():
