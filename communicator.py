@@ -145,9 +145,13 @@ class Communicator:
         return space_between
 
     def __receive_player_name(message, i: int) -> None:
+        name: str = Communicator.__receive_string(message)
+        Player.set_name(name, i)
+    
+    def __receive_string(message) -> str:
         Communicator.__type_out(message)
         name: str = input()
-        Player.set_name(name, i)
+        return name
 
     def __output_message(message):
         Communicator.__type_out(message)
