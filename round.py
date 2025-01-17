@@ -19,7 +19,7 @@ class Round:
         self.__process_results()
     
     def __set_up_matches(self):
-        self.__match_slot.place_players()
+        self.__match_slot.zieke_recursieve_methode_waarin_spelers_op_onnavolgbare_en_wellicht_optimale_manier_geplaatst_worden()
     
     def __play_matches(self) -> None:
         if Communicator.choose_manual_results():

@@ -51,7 +51,7 @@ class Slot:
         else:
             return self.__next_slot.get_slot(number)
     
-    def place_players(self) -> bool:
+    def zieke_recursieve_methode_waarin_spelers_op_onnavolgbare_en_wellicht_optimale_manier_geplaatst_worden(self) -> bool:
         first_slot: Slot = self.__next_slot
         for rank in range((Player.get_number_of_players_in_round() + 1)):
             if not self.can_place(rank): continue
@@ -61,7 +61,7 @@ class Slot:
                 from slot_number_factory import SlotNumberFactory
                 next_slot_number: int = SlotNumberFactory.get_next_slot_number(copy.deepcopy(self))
                 self.__next_slot = Slot(next_slot_number, self.__next_slot)
-                if self.__next_slot.place_players(): return True
+                if self.__next_slot.zieke_recursieve_methode_waarin_spelers_op_onnavolgbare_en_wellicht_optimale_manier_geplaatst_worden(): return True
                 else: self.__reset(first_slot)
         self.__reset(first_slot)
         return False
