@@ -107,7 +107,7 @@ class Slot:
         if start_slot == None: start_slot = self
         next_player_same: bool = self.__player_next_slot_same(player)
         next_position_same: bool = self.__position_next_slot_same(start_slot)
-        next_match_same: bool = self.__match_next_slot_same(start_slot)
+        next_match_same: bool = self.__next_slot.__match == start_slot.__match
         next_slot_same: bool = self.__next_slot == start_slot
         if next_player_same and (next_position_same or next_match_same): return True
         else:
@@ -198,9 +198,6 @@ class Slot:
     
     def __position_next_slot_same(self, start_slot: Slot) -> bool:
         return self.__next_slot.__position == start_slot.__position
-
-    def __match_next_slot_same(self, start_slot: Slot) -> bool:
-        return self.__next_slot.__match == start_slot.__match
         
     def __done_placing(self) -> bool:
         return self.__count_placed_slots() == self.__determine_end_slot()
