@@ -151,6 +151,9 @@ class Communicator:
     def __receive_string(message) -> str:
         Communicator.__type_out(message)
         name: str = input()
+        if len(name) > 15:
+            Communicator.__type_out("Please use 15 charachters or less: ")
+            return Communicator.__receive_string("")
         return name
 
     def __output_message(message):
